@@ -1,0 +1,11 @@
+{
+  "schema": "CTL_P3_MASKS_RUNTIME_CONFIG_V1",
+  "candidate_id": "Cavity_TEM_Light_R10_PROMPT3_MASKS_PREVIEW_DEV01",
+  "installation_root": "C:\\Cavity light\\CTL_P2_VERTICAL_FAST_TRACK_20260901\\Fiji\\lib\\Cavity_TEM_Light_Prompt3_Masks",
+  "python_executable": "C:\\Users\\Usuario\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+  "python_executable_sha256": "4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a",
+  "python_runtime_relative_path": "python_companion",
+  "manager_relative_path": "python_companion/cavity_tem_light_p3/manager.py",
+  "manager_sha256": "0c2b2a3bcc4a201de90a6218d655c4ceb75227d1c9f1c3b951aed4da43747b76",
+  "created_at": "2026-09-04T15:17:10.298Z"
+}

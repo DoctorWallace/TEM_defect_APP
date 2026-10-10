@@ -1,0 +1,10 @@
+[INFO] Overriding BigStitcher; identifier: command:net.preibisch.stitcher.plugin.BigStitcher; jar: file:/G:/Cavity_light.1.2/CavityLight/Fiji/jars/BigStitcher-3.0.8.jar
+[INFO] Registered URI scheme 'fiji' to: G:\Cavity_light.1.2\CavityLight\Fiji\fiji-windows-x64.exe
+Verifying Gatan format
+Reading tags
+Populating metadata
+[WARN] Not adjusting for unknown units: 
+[WARN] Not adjusting for unknown units: 
+[WARN] Unknown Correction value 'Unknown' will be stored as "Other"
+[WARN] Unknown Immersion value 'Unknown' will be stored as "Other"
+[INFO] Reading available sites from https://imagej.net/

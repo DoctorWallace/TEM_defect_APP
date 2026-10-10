@@ -1,0 +1,57 @@
+{
+  "format": "cavity-individual-editor-provenance-v1",
+  "application_version": "1.2.0-RC1-individual",
+  "source_release": "1.1.1-R9-CONSOLIDADA-RC1-INSTFIX1",
+  "source_directory": "C:\\Cavity light\\ANALISIS_PAQUETES_20260920\\R9\\Cavity_TEM_Light_R9_CONSOLIDADA_RC1_INSTFIX1",
+  "original_macro": {
+    "name": "Cavity_TEM_Light_v1_1_1_R9_CONSOLIDADA_RC1.ijm",
+    "sha256": "8b620c53a1b899e09b7b11d510120d0340a4176a1b9a3beee30e101909c6dffc"
+  },
+  "unchanged_assets": [
+    {
+      "name": "cavity-light-hf4.jar",
+      "sha256": "c920e0f33eef5f4aa879c2ee9123438437e9358f6a332582826385b1e30f1e59"
+    },
+    {
+      "name": "cavity_add.png",
+      "sha256": "4a5b782edb1c0ded486c8a80d058463ef59b808bcb1f129482635419d8bda567"
+    },
+    {
+      "name": "cavity_measure.png",
+      "sha256": "bc0019344f8815e0e3c52c6569fb3082f1c6683014df8cbf573cefca35005888"
+    },
+    {
+      "name": "cavity_select.png",
+      "sha256": "fbc0bdf57d3d1c7b63e93bcb64da6ba6df8cce2f960f612ee7f99bab273885a2"
+    },
+    {
+      "name": "cavity_studio.png",
+      "sha256": "6dff5e239b6302a0242b5e64e0c613826e200350b533f0b06900b06a1439dc65"
+    },
+    {
+      "name": "cavity_zoom.png",
+      "sha256": "23ec18a0465d24f42171b27af7f3d80a9383916800aa5865c72dd325023532e1"
+    }
+  ],
+  "preserved_scientific_functions": {
+    "syncCavityAtIndex": "409826357412e9e4b0b11936d1b44b60d27abe06dd2b14b8251ff033eb00fb40",
+    "lightComputeExactAreaAndDepth": "adcdac34e3aba982ec7efd1f529b9d57deb228a3b4855b0d494bbb0ffa95b214",
+    "lightComputeFeatureDistanceAreas": "475ac6c8e7ee1712fca3f9e71ca019f69f6b58484358ca73777a0c3a44859208",
+    "lightWriteFeatureDistanceOutputs": "4aef2da2eefdf2fe52eb38001c8e9cff0598a9bc9edb1456434f064268f2f1d5",
+    "quantitativeExportPreflight": "f576a5079d8387237a3d6be20182fa4eaad42d0984154463bacf21347dad05c4",
+    "lightHF3BandIndex": "dbc8a5bac187009a24695ca0bc3f53eaf6e656e39693635f23b0872a41ae008c"
+  },
+  "changes": [
+    "Numeric Oval editing preserves physical aspect ratio, arbitrary properties and stale-selection guards",
+    "Individual-image interface without combined analysis entrypoints",
+    "Exact project/image/revision library open without metadata or result publication",
+    "Prefer selected project and its source copy when paths in historical metadata point elsewhere",
+    "Save/discard/cancel before project/image switching",
+    "Failed import cleanup addresses new windows by ID",
+    "Configuration after successful image registration, outside rollback snapshot",
+    "Create log directories at explicit save preflight and log append, before revision publication",
+    "Preserve metadata-defined physical scale without a calibration line",
+    "Restore session resize step ahead of global preference; snapshot restore republishes session step"
+  ],
+  "validation_scope": "Headless geometry and package/flow checks; real Fiji integration recorded separately by delivery."
+}

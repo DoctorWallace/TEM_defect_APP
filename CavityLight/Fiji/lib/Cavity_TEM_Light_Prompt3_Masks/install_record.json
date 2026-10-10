@@ -1,0 +1,302 @@
+{
+  "schema": "CTL_P3_MASKS_INSTALL_RECORD_V1",
+  "candidate_id": "Cavity_TEM_Light_R10_PROMPT3_MASKS_PREVIEW_DEV01",
+  "install_state": "COMMITTED",
+  "installed_at": "2026-09-04T15:17:10.735Z",
+  "fiji_root": "C:\\Cavity light\\CTL_P2_VERTICAL_FAST_TRACK_20260901\\Fiji",
+  "plugin_root": "C:\\Cavity light\\CTL_P2_VERTICAL_FAST_TRACK_20260901\\Fiji\\lib\\Cavity_TEM_Light_Prompt3_Masks",
+  "runtime_config_sha256": "778028f6e4cf825adc55220570854cf6b4b44a199462d499993e178d31cfd4cf",
+  "python_executable_sha256": "4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a",
+  "manager_sha256": "0c2b2a3bcc4a201de90a6218d655c4ceb75227d1c9f1c3b951aed4da43747b76",
+  "adapter_sha256": "0035762981fefa7211948e00c164c24f0bafe8190b071cba1df1b1550cb8b210",
+  "menu_parent_directories": [
+    {
+      "role": "FIJI_SCRIPTS_DIRECTORY",
+      "path": "C:\\Cavity light\\CTL_P2_VERTICAL_FAST_TRACK_20260901\\Fiji\\scripts",
+      "owned": false,
+      "preexisting": true
+    },
+    {
+      "role": "FIJI_SCRIPTS_PLUGINS_DIRECTORY",
+      "path": "C:\\Cavity light\\CTL_P2_VERTICAL_FAST_TRACK_20260901\\Fiji\\scripts\\Plugins",
+      "owned": false,
+      "preexisting": true
+    }
+  ],
+  "menu_directory": {
+    "path": "C:\\Cavity light\\CTL_P2_VERTICAL_FAST_TRACK_20260901\\Fiji\\scripts\\Plugins\\Cavity_TEM_Light",
+    "owned": false,
+    "preexisting": true
+  },
+  "artifacts": [
+    {
+      "kind": "FIJI_P3_MASKS_MANAGER_SCRIPT",
+      "path": "C:\\Cavity light\\CTL_P2_VERTICAL_FAST_TRACK_20260901\\Fiji\\scripts\\Plugins\\Cavity_TEM_Light\\Prompt3_Masks_Manager.js",
+      "sha256": "0035762981fefa7211948e00c164c24f0bafe8190b071cba1df1b1550cb8b210",
+      "bytes": 249953,
+      "owned": true,
+      "preexisting": false,
+      "disposition": "OWNED_CREATED"
+    },
+    {
+      "kind": "FIJI_P3_PORTABLE_OPEN_SCRIPT",
+      "path": "C:\\Cavity light\\CTL_P2_VERTICAL_FAST_TRACK_20260901\\Fiji\\scripts\\Plugins\\Cavity_TEM_Light\\P3_Smoke_Open_Controlled_Source.js",
+      "sha256": "47245874c240dbfc860c2ceb9d83d95002d1ccc009f734310f9f7126f0d5f88f",
+      "bytes": 11163,
+      "owned": true,
+      "preexisting": false,
+      "disposition": "OWNED_CREATED"
+    },
+    {
+      "kind": "FIJI_P3_SCALE_PREFLIGHT_SCRIPT",
+      "path": "C:\\Cavity light\\CTL_P2_VERTICAL_FAST_TRACK_20260901\\Fiji\\scripts\\Plugins\\Cavity_TEM_Light\\Prompt3_Scale_Preflight_No_Write.js",
+      "sha256": "655dc50b9f074583ff8c04323e0e1bd75f32865b3ec1a548873d90ff2fe0b375",
+      "bytes": 19339,
+      "owned": true,
+      "preexisting": false,
+      "disposition": "OWNED_CREATED"
+    },
+    {
+      "kind": "P3_SMOKE_LOCAL_CONFIG_EXAMPLE",
+      "path": "C:\\Cavity light\\CTL_P2_VERTICAL_FAST_TRACK_20260901\\Fiji\\scripts\\Plugins\\Cavity_TEM_Light\\P3_SMOKE_LOCAL_CONFIG.example.json",
+      "sha256": "6bf56deef47cf81f5b68b975457018ecb492ad5fd2c453234ce5bbd4f2e1f318",
+      "bytes": 206,
+      "owned": true,
+      "preexisting": false,
+      "disposition": "OWNED_CREATED"
+    },
+    {
+      "kind": "P3_MASKS_TOOLSET",
+      "path": "C:\\Cavity light\\CTL_P2_VERTICAL_FAST_TRACK_20260901\\Fiji\\macros\\toolsets\\Cavity_TEM_Light_R10_PROMPT3_MASKS_PREVIEW_DEV01.ijm",
+      "sha256": "c969ac172e80d0eaf3fa01de4173b20aba59df3492be09a43b78db67f760305b",
+      "bytes": 1189104,
+      "owned": true,
+      "preexisting": false,
+      "disposition": "OWNED_CREATED"
+    },
+    {
+      "kind": "SHARED_ICON",
+      "path": "C:\\Cavity light\\CTL_P2_VERTICAL_FAST_TRACK_20260901\\Fiji\\macros\\toolsets\\cavity_add.png",
+      "sha256": "4a5b782edb1c0ded486c8a80d058463ef59b808bcb1f129482635419d8bda567",
+      "bytes": 384,
+      "owned": false,
+      "preexisting": true,
+      "disposition": "PREEXISTING_IDENTICAL"
+    },
+    {
+      "kind": "SHARED_ICON",
+      "path": "C:\\Cavity light\\CTL_P2_VERTICAL_FAST_TRACK_20260901\\Fiji\\macros\\toolsets\\cavity_measure.png",
+      "sha256": "bc0019344f8815e0e3c52c6569fb3082f1c6683014df8cbf573cefca35005888",
+      "bytes": 470,
+      "owned": false,
+      "preexisting": true,
+      "disposition": "PREEXISTING_IDENTICAL"
+    },
+    {
+      "kind": "SHARED_ICON",
+      "path": "C:\\Cavity light\\CTL_P2_VERTICAL_FAST_TRACK_20260901\\Fiji\\macros\\toolsets\\cavity_select.png",
+      "sha256": "fbc0bdf57d3d1c7b63e93bcb64da6ba6df8cce2f960f612ee7f99bab273885a2",
+      "bytes": 428,
+      "owned": false,
+      "preexisting": true,
+      "disposition": "PREEXISTING_IDENTICAL"
+    },
+    {
+      "kind": "SHARED_ICON",
+      "path": "C:\\Cavity light\\CTL_P2_VERTICAL_FAST_TRACK_20260901\\Fiji\\macros\\toolsets\\cavity_studio.png",
+      "sha256": "6dff5e239b6302a0242b5e64e0c613826e200350b533f0b06900b06a1439dc65",
+      "bytes": 358,
+      "owned": false,
+      "preexisting": true,
+      "disposition": "PREEXISTING_IDENTICAL"
+    },
+    {
+      "kind": "SHARED_ICON",
+      "path": "C:\\Cavity light\\CTL_P2_VERTICAL_FAST_TRACK_20260901\\Fiji\\macros\\toolsets\\cavity_zoom.png",
+      "sha256": "23ec18a0465d24f42171b27af7f3d80a9383916800aa5865c72dd325023532e1",
+      "bytes": 418,
+      "owned": false,
+      "preexisting": true,
+      "disposition": "PREEXISTING_IDENTICAL"
+    }
+  ],
+  "runtime_files": [
+    {
+      "path": "cavity_tem_light_p1/__init__.py",
+      "sha256": "80e5e1b19584366b91f5003b3c882f0a74f5671e890cee98cf6753618651d0dc",
+      "bytes": 385
+    },
+    {
+      "path": "cavity_tem_light_p1/bridge.py",
+      "sha256": "0c0fcb980ae5c763760e54b7639a348f31b104fd141c03e6deecc4860b0a14fa",
+      "bytes": 3835
+    },
+    {
+      "path": "cavity_tem_light_p1/canonical_json.py",
+      "sha256": "a2b4474394a62ccd8d59a0d4a075bb0afe1abb15c39c0e0a83e866c6fcc30165",
+      "bytes": 10558
+    },
+    {
+      "path": "cavity_tem_light_p1/cli.py",
+      "sha256": "3ec0e4592891cb27347298163bbbb1242e97849625d668fbbf1f9b82ef88f980",
+      "bytes": 70165
+    },
+    {
+      "path": "cavity_tem_light_p1/combined.py",
+      "sha256": "c2f7325e612ed7428defe14593c462fff3762fd208c0f5521bdacfcd73c977da",
+      "bytes": 40802
+    },
+    {
+      "path": "cavity_tem_light_p1/contract.py",
+      "sha256": "63201d3fcb5100cbe5a6de3bfc2a6ff6668065c2bf94653aeb6d749948053791",
+      "bytes": 32920
+    },
+    {
+      "path": "cavity_tem_light_p1/critical_io.py",
+      "sha256": "7b1c21606458036389377f8e34edfe47b7e10fbb45bba2744708e611c70b86d7",
+      "bytes": 41084
+    },
+    {
+      "path": "cavity_tem_light_p1/errors.py",
+      "sha256": "b64463d677c30f8ff51c93046eaf64f7907d549176358d7ef30bcc6d9871b338",
+      "bytes": 843
+    },
+    {
+      "path": "cavity_tem_light_p1/identity.py",
+      "sha256": "d9f2ea0acc00c3aa8f358571ad9f24619f8438598da3a19ef9f16e026241b7a1",
+      "bytes": 27429
+    },
+    {
+      "path": "cavity_tem_light_p1/object_table.py",
+      "sha256": "3ddd8dad92204f5223266b078c9cca2d12193daa9a192c46f9775f3e8805fbba",
+      "bytes": 71594
+    },
+    {
+      "path": "cavity_tem_light_p1/object_table_profile.py",
+      "sha256": "e0e8ce6335ea26fed05e0e90f660846bebaf76985d51cd2bf790f92921e9ea61",
+      "bytes": 9549
+    },
+    {
+      "path": "cavity_tem_light_p1/path_safety.py",
+      "sha256": "d8781b1082fde4e2339f89b94583b38c8a658d25206d65676c64d2ffad299708",
+      "bytes": 26372
+    },
+    {
+      "path": "cavity_tem_light_p1/revision.py",
+      "sha256": "0dedf11f62c10efbe809d1c83d4ae62aae0fd3d1a3f9b5f107a020969086d4dd",
+      "bytes": 32848
+    },
+    {
+      "path": "cavity_tem_light_p1/run_consumer.py",
+      "sha256": "41c38b197b4474875950155342624db8cbe3a70f5c740dfb489827abfd517d5c",
+      "bytes": 38300
+    },
+    {
+      "path": "cavity_tem_light_p1/run_context.py",
+      "sha256": "d147e81eeb2eb8c6b02e7d75ddeb68180ca1c5ffae5a6a99832e8979741cef03",
+      "bytes": 30746
+    },
+    {
+      "path": "cavity_tem_light_p1/run_disposition.py",
+      "sha256": "13dfc8d6cbb09ee56ff6853dcb74be1801bb301a028ea65f37ba901d23c4035b",
+      "bytes": 23382
+    },
+    {
+      "path": "cavity_tem_light_p1/run_transaction.py",
+      "sha256": "a638b8d42ef4e0003d98a9ced3f831523d1994f6ab6e4a69e75a4a531b710cf0",
+      "bytes": 55990
+    },
+    {
+      "path": "cavity_tem_light_p1/science.py",
+      "sha256": "edc7304fe6ccd943be179bbb38fc4eb4e13cfb5b7e57a2f4eb48c54f2cb29996",
+      "bytes": 68111
+    },
+    {
+      "path": "cavity_tem_light_p2/__init__.py",
+      "sha256": "706f6891084befed8858e0f68b44ca77c109872b19bc6c443697d357a835e16e",
+      "bytes": 1127
+    },
+    {
+      "path": "cavity_tem_light_p2/migration.py",
+      "sha256": "f02a864aff2241997725e717bf8d1ba0d317f536a3990fc6b561497937f9b94e",
+      "bytes": 112499
+    },
+    {
+      "path": "cavity_tem_light_p2/session_archive.py",
+      "sha256": "d8aef0255cd29a243060af045114b62d5f96eae9ba4e1b484e628bfd1525ca19",
+      "bytes": 78882
+    },
+    {
+      "path": "cavity_tem_light_p2/session_core.py",
+      "sha256": "f1b4cd8cc1920913c1ef4882d1f8196e290d3580c6ecf0e18cd630b8959cc5a0",
+      "bytes": 312772
+    },
+    {
+      "path": "cavity_tem_light_p2/vertical_manager.py",
+      "sha256": "517e94136663f73dd61e429fc9d383fb354eaede8f5da3f50a764e414a0ccb7f",
+      "bytes": 64421
+    },
+    {
+      "path": "cavity_tem_light_p3/__init__.py",
+      "sha256": "c526089bad00cb5310b6eff70ca57042521d04e73a328252136cc221ef320038",
+      "bytes": 603
+    },
+    {
+      "path": "cavity_tem_light_p3/manager.py",
+      "sha256": "0c2b2a3bcc4a201de90a6218d655c4ceb75227d1c9f1c3b951aed4da43747b76",
+      "bytes": 61623
+    },
+    {
+      "path": "cavity_tem_light_p3/mask_visibility.py",
+      "sha256": "ed215d1caf0f4e58fc5b245fe901ba02a8c4107ac147bbb5e5facc2db35c5667",
+      "bytes": 36004
+    },
+    {
+      "path": "cavity_tem_light_p3/run_disposition.py",
+      "sha256": "6b2749cae1ed71ae23eeaab3d408386ac2e1d8c70a2db58b19ab9601e474bd82",
+      "bytes": 16584
+    },
+    {
+      "path": "cavity_tem_light_p3/run_recovery.py",
+      "sha256": "ae65cada26c9f3ae92bf7c7f0f7e75902f8f856eceb304d8782e6ea1fe4e171a",
+      "bytes": 27729
+    },
+    {
+      "path": "cavity_tem_light_p3/run_science.py",
+      "sha256": "06425d801336e974d1e70f0c2b17f585b5fa0a965de00f096c61ee75ea360056",
+      "bytes": 27273
+    },
+    {
+      "path": "cavity_tem_light_p3/spatial_scale.py",
+      "sha256": "01d3108e59b024919eb3f3f89a1cf7aff8345967a2f90ad5c17cad27403f33ce",
+      "bytes": 32596
+    },
+    {
+      "path": "data/cavity_objects_header.tsv",
+      "sha256": "0d78507e225361fe29035cb5131edb88fe6905d843ac680bf817d11dbe1745a5",
+      "bytes": 4998
+    },
+    {
+      "path": "data/CTL_CAVITY_OBJECTS_TSV_PROFILE_V1.json",
+      "sha256": "ce90a7bee957b185f1178232cab99c622c134c574c1e6942cb126174c255657f",
+      "bytes": 64934
+    },
+    {
+      "path": "data/schema_v2_field_dictionary.csv",
+      "sha256": "e4d9f44a31544583d0fad154199f02b8b4642e4e09dd50e79699a8923116af03",
+      "bytes": 81353
+    },
+    {
+      "path": "cavity_tem_light_p3/onboarding.py",
+      "bytes": 13837,
+      "sha256": "022de53e3802c4ffd3d4188f40996cd4aca312b2d0e8ec3311e30793b36f3ed7"
+    }
+  ],
+  "claim_boundary": {
+    "technical_preview": true,
+    "scientific_validation": false,
+    "functional_release": false,
+    "public_distribution": false,
+    "prompt4_started": false
+  }
+}

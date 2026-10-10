@@ -1,0 +1,21 @@
+{
+  "state": "COMMITTED",
+  "changes": [
+    {
+      "path": "Aplicacion/python_companion/cavity_library/gui.py",
+      "before": "6893c515328a38ed8b5e63526113f8245994cbaf5b5ac78fb5c765844bfc7b7c",
+      "after": "4ea645b7131aeb0b7dc1d23721d86629b446a1bdb9ec0854272bb7e19e4bd1bb"
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_library/readers.py",
+      "before": "36437a52f8c4f4307e86d1d91768a07db856716cd0137ef7e0b51fe70517db2f",
+      "after": "45a1676fb93d4f48fd6ba642ce07a13b7332915b1dfa5b8f9b4e9604cb8da8b7"
+    },
+    {
+      "path": "Documentacion/LEEME_1_2.md",
+      "before": "2c4382b4590d3ce824af7447ca2fc814c25bf79db5a44923d494befb85af7f4c",
+      "after": "2e328848e9e152337c95291e1b68794f7b4d1a15579719b9ea926d67172f6f0d"
+    }
+  ],
+  "scientific_writes": 0
+}

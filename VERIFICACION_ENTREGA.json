@@ -1,0 +1,131 @@
+{
+  "schema": "CTL_LOCAL_TRIAL_READINESS_V1",
+  "status": "READY_FOR_USER_TRIAL_WITH_DOCUMENTED_ROI_PRECISION",
+  "recorded_at_utc": "2026-09-20T21:19:19.427910+00:00",
+  "version": "1.2.0-RC1",
+  "package_root": "C:\\Cavity light\\ENTREGAS\\Local_20260920\\CavityLight",
+  "launcher": "C:\\Cavity light\\ABRIR_CAVITY_LIGHT_1_2.bat",
+  "scope": "Windows, individual-image R9 workflow and local R9/P3 library; combined calculations deferred",
+  "base_commit": "927b23c1b6d81726bb01fb9b4cc8cbcf58886e73",
+  "includes_working_tree_changes": true,
+  "scientific_validation": false,
+  "combined_results_enabled": false,
+  "integrated_workflow": {
+    "open_save_reopen": "PASS",
+    "export": "FINISHED",
+    "roi_count": 664,
+    "cavity_count": 661,
+    "protected_roi_geometry_differences": 0,
+    "checked_run_files": 28,
+    "new_revision": "REV_20260920_230849_840",
+    "new_run": "RUN_20260920_230855_426",
+    "writes_location": "C:\\Cavity light\\ENTREGAS\\Local_20260920\\Comprobacion\\Proyecto_copia_661"
+  },
+  "numerical_comparison": {
+    "strict_status": "FAIL",
+    "compatibility_status": "PASS_WITH_DOCUMENTED_ROI_PRECISION",
+    "literal_changed_numeric_cells": 2938,
+    "replayed_numeric_cells": 7932,
+    "histogram_1nm_changed_assignments": 7,
+    "mean_diameter_reference_nm": "14.603630862",
+    "mean_diameter_recalculated_nm": "14.603630908",
+    "historical_result_changed": false
+  },
+  "originals_integrity": {
+    "status": "PASS",
+    "checked_file_count": 38
+  },
+  "application_integrity": {
+    "status": "PASS",
+    "checked_application_files": 68,
+    "errors": [],
+    "scope": "Application files, not scientific projects or the complete Fiji runtime"
+  },
+  "native_library_startup": {
+    "title": "Cavity TEM Light 1.2 RC1",
+    "projects": 1,
+    "images": 2,
+    "runs": 2,
+    "normal_startup_log_bytes": 0
+  },
+  "limits": [
+    "One real accepted image exercised on this Windows computer; not all images, functions or computers.",
+    "Strict numerical equality of old and recalculated RUN is false: historic float32 ROI storage explains the differences and seven 1 nm histogram assignments.",
+    "P3 opens its existing manager and requires project selection there.",
+    "The test Fiji session contains the controlled copy, not the original project."
+  ],
+  "evidence": [
+    {
+      "path": "C:\\Cavity light\\ENTREGAS\\Local_20260920\\Comprobacion\\roundtrip_final2.tsv",
+      "sha256": "a045fc0a7de5e25540d0ea530f309835668f5de60b620ba6f7de9237bb8f117d"
+    },
+    {
+      "path": "C:\\Cavity light\\ENTREGAS\\Local_20260920\\Comprobacion\\INTEGRATED_VERIFICATION.json",
+      "sha256": "b504ba02373c920918a9170473212177a57b87d3a8e521ab8ff61691fc8945a5"
+    },
+    {
+      "path": "C:\\Cavity light\\ENTREGAS\\Local_20260920\\Comprobacion\\NUMERIC_COMPATIBILITY.json",
+      "sha256": "551c85583120d098e36efec2d0366176dff1e59cea44304e2d498fe8b1152337"
+    },
+    {
+      "path": "C:\\Cavity light\\ENTREGAS\\Local_20260920\\Comprobacion\\HISTOGRAM_PRECISION.json",
+      "sha256": "30ab80da06dbdff07d3d6f5a527268b122313f867ab3627d43a18d771388984b"
+    },
+    {
+      "path": "C:\\Cavity light\\ENTREGAS\\Local_20260920\\Comprobacion\\ORIGINALS_INTEGRITY.json",
+      "sha256": "627e21a3b6098d7196c20dc8da414dfd6336896593fa33f42cee17470ce62575"
+    },
+    {
+      "path": "C:\\Cavity light\\ENTREGAS\\Local_20260920\\Comprobacion\\APPLICATION_INTEGRITY.json",
+      "sha256": "0ae8e6da982c59cf97daf53f39bfeceb4fbf3dd8f358df356cd7544d8d9e0c24"
+    },
+    {
+      "path": "C:\\Cavity light\\ENTREGAS\\Local_20260920\\Comprobacion\\EXECUTION_PROVENANCE.json",
+      "sha256": "78216f0a1f9c2e432b7c8550f1cadf07ec14efb3f74f96ca704ab3b5a61b2c81"
+    },
+    {
+      "path": "C:\\Cavity light\\ENTREGAS\\Local_20260920\\Comprobacion\\LIBRARY_FOCUSED_TEST_RECORD.json",
+      "sha256": "784548d6f55374a8b112aa91d2b4f91426b9693d0b2d064275900c38fe96907d"
+    },
+    {
+      "path": "C:\\Cavity light\\ENTREGAS\\Local_20260920\\Comprobacion\\p3_runtime_integrity.json",
+      "sha256": "006e0b0eb971ed20d77da8f9a3a49fad85806f6706824614d64042a574b5794c"
+    },
+    {
+      "path": "C:\\Cavity light\\ENTREGAS\\Local_20260920\\Comprobacion\\reference_copy_provenance.json",
+      "sha256": "bd73c1fb9b6821f167f03a23a3e765907dd34b9a99ad45588fa40bcbcaaadaf8"
+    },
+    {
+      "path": "C:\\Cavity light\\CTL_P2A_SESSION_CORE_RESUMED_V2\\developer_sources\\individual_editor\\FOCAL_VALIDATION.json",
+      "sha256": "1e297ebad9dfff64d1a2159b5bcc5b751de4c5b3046e22822aa37219083544eb"
+    },
+    {
+      "path": "C:\\Cavity light\\CTL_P2A_SESSION_CORE_RESUMED_V2\\developer_sources\\individual_editor\\PROVENANCE.json",
+      "sha256": "db3f2e8bda3ee8ce4a99ee9b3281ee757fd160fe98a2d19921adf7f68d81ef55"
+    },
+    {
+      "path": "C:\\Cavity light\\CTL_P2A_SESSION_CORE_RESUMED_V2\\tests\\evidence\\library_reference_read_20260920.json",
+      "sha256": "f5de6850fe13950d51e800717e56a7751e20fd58f251f1728bb3624e091ffe73"
+    },
+    {
+      "path": "C:\\Cavity light\\CTL_P2A_SESSION_CORE_RESUMED_V2\\tests\\evidence\\fiji_instance_arg_inspection_20260920.json",
+      "sha256": "a0062d24c50eb1d1c9e8b8333d6326826b8dee0fa7f66c95fcbdd03874f70768"
+    },
+    {
+      "path": "C:\\Cavity light\\ENTREGAS\\Local_20260920\\CavityLight\\VERSION_1_2.json",
+      "sha256": "8fc7808b6ad4d98833e29c8391a7eb2d4a05351ddc30d2747746477b8c45e422"
+    },
+    {
+      "path": "C:\\Cavity light\\ENTREGAS\\Local_20260920\\ESTADO.md",
+      "sha256": "e5943727e9a31dc4d9f939e6fafbad2a0d1323b2ce98fc2f3f892655238b6633"
+    },
+    {
+      "path": "C:\\Cavity light\\ENTREGAS\\Local_20260920\\CavityLight\\Documentacion\\LEEME_1_2.md",
+      "sha256": "2c4382b4590d3ce824af7447ca2fc814c25bf79db5a44923d494befb85af7f4c"
+    },
+    {
+      "path": "C:\\Cavity light\\ABRIR_CAVITY_LIGHT_1_2.bat",
+      "sha256": "0d95c1cb3a16def19d509315c5bd73ab2f5313442f49fc2058f3c240e9a79fb8"
+    }
+  ]
+}

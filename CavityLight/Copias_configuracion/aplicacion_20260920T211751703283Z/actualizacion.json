@@ -1,0 +1,16 @@
+{
+  "state": "COMMITTED",
+  "changes": [
+    {
+      "path": "Aplicacion/individual_editor_source/verify_roi_precision.py",
+      "before": null,
+      "after": "142c447e54d004141465ecc713135b7d512f030aab9b0834c119b7e7feeb05cc"
+    },
+    {
+      "path": "Documentacion/LEEME_1_2.md",
+      "before": "8fd44250b91efca3702861d7910914573508e07871946a977e3ed43d01ea0de7",
+      "after": "2c4382b4590d3ce824af7447ca2fc814c25bf79db5a44923d494befb85af7f4c"
+    }
+  ],
+  "scientific_writes": 0
+}

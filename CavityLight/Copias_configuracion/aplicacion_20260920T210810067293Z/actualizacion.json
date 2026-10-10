@@ -1,0 +1,36 @@
+{
+  "state": "COMMITTED",
+  "changes": [
+    {
+      "path": "Aplicacion/python_companion/cavity_library/gui.py",
+      "before": "756cb7501eb8a92d513eb1536cae4b0b669e9b5414453c6952e67a8624d516d3",
+      "after": "6893c515328a38ed8b5e63526113f8245994cbaf5b5ac78fb5c765844bfc7b7c"
+    },
+    {
+      "path": "Fiji/macros/toolsets/Cavity_TEM_Light_1_2_RC1.ijm",
+      "before": "33fdc967590b16ea8e718f70906524c24ba85d16deb14b676b47fe8200db911a",
+      "after": "3f9bf3f88620227218787feba335beb00115f41a286b09c3d81cbba086592e23"
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/make_smoke_toolset.py",
+      "before": "3a7d08e9260fef7f4e2170cae5cdc6af97dad99bdfc660b6aa2f945c322b2030",
+      "after": "63b353db0488ba19c1ce5985ba5518935dcb9bc5a86acb4ddd07e0aafe9ba718"
+    },
+    {
+      "path": "Aplicacion/Start_Individual_Editor.ijm",
+      "before": "df2c41de244fcb5ad8797bf10b0817e890eca8852fc02a66a4fc0110b6a6d8f4",
+      "after": "28090f77cb60c8101274cfd66a0ccc6701dad12312cd0553eed270b82674352f"
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/upgrade_editor.py",
+      "before": "383b90f8f70fa000c305462e3a731248217dc902af0b58d1c3643792c7821fdc",
+      "after": "a0e4656045b73b33f4b77c5f149d14703550520b9141369de87e005421ab259f"
+    },
+    {
+      "path": "Documentacion/LEEME_1_2.md",
+      "before": "3eb56d1c2a6039a0fb40c812345719fa1037fd9a82a3b25dd15d1d0f48fad430",
+      "after": "8fd44250b91efca3702861d7910914573508e07871946a977e3ed43d01ea0de7"
+    }
+  ],
+  "scientific_writes": 0
+}

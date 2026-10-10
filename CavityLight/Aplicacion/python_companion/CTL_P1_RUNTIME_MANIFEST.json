@@ -1,0 +1,110 @@
+{
+  "candidate_id": "Cavity_TEM_Light_v1_2_0_R10_DEV01",
+  "file_count": 20,
+  "files": [
+    {
+      "bytes": 385,
+      "path": "cavity_tem_light_p1/__init__.py",
+      "sha256": "80e5e1b19584366b91f5003b3c882f0a74f5671e890cee98cf6753618651d0dc"
+    },
+    {
+      "bytes": 3835,
+      "path": "cavity_tem_light_p1/bridge.py",
+      "sha256": "0c0fcb980ae5c763760e54b7639a348f31b104fd141c03e6deecc4860b0a14fa"
+    },
+    {
+      "bytes": 10773,
+      "path": "cavity_tem_light_p1/canonical_json.py",
+      "sha256": "e147142455921cefdb80b1e4d9dbcd5b17b0cb9e216945efac4ffde90dfbd44f"
+    },
+    {
+      "bytes": 70055,
+      "path": "cavity_tem_light_p1/cli.py",
+      "sha256": "b906fd6e8261f4f4b82786240ee6556f647c17cac19d2e538e478fc217115e05"
+    },
+    {
+      "bytes": 40668,
+      "path": "cavity_tem_light_p1/combined.py",
+      "sha256": "3a131ecd15ec304ebb3c62d6afe57206cc6ef0c43065acadf867e6949156c5f6"
+    },
+    {
+      "bytes": 32217,
+      "path": "cavity_tem_light_p1/contract.py",
+      "sha256": "a85db2ffdd98d3a29d75067e73832d001e3a8df1028311bafaad313d1640709f"
+    },
+    {
+      "bytes": 41084,
+      "path": "cavity_tem_light_p1/critical_io.py",
+      "sha256": "7b1c21606458036389377f8e34edfe47b7e10fbb45bba2744708e611c70b86d7"
+    },
+    {
+      "bytes": 843,
+      "path": "cavity_tem_light_p1/errors.py",
+      "sha256": "b64463d677c30f8ff51c93046eaf64f7907d549176358d7ef30bcc6d9871b338"
+    },
+    {
+      "bytes": 27429,
+      "path": "cavity_tem_light_p1/identity.py",
+      "sha256": "d9f2ea0acc00c3aa8f358571ad9f24619f8438598da3a19ef9f16e026241b7a1"
+    },
+    {
+      "bytes": 67623,
+      "path": "cavity_tem_light_p1/object_table.py",
+      "sha256": "17d9ac5522a6ded751519423cf93a54c600202667f3ea51c826799d2b2df3a9c"
+    },
+    {
+      "bytes": 9549,
+      "path": "cavity_tem_light_p1/object_table_profile.py",
+      "sha256": "e0e8ce6335ea26fed05e0e90f660846bebaf76985d51cd2bf790f92921e9ea61"
+    },
+    {
+      "bytes": 22197,
+      "path": "cavity_tem_light_p1/path_safety.py",
+      "sha256": "9744fbf433ee840ec77554b7174532f00eea58366a10d97cfec6eb2ced2e25b3"
+    },
+    {
+      "bytes": 32848,
+      "path": "cavity_tem_light_p1/revision.py",
+      "sha256": "0dedf11f62c10efbe809d1c83d4ae62aae0fd3d1a3f9b5f107a020969086d4dd"
+    },
+    {
+      "bytes": 34149,
+      "path": "cavity_tem_light_p1/run_consumer.py",
+      "sha256": "cee316307f9563d9a93649534e7c1a989ae0abdf9312664edc5bc81a3b7d4f6d"
+    },
+    {
+      "bytes": 45505,
+      "path": "cavity_tem_light_p1/run_transaction.py",
+      "sha256": "3c26f6539fc9d7644f79e2ed765682005bda48645032e89abca3d156b39bcdf9"
+    },
+    {
+      "bytes": 68111,
+      "path": "cavity_tem_light_p1/science.py",
+      "sha256": "edc7304fe6ccd943be179bbb38fc4eb4e13cfb5b7e57a2f4eb48c54f2cb29996"
+    },
+    {
+      "bytes": 48296,
+      "path": "ctl_p1_bridge.py",
+      "sha256": "38f43e2508eacc14f0761c83f344694b3e7123cde6e6e04e81b49eb52a7a064b"
+    },
+    {
+      "bytes": 64934,
+      "path": "data/CTL_CAVITY_OBJECTS_TSV_PROFILE_V1.json",
+      "sha256": "ce90a7bee957b185f1178232cab99c622c134c574c1e6942cb126174c255657f"
+    },
+    {
+      "bytes": 4998,
+      "path": "data/cavity_objects_header.tsv",
+      "sha256": "0d78507e225361fe29035cb5131edb88fe6905d843ac680bf817d11dbe1745a5"
+    },
+    {
+      "bytes": 81353,
+      "path": "data/schema_v2_field_dictionary.csv",
+      "sha256": "e4d9f44a31544583d0fad154199f02b8b4642e4e09dd50e79699a8923116af03"
+    }
+  ],
+  "inventory_profile": "CTL_P1_RUNTIME_CLOSED_INVENTORY_V1",
+  "manifest_self_included": false,
+  "manifest_self_relative_path": "CTL_P1_RUNTIME_MANIFEST.json",
+  "schema": "CTL_P1_RUNTIME_MANIFEST_V1"
+}

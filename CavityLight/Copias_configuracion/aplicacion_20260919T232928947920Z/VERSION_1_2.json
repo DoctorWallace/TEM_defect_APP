@@ -1,0 +1,17 @@
+{
+  "schema": "CTL_LOCAL_1_2_VERSION_V1",
+  "version": "1.2.0-RC1",
+  "status": "CANDIDATE_FOR_INDIVIDUAL_IMAGES",
+  "created_at": "20260919T232233498824Z",
+  "base_commit": "927b23c1b6d81726bb01fb9b4cc8cbcf58886e73",
+  "includes_working_tree_changes": true,
+  "scientific_validation": false,
+  "combined_results_enabled": false,
+  "individual_editor_sha256": {
+    "Fiji/plugins/cavity-light-hf4.jar": "c920e0f33eef5f4aa879c2ee9123438437e9358f6a332582826385b1e30f1e59",
+    "Fiji/plugins/cavity-light-individual.jar": "3e62a2c3802eb5c6500475efbd9ff0796f90f918020a66c9107f9ee5b04f1cfc",
+    "Fiji/macros/toolsets/Cavity_TEM_Light_1_2_RC1.ijm": "cc16948a34a6c5eadf4105e60db9618cce13e22288c0761b94ddf326e1dc43f3",
+    "Aplicacion/Start_Individual_Editor.ijm": "df2c41de244fcb5ad8797bf10b0817e890eca8852fc02a66a4fc0110b6a6d8f4"
+  },
+  "scientific_project_writes_by_builder": 0
+}

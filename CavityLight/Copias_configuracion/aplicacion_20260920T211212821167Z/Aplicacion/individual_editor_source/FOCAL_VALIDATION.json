@@ -1,0 +1,38 @@
+{
+  "scope": "Technical checks of the new individual-image editor; integrated Fiji evidence belongs to the delivery",
+  "headless_java": {
+    "status": "PASS",
+    "groups": 8,
+    "runtime": "Fiji ImageJ 1.54p and bundled Zulu JDK 21.0.7, Java bytecode target 8",
+    "checks": [
+      "axis-aligned ellipse with isotropic calibration",
+      "ellipse with anisotropic calibration",
+      "vertical physical shape and calibrated circle",
+      "all ROI properties, Unicode notes, identity, class and group preserved",
+      "source ROI independent of edited copy and ROI serialization",
+      "invalid and non-finite geometry rejected",
+      "path components and one-time launch request",
+      "full candidate IJM tokenization"
+    ],
+    "images_or_projects_written": false
+  },
+  "python_contracts": {
+    "status": "PASS",
+    "tests": 10,
+    "command": "python -m unittest discover -s tests -p test_individual_editor.py -v"
+  },
+  "real_interpreter_probes": {
+    "status": "PASS",
+    "observations": [
+      "IJM evaluates both sides of logical &&; side-effect guards use nested if statements",
+      "snapshot is an IJM builtin and was replaced with switchSnapshotStatus before the final candidate",
+      "all 14 new production assignment identifiers accepted by ImageJ Interpreter without an open image",
+      "harness launch-result and roundtrip comparison expressions accepted by ImageJ Interpreter",
+      "actual loadScaleReferenceFromRois branch preserves stored scaleDefined=1 without a line, retains 0, and rejects invalid calibration",
+      "embedded resize-step reader executes with session-first priority, preference fallback and no writes",
+      "all 341 captured global control parameters map exactly to their restore indices"
+    ]
+  },
+  "scientific_validation": "NOT_CLAIMED",
+  "integrated_fiji": "RECORDED_SEPARATELY"
+}

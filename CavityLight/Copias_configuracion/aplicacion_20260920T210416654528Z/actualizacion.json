@@ -1,0 +1,71 @@
+{
+  "state": "COMMITTED",
+  "changes": [
+    {
+      "path": "Aplicacion/python_companion/cavity_library/catalog.py",
+      "before": "caf2ac2aad54ae73a983931a41a56ce114ad97d826b3b2153befb3d8952b73fc",
+      "after": "15a841d3e9121c658b6b7ba566996fdb634ca3be0b7eb2a77d8a1530b209071d"
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_library/gui.py",
+      "before": "3de5147af1cce1749dfe8ac982a2c43d6a88d34b52262d4326fde21a94342e50",
+      "after": "756cb7501eb8a92d513eb1536cae4b0b669e9b5414453c6952e67a8624d516d3"
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_library/launch.py",
+      "before": "090923555724ae06c41dfce825e7fccf6c1597b3bb686f5dfb504027bb3f4d31",
+      "after": "7aa313ea690f0a4f49e857c425373a34a12eb2c122084ff409f403ee5876b75e"
+    },
+    {
+      "path": "Aplicacion/verify_local.py",
+      "before": null,
+      "after": "8477b168e6b68c772fb105288768c924938cd0e991215d3ff924c23888ba4434"
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/.gitignore",
+      "before": null,
+      "after": "3ee657b8ce48c1e9737c418329ea2d0b6fedce694d5ac2135daa95da47eb51aa"
+    },
+    {
+      "path": "Fiji/macros/toolsets/Cavity_TEM_Light_1_2_RC1.ijm",
+      "before": "9f8ca192ef502c7e4d82c1d6b9fb7068af0df48efb67168d743249601e425a83",
+      "after": "33fdc967590b16ea8e718f70906524c24ba85d16deb14b676b47fe8200db911a"
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/FOCAL_VALIDATION.json",
+      "before": null,
+      "after": "bb3830a51c7e5c098d95533a7a1b9719963d4857303b4ac2a2f2d6d4f5c2fc2c"
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/make_smoke_toolset.py",
+      "before": "32a863886fdaa250ce52dffed83f314482d01080787366d6893d1cf668af8842",
+      "after": "3a7d08e9260fef7f4e2170cae5cdc6af97dad99bdfc660b6aa2f945c322b2030"
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/PROVENANCE.json",
+      "before": "11c55d4769fb3473e5362d92b6b6b06c98bb63859ebab3125961d41e71f5e6db",
+      "after": "6a94a607b5b9b8e1219bd6103fe447d823bc069ea24ce6739d3cab20b864fef7"
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/README.md",
+      "before": "e06e2647e626b03507e56f0adf0c4c031402339b28dc1de6efe71b064684e8b1",
+      "after": "288521cf8a4893d7247472b98578ae1590d5e684026828f7eb825ed794a767c6"
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/upgrade_editor.py",
+      "before": "73bcdb8d451298252a024a4778673287f7920bc195f8a5f23c4bf2819ce29685",
+      "after": "383b90f8f70fa000c305462e3a731248217dc902af0b58d1c3643792c7821fdc"
+    },
+    {
+      "path": "ABRIR_MANUAL.bat",
+      "before": null,
+      "after": "ee97eb05554915da60b83189bb29e646fb6069f6edce59181c4947726b98717a"
+    },
+    {
+      "path": "COMPROBAR_APLICACION.bat",
+      "before": null,
+      "after": "d0f3a4864a80733cecec35885b3033499f18505b7a968e61d0aded22edfb49d2"
+    }
+  ],
+  "scientific_writes": 0
+}

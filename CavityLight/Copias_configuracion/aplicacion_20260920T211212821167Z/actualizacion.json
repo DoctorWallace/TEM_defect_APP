@@ -1,0 +1,26 @@
+{
+  "state": "COMMITTED",
+  "changes": [
+    {
+      "path": "Aplicacion/individual_editor_source/FOCAL_VALIDATION.json",
+      "before": "bb3830a51c7e5c098d95533a7a1b9719963d4857303b4ac2a2f2d6d4f5c2fc2c",
+      "after": "1e297ebad9dfff64d1a2159b5bcc5b751de4c5b3046e22822aa37219083544eb"
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/make_smoke_toolset.py",
+      "before": "63b353db0488ba19c1ce5985ba5518935dcb9bc5a86acb4ddd07e0aafe9ba718",
+      "after": "af453a215d2c0aacc536a441e120f1ac9086ed1ab159f702e50c7931ef1be6b4"
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/PROVENANCE.json",
+      "before": "6a94a607b5b9b8e1219bd6103fe447d823bc069ea24ce6739d3cab20b864fef7",
+      "after": "db3f2e8bda3ee8ce4a99ee9b3281ee757fd160fe98a2d19921adf7f68d81ef55"
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/README.md",
+      "before": "288521cf8a4893d7247472b98578ae1590d5e684026828f7eb825ed794a767c6",
+      "after": "e1ea36d29452f3e7d550cd86c8a685bfda8d34ac21895bd7208377f187125edd"
+    }
+  ],
+  "scientific_writes": 0
+}
