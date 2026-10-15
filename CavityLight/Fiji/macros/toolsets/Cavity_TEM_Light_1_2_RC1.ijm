@@ -43,7 +43,7 @@ requires("1.54e");
 // Global state
 // -----------------------------------------------------------------------------
 
-var macroVersion = "Cavity-TEM-Light-v1.2.0-RC1-individual_derived-from-R9-HF4.6";
+var macroVersion = "Cavity-TEM-Light-v1.2.0-RC1-individual-US1_derived-from-R9-HF4.6";
 var sessionMetadataName = "CAVITY_SESSION_METADATA";
 var legacyMetadataName = "BUBBLE_SESSION_METADATA";
 var scaleReferenceName = "SCALE_REFERENCE";
@@ -58,7 +58,7 @@ var lightHF46ScientificSource="";
 var lightHF46KvPath="";
 var lightHF46KvText="";
 var lightHF46AnalysisState="pending";
-var lightReleaseVersion = "1.2.0-RC1-individual";
+var lightReleaseVersion = "1.2.0-RC1-individual-US1";
 var lightProjectLoaded = 0;
 var lightProjectRoot = "";
 var lightProjectFile = "";
@@ -6325,12 +6325,12 @@ function v4ShowTraceController() {
 
 function v4RefreshTraceController() {
     if (v4TraceMode == "") return;
-    js = "var Frame=Packages.java.awt.Frame;var Prefs=Packages.ij.Prefs;var fs=Frame.getFrames();for(var i=0;i<fs.length;i++){try{if(String(fs[i].getTitle())=='Cavity TEM - captura automatica'){var r=fs[i].getRootPane();var t=r.getClientProperty('traceTool');var s=r.getClientProperty('traceStatus');var a=r.getClientProperty('aspectCheck');if(t!=null)t.setText('Herramienta: " + jsEscape(v4TraceToolLabel()) + "');if(s!=null)s.setText('Registradas: " + v4TraceAdded + " | Borradas: " + v4TraceDeleted + "');if(a!=null)a.setSelected(String(Prefs.get('cavity.v5.ui.image.aspect','0'))=='1');fs[i].repaint();}}catch(e){}}";
+    js = "var Frame=Packages.java.awt.Frame;var Prefs=Packages.ij.Prefs;var previousBounds=null,previousTab=0;var fs=Frame.getFrames();for(var i=0;i<fs.length;i++){try{if(String(fs[i].getTitle())=='Cavity TEM - captura automatica'){var r=fs[i].getRootPane();var t=r.getClientProperty('traceTool');var s=r.getClientProperty('traceStatus');var a=r.getClientProperty('aspectCheck');if(t!=null)t.setText('Herramienta: " + jsEscape(v4TraceToolLabel()) + "');if(s!=null)s.setText('Registradas: " + v4TraceAdded + " | Borradas: " + v4TraceDeleted + "');if(a!=null)a.setSelected(String(Prefs.get('cavity.v5.ui.image.aspect','0'))=='1');fs[i].repaint();}}catch(e){}}";
     eval("js",js);
 }
 
 function v4CloseTraceController() {
-    js = "var Frame=Packages.java.awt.Frame;var fs=Frame.getFrames();for(var i=0;i<fs.length;i++){try{if(String(fs[i].getTitle())=='Cavity TEM - captura automatica')fs[i].dispose();}catch(e){}}";
+    js = "var Frame=Packages.java.awt.Frame;var fs=Frame.getFrames();for(var i=0;i<fs.length;i++){try{if(String(fs[i].getTitle())=='Cavity TEM - captura automatica'){previousBounds=fs[i].getBounds();try{var oldTabs=fs[i].getRootPane().getClientProperty('tabs');if(oldTabs!=null)previousTab=oldTabs.getSelectedIndex();}catch(ignoreTabs){}fs[i].dispose();}}catch(e){}}";
     eval("js",js);
 }
 
@@ -9436,15 +9436,16 @@ function lightShowPanel() {
     s4 = lightStatusLine4();
     js = "(function(){var Frame=Packages.java.awt.Frame,JFrame=Packages.javax.swing.JFrame,JPanel=Packages.javax.swing.JPanel,JButton=Packages.javax.swing.JButton,JLabel=Packages.javax.swing.JLabel,JTabbedPane=Packages.javax.swing.JTabbedPane,JScrollPane=Packages.javax.swing.JScrollPane,JSlider=Packages.javax.swing.JSlider,BorderLayout=Packages.java.awt.BorderLayout,GridBagLayout=Packages.java.awt.GridBagLayout,GridBagConstraints=Packages.java.awt.GridBagConstraints,Insets=Packages.java.awt.Insets,Dimension=Packages.java.awt.Dimension,Color=Packages.java.awt.Color,Font=Packages.java.awt.Font,Thread=Packages.java.lang.Thread,Runnable=Packages.java.lang.Runnable,ActionListener=Packages.java.awt.event.ActionListener,ChangeListener=Packages.javax.swing.event.ChangeListener,Executer=Packages.ij.Executer,IJ=Packages.ij.IJ,Prefs=Packages.ij.Prefs,WM=Packages.ij.WindowManager;";
     js = js + "var fs=Frame.getFrames();for(var i=0;i<fs.length;i++){try{var title=String(fs[i].getTitle());if(title.indexOf('Cavity TEM Light 1.2 RC1')==0||title.indexOf('Cavity TEM Light 1.1.1 R9')==0||title.indexOf('Cavity TEM Light 1.0.0 R7')==0)fs[i].dispose();}catch(e){}}";
-    js = js + "var f=new JFrame('Cavity TEM Light 1.2 RC1 - Imagenes individuales'),outer=new JPanel(new BorderLayout()),head=new JPanel(new GridBagLayout()),hc=new GridBagConstraints();hc.gridx=0;hc.anchor=GridBagConstraints.WEST;hc.insets=new Insets(3,8,3,8);var a=new JLabel('"+jsEscape(s1)+"'),b=new JLabel('"+jsEscape(s2)+"'),c=new JLabel('"+jsEscape(s3)+"'),d=new JLabel('"+jsEscape(s4)+"');a.setFont(a.getFont().deriveFont(Font.BOLD));hc.gridy=0;head.add(a,hc);hc.gridy=1;head.add(b,hc);hc.gridy=2;head.add(c,hc);hc.gridy=3;head.add(d,hc);outer.add(head,BorderLayout.NORTH);f.getRootPane().putClientProperty('status1',a);f.getRootPane().putClientProperty('status2',b);f.getRootPane().putClientProperty('status3',c);f.getRootPane().putClientProperty('status4',d);var tabs=new JTabbedPane();";
+    js = js + "var f=new JFrame('Cavity TEM Light 1.2 RC1 - Imagenes individuales'),outer=new JPanel(new BorderLayout()),head=new JPanel(new GridBagLayout()),hc=new GridBagConstraints();hc.gridx=0;hc.anchor=GridBagConstraints.WEST;hc.insets=new Insets(3,8,3,8);var a=new JLabel('"+jsEscape(s1)+"'),b=new JLabel('"+jsEscape(s2)+"'),c=new JLabel('"+jsEscape(s3)+"'),d=new JLabel('"+jsEscape(s4)+"');a.setFont(a.getFont().deriveFont(Font.BOLD));hc.gridy=0;head.add(a,hc);hc.gridy=1;head.add(b,hc);hc.gridy=2;head.add(c,hc);hc.gridy=3;head.add(d,hc);outer.add(head,BorderLayout.NORTH);f.getRootPane().putClientProperty('status1',a);f.getRootPane().putClientProperty('status2',b);f.getRootPane().putClientProperty('status3',c);f.getRootPane().putClientProperty('status4',d);f.getRootPane().putClientProperty('CavityLight.Panel','true');var tabs=new JTabbedPane();f.getRootPane().putClientProperty('tabs',tabs);";
     js = js + "function tab(n){var p=new JPanel(new GridBagLayout()),q=new GridBagConstraints();q.insets=new Insets(4,4,4,4);q.fill=GridBagConstraints.HORIZONTAL;q.weightx=1;var o={p:p,c:q,r:0};tabs.addTab(n,new JScrollPane(p));return o;}function go(cmd){var body={run:function(){new Executer(cmd).run();}};if(typeof JavaAdapter!='undefined')return new JavaAdapter(Runnable,body);var R=Java.extend(Runnable);return new R(body);}function al(cmd){var body={actionPerformed:function(e){var th=new Thread(go(cmd));th.setDaemon(true);th.start();}};if(typeof JavaAdapter!='undefined')return new JavaAdapter(ActionListener,body);var A=Java.extend(ActionListener);return new A(body);}function one(t,label,cmd,pri){var x=new JButton(label);x.addActionListener(al(cmd));if(pri){x.setBackground(Color.decode('#2b6de0'));x.setForeground(Color.WHITE);x.setFont(x.getFont().deriveFont(Font.BOLD));}t.c.gridx=0;t.c.gridy=t.r;t.c.gridwidth=2;t.p.add(x,t.c);t.r++;}function two(t,l1,c1,l2,c2){var x=new JButton(l1),y=new JButton(l2);x.addActionListener(al(c1));y.addActionListener(al(c2));t.c.gridy=t.r;t.c.gridwidth=1;t.c.gridx=0;t.p.add(x,t.c);t.c.gridx=1;t.p.add(y,t.c);t.r++;}";
     js = js + "function sliderRow(t){var box=new JPanel(new BorderLayout(8,0)),label=new JLabel('Sensibilidad: " + d2s(lightInteractiveResizeStepNm,3) + " nm/paso'),sl=new JSlider(1,2000," + d2s(round(lightInteractiveResizeStepNm*1000),0) + ");sl.setMajorTickSpacing(500);sl.setMinorTickSpacing(50);sl.setPaintTicks(true);var body={stateChanged:function(e){var value=sl.getValue()/1000.0;label.setText('Sensibilidad: '+value.toFixed(3)+' nm/paso');Prefs.set('cavity.tem.light.hf4.resize.step.nm',value);var imp=WM.getCurrentImage();if(imp!=null)imp.setProperty('CavityLightResizeStepNm',String(value));if(!sl.getValueIsAdjusting()){try{Prefs.savePreferences();}catch(ignorePref){}var th=new Thread(go('Cavity Light: actualizar sensibilidad interactiva'));th.setDaemon(true);th.start();}}};var listener;if(typeof JavaAdapter!='undefined')listener=new JavaAdapter(ChangeListener,body);else{var C=Java.extend(ChangeListener);listener=new C(body);}sl.addChangeListener(listener);box.add(label,BorderLayout.NORTH);box.add(sl,BorderLayout.CENTER);t.c.gridx=0;t.c.gridy=t.r;t.c.gridwidth=2;t.p.add(box,t.c);t.r++;f.getRootPane().putClientProperty('resizeSlider',sl);f.getRootPane().putClientProperty('resizeLabel',label);}";
     js = js + "var p=tab('1 Proyecto');one(p,'Crear proyecto','Cavity Light: crear proyecto',true);one(p,'Abrir proyecto','Cavity Light: abrir proyecto',false);two(p,'Abrir DM3/DM4','Cavity Light: abrir DM3/DM4 y registrar','Registrar activa','Cavity Light: registrar imagen activa');two(p,'Seleccionar imagen','Cavity Light: seleccionar imagen del proyecto','Configurar imagen','Cavity Light: configurar imagen');one(p,'Informacion y trazabilidad','Cavity Light: informacion actual',false);two(p,'Reparar contexto','Cavity Light: reparar contexto de proyecto','Reparar registro','Cavity Light: reparar registro de imagenes');one(p,'Autodiagnostico R9','Cavity Light: autodiagnostico R9',false);";
-    js = js + "p=tab('2 Preparar');two(p,'Aceptar escala Bio-Formats','Cavity Light: aceptar escala Bio-Formats','Escala numerica','Cavity Light: introducir escala nm/px');two(p,'Calibrar con linea','Cavity Light: calibrar escala con linea','Verificar escala','Cavity Light: verificar escala');two(p,'Toda la imagen valida','Cavity Light: usar toda la imagen como area','Anadir area valida','Cavity Light: anadir area valida');two(p,'Anadir zona excluida','Cavity Light: anadir zona excluida','Detectar fondo negro','Cavity Light: detectar fondo negro');two(p,'Definir superficie','Cavity Light: definir superficie','Configurar bandas','Cavity Light: configurar bandas');";
-    js = js + "p=tab('3 Medir');two(p,'Clase de cavidad','Cavity Light: seleccionar clase de cavidad','Color cavidades','Cavity Light: elegir color de cavidades');one(p,'Diametro activo','Cavity Light: fijar diametro activo',false);one(p,'Medir diametro y crear cavidad','Cavity Light: medir diametro y crear cavidad',true);two(p,'Anadir con circulo visible','Cavity Light: anadir con diametro activo','Registrar elipse','Cavity Light: registrar elipse seleccionada');two(p,'Seleccionar/mover/ajustar','Cavity Light: seleccionar/editar','Editar numericamente','Cavity Light: editar seleccionada numericamente');sliderRow(p);two(p,'Incluir/excluir','Cavity Light: incluir/excluir seleccionada','Borrar','Cavity Light: borrar seleccionada');two(p,'Borrar varias por region','Cavity Light: borrar varias por region','Deshacer borrado multiple','Cavity Light: deshacer borrado multiple');two(p,'Deshacer','Cavity Light: deshacer ultima accion','Duplicados','Cavity Light: buscar duplicados');two(p,'Detectar puntos en ROI','Cavity Light: detectar puntos en ROI','Estimar diametros de puntos','Cavity Light: estimar diametros de puntos');two(p,'Revisar propuestas','Cavity Light: revisar propuestas','Puntos sin ajuste','Cavity Light: puntos sin ajuste');one(p,'Fluidez y registros','Cavity Light: fluidez y registros',false);";
+    js = js + "p=tab('2 Preparar');two(p,'Aceptar escala Bio-Formats','Cavity Light: aceptar escala Bio-Formats','Escala numerica','Cavity Light: introducir escala nm/px');two(p,'Calibrar con linea','Cavity Light: calibrar escala con linea','Verificar escala','Cavity Light: verificar escala');two(p,'Toda la imagen valida','Cavity Light: usar toda la imagen como area','Anadir area valida','Cavity Light: anadir area valida');two(p,'Anadir zona excluida','Cavity Light: anadir zona excluida','Detectar fondo negro','Cavity Light: detectar fondo negro');two(p,'Definir superficie','Cavity Light: definir superficie','Configurar bandas','Cavity Light: configurar bandas');two(p,'Brillo/contraste por zona','Cavity Light: contraste por zona','Contraste local','Cavity Light: contraste local');one(p,'Correccion de fondo','Cavity Light: correccion de fondo',false);two(p,'Deshacer tratamiento','Cavity Light: deshacer tratamiento','Rehacer tratamiento','Cavity Light: rehacer tratamiento');two(p,'Ver receta vigente','Cavity Light: ver receta vigente','Restaurar imagen original','Cavity Light: restaurar imagen original');one(p,'Conservar cambios hechos con Fiji','Cavity Light: conservar cambios externos',false);";
+    js = js + "p=tab('3 Medir');two(p,'Clase de cavidad','Cavity Light: seleccionar clase de cavidad','Color cavidades','Cavity Light: elegir color de cavidades');one(p,'Diametro activo','Cavity Light: fijar diametro activo',false);one(p,'Medir diametro y crear cavidad','Cavity Light: medir diametro y crear cavidad',true);two(p,'Anadir con circulo visible','Cavity Light: anadir con diametro activo','Registrar nueva elipse','Cavity Light: registrar elipse seleccionada');two(p,'Seleccionar/mover/ajustar','Cavity Light: seleccionar/editar','Editar numericamente','Cavity Light: editar seleccionada numericamente');sliderRow(p);two(p,'Incluir/excluir','Cavity Light: incluir/excluir seleccionada','Borrar','Cavity Light: borrar seleccionada');two(p,'Borrar varias por region','Cavity Light: borrar varias por region','Deshacer borrado multiple','Cavity Light: deshacer borrado multiple');two(p,'Deshacer','Cavity Light: deshacer ultima accion','Duplicados','Cavity Light: buscar duplicados');two(p,'Detectar puntos en ROI','Cavity Light: detectar puntos en ROI','Estimar diametros de puntos','Cavity Light: estimar diametros de puntos');one(p,'Ajustar detector con cavidades confirmadas','Cavity Light: ajustar detector con cavidades',false);two(p,'Revisar propuestas','Cavity Light: revisar propuestas','Puntos sin ajuste','Cavity Light: puntos sin ajuste');one(p,'Fluidez y registros','Cavity Light: fluidez y registros',false);";
     js = js + "p=tab('4 Microestructura');one(p,'Dibujar dislocaciones','Cavity Light: dibujar dislocaciones',false);one(p,'Dibujar bordes de grano','Cavity Light: dibujar bordes de grano',false);one(p,'Dibujar interfaces','Cavity Light: dibujar interfaces',false);two(p,'Etiquetas ID exactas','Cavity Light: alternar etiquetas','Modo de color','Cavity Light: cambiar modo de color');one(p,'Sincronizar ROIs','Cavity Light: actualizar ROIs',false);";
-    js = js + "p=tab('5 Guardar y analizar');one(p,'Validar imagen','Cavity Light: validar imagen',false);one(p,'Guardar nueva revision','Cavity Light: guardar nueva revision',true);one(p,'Cargar revision','Cavity Light: cargar revision',false);one(p,'Calcular y exportar resultados','Cavity Light: calcular y exportar resultados',true);two(p,'Ajustes','Cavity Light: ajustes','Ayuda','Cavity Light: ayuda');two(p,'Ver registros','Cavity Light: ver registros','Fluidez y registros','Cavity Light: fluidez y registros');two(p,'Localizar identidad','Cavity Light: localizar identidad','Reparar nombres','Cavity Light: reparar nombres');p=tab('6 Vista y atajos');one(p,'Ventana y navegacion','Cavity Light: ventana y navegacion',true);two(p,'Zoom +','Cavity Light: zoom fijo aumentar','Zoom -','Cavity Light: zoom fijo reducir');two(p,'Encajar imagen','Cavity Light: encajar vista','Vista 100 %','Cavity Light: vista 100');one(p,'Activar/desactivar ventana fija','Cavity Light: alternar ventana fija',false);one(p,'Accesos directos (F1)','Cavity Light: accesos directos',false);outer.add(tabs,BorderLayout.CENTER);f.setContentPane(outer);f.setPreferredSize(new Dimension(660,760));f.pack();f.setLocationByPlatform(true);f.setVisible(true);f.toFront();return 'OK';})();";
+    js = js + "p=tab('5 Guardar y analizar');one(p,'Validar imagen','Cavity Light: validar imagen',false);one(p,'Guardar avance con nombre','Cavity Light: guardar nueva revision',true);one(p,'Cargar revision','Cavity Light: cargar revision',false);one(p,'Calcular y exportar resultados','Cavity Light: calcular y exportar resultados',true);two(p,'Ajustes','Cavity Light: ajustes','Ayuda','Cavity Light: ayuda');two(p,'Ver registros','Cavity Light: ver registros','Fluidez y registros','Cavity Light: fluidez y registros');two(p,'Localizar identidad','Cavity Light: localizar identidad','Reparar nombres','Cavity Light: reparar nombres');p=tab('6 Vista y atajos');one(p,'Ventana y navegacion','Cavity Light: ventana y navegacion',true);two(p,'Zoom +','Cavity Light: zoom fijo aumentar','Zoom -','Cavity Light: zoom fijo reducir');two(p,'Encajar imagen','Cavity Light: encajar vista','Vista 100 %','Cavity Light: vista 100');one(p,'Activar/desactivar ventana fija','Cavity Light: alternar ventana fija',false);one(p,'Accesos directos (F1)','Cavity Light: accesos directos',false);outer.add(tabs,BorderLayout.CENTER);f.setContentPane(outer);f.setPreferredSize(new Dimension(660,760));f.pack();if(previousBounds!=null)f.setBounds(previousBounds);else f.setLocationByPlatform(true);tabs.setSelectedIndex(Math.min(previousTab,tabs.getTabCount()-1));f.setVisible(true);f.toFront();return 'OK';})();";
     eval("js", js);
+    call("cavity.light.Workspace.install","");
 }
 
 
@@ -9473,10 +9474,12 @@ function lightShowHelp() {
     msg = msg + "11. Las etiquetas muestran exactamente el nombre estable del ROI Manager, por ejemplo CAV_000237. Los identificadores no se renumeran al borrar una cavidad.\n";
     msg = msg + "12. HF4.6: en Preparar, Detectar fondo negro crea una exclusion automatica a partir de una mascara temporal. Use normalmente umbral 0 y modo conectado al borde; revise siempre la previsualizacion magenta antes de confirmar.\n";
     msg = msg + "13. Valide y despues pulse Calcular y exportar resultados.\n\n";
+    msg = msg + "Registrar nueva elipse requiere dibujar una seleccion Oval nueva. Para modificar una cavidad existente use Seleccionar/mover/ajustar o Editar numericamente.\n\n";
     msg = msg + "ATAJOS\nCtrl+R anadir | Ctrl+E seleccionar | Alt+rueda ajustar diametro | Ctrl+Alt+rueda alias | Ctrl+rueda zoom | Ctrl+U sincronizar seleccionada | Supr borrar | Ctrl+Z deshacer | Ctrl+Shift+V validar | Ctrl+Shift+E calcular/exportar.\n\n";
     msg = msg + "R9 conserva la preparacion y el area calculada cuando no cambian las ROIs. La densidad volumetrica sigue siendo nominal: N/(A*t), sin correcciones estereologicas ocultas.";
     msg=msg+"\n\nHF4: dibuje una ROI pequena y use Detectar puntos en ROI. Revise los puntos, pulse Estimar diametros de puntos y acepte las propuestas revisadas. Los puntos sin ajuste se conservan.\nRegistros: opcion Fluidez y registros, o Ver registros en la pestana 5.\nLas cavidades nuevas se registran al instante; los calculos se completan al guardar/validar/exportar.";
     msg=msg+"\n\nHF4.6: 6 Vista y atajos > Ventana y navegacion permite fijar el tamano y la posicion de la ventana durante el zoom. F1 abre todos los accesos directos; Ctrl+Mayus+W activa/desactiva la ventana fija. Ctrl+Z NO deshace un lote multiple: use el boton especifico.\nLos atajos requieren el foco en la ventana de imagen, no en ROI Manager ni en cuadros de texto.";
+    msg=msg+"\n\nPreparacion US1: tratamientos sobre copias, previsualizacion antes de aplicar y Deshacer/Rehacer tratamiento independientes de las anotaciones. Guardar avance conserva solo la receta vigente. F2 recupera el panel oculto. Los controles inferiores permiten organizar pantallas, ocultar ventanas y guardar su disposicion.";
     showMessage("Ayuda R9 CONSOLIDADA RC1", msg);
 }
 
@@ -10270,6 +10273,7 @@ function lightRegisterActiveImageWithPath(path) {
         if(sx>0&&sy>0){setVoxelSize(sx,sy,1,"nm");updateScaleMaybe();}
         projectConfigured=1;lightProjectLoaded=1;v4ProjectLoaded=0;usePanelsAsMask=0;
         setMetadataImageProperties();
+        workspaceInit=call("cavity.light.RevisionWorkspace.initialize",lightWorkspaceSettings());if(workspaceInit!="OK"){showMessage("Preparacion no disponible",workspaceInit);return 0;}
         cur=lightCurrentRevision;
         if(cur!=""&&getBoolean("Cargar la revision vigente "+cur+"?","Cargar ROIs","Mantener sin ROIs"))lightLoadRevisionById(cur);else updateSessionMetadataRoi();
         lightSourcePath=path;imageFileName=File.getName(path);imageDirectory=normalizeStoredPath(File.getDirectory(path));
@@ -10292,7 +10296,9 @@ function lightRegisterActiveImageWithPath(path) {
     }
     lightImageMode="without_surface";lightThicknessNm=0;lightThicknessUncertaintyNm=0;lightThicknessMethod="not_provided";lightThicknessNotes="";lightUseWholeImage=0;lightIncludeUncertain=0;lightCurrentRevision="";
     lightCaptureOriginalScale();projectConfigured=1;lightProjectLoaded=1;v4ProjectLoaded=0;usePanelsAsMask=0;
-    setMetadataImageProperties();updateSessionMetadataRoi();
+    setMetadataImageProperties();
+    workspaceInit=call("cavity.light.RevisionWorkspace.initialize",lightWorkspaceSettings());if(workspaceInit!="OK"){showMessage("Preparacion no disponible",workspaceInit);return 0;}
+    updateSessionMetadataRoi();
     metadataWritten=lightWriteImageMetadata();
     registryWritten=0;
     if(metadataWritten==1)registryWritten=lightUpdateRegistry();
@@ -10376,9 +10382,9 @@ function lightOpenRegisteredImageCore(id,requestedRevision,persistOpening,confir
         if(!File.exists(lightJoin(targetRevisionDir,"cavity_rois.zip"))){showMessage("Revision no disponible",revisionToLoad);return 0;}
     }
     if(confirmSwitch){if(!lightResolvePendingBeforeSwitch())return 0;}
-    state=lightHF46CaptureState();switchSnapshotStatus=call("cavity.light.HF46.beginSwitch","");if(switchSnapshotStatus!="OK")return 0;
+    state=lightHF46CaptureState();workspaceSwitch=call("cavity.light.RevisionWorkspace.beginSwitch","");if(workspaceSwitch!="OK")return 0;switchSnapshotStatus=call("cavity.light.HF46.beginSwitch","");if(switchSnapshotStatus!="OK"){call("cavity.light.RevisionWorkspace.endSwitch","rollback");return 0;}
     imported=call("cavity.light.IndividualEditor.importDm",resolvedPath);
-    if(!startsWith(imported,"OK|")){call("cavity.light.HF46.endSwitch","rollback");showMessage("Apertura no realizada",imported);return 0;}
+    if(!startsWith(imported,"OK|")){call("cavity.light.HF46.endSwitch","rollback");call("cavity.light.RevisionWorkspace.endSwitch","rollback");showMessage("Apertura no realizada",imported);return 0;}
     info=split(imported,"|");importedId=info[1];selectImage(parseFloat(importedId));roiManager("reset");lightHF46ResetImageState();
     lightImageId=id;lightImageDir=targetDir;
     if(!lightReadImageMetadata()){lightRollbackImported(importedId,state);return 0;}
@@ -10388,19 +10394,20 @@ function lightOpenRegisteredImageCore(id,requestedRevision,persistOpening,confir
     imageFileName=File.getName(resolvedPath);imageDirectory=normalizeStoredPath(File.getDirectory(resolvedPath));imageChecksum=targetSha;montageId=id;
     sourceFirst=imageFileName;sourceLast=imageFileName;sourceImageList=imageFileName;
     projectConfigured=1;lightProjectLoaded=1;v4ProjectLoaded=0;setMetadataImageProperties();
+    workspaceInit=call("cavity.light.RevisionWorkspace.initialize",lightWorkspaceSettings());if(workspaceInit!="OK"){lightRollbackImported(importedId,state);showMessage("Apertura no realizada",workspaceInit);return 0;}
     if(revisionToLoad!=""){
         if(!lightLoadRevisionCore(revisionToLoad,0)){lightRollbackImported(importedId,state);return 0;}
     }else{lightCurrentRevision="";lightCurrentRunId="";updateSessionMetadataRoi();}
     lightSourcePath=sourcePath;lightSourceStoredPath=storedPath;setMetadataImageProperties();
     if(persistOpening){if(!lightWriteImageMetadata()){lightRollbackImported(importedId,state);return 0;}}
-    call("cavity.light.HF46.endSwitch","commit");
+    call("cavity.light.HF46.endSwitch","commit");call("cavity.light.RevisionWorkspace.endSwitch","commit");
     if(persistOpening){lightUpdateRegistry();lightAppendLog("IMAGE_OPENED","revision="+lightCurrentRevision+"; opened_path="+resolvedPath);}
     lightShowPanel();return 1;
 }
 
 function lightRollbackImported(importedId,state) {
     call("cavity.light.IndividualEditor.closeImported",importedId);
-    call("cavity.light.HF46.endSwitch","rollback");lightHF46RestoreState(state);
+    call("cavity.light.HF46.endSwitch","rollback");call("cavity.light.RevisionWorkspace.endSwitch","rollback");lightHF46RestoreState(state);
 }
 
 // Opens existing schema-1 data without changing metadata, pointers, logs or results.
@@ -10503,7 +10510,43 @@ function lightSetActiveDiameter() {
 
 function lightAddEllipseCavityFromSelection() {
     lightHF4Pull();
-    if(!v4PrepareImageForMeasurement(1))return;st=selectionType;if(st!=1){showMessage("Seleccion no compatible","Dibuja primero una seleccion oval/eliptica con la herramienta Oval.");return;}run("ROI Manager...");cavityCounter++;id="CAV_"+IJ.pad(cavityCounter,6);Roi.setName(id);Roi.setProperty("Type","cavity");Roi.setProperty("Cavity_id",id);Roi.setProperty("Cavity_serial",d2s(cavityCounter,0));Roi.setProperty("Measurement_source","ellipse_manual");Roi.setProperty("Manual_excluded","0");Roi.setProperty("Cavity_class",activeCavityClass);Roi.setProperty("Cavity_class_label",activeCavityClassLabel);Roi.setProperty("Cavity_confidence",activeCavityConfidence);Roi.setProperty("Duplicate_status","clear");Roi.setProperty("Duplicate_partners","");setCommonObjectProperties();roiManager("add");idx=roiManager("count")-1;syncCavityAtIndex(idx);checkNewCavityForDuplicates(idx);undoKind="add";undoObjectId=id;undoAvailable=1;showAllRois();updateSessionMetadataRoi();showStatus("Elipse registrada: "+id+".");
+    if (!v4PrepareImageForMeasurement(1)) return;
+    st = selectionType;
+    if (st != 1) {
+        showMessage("Seleccion no compatible", "Dibuja primero una seleccion oval/eliptica con la herramienta Oval.");
+        return;
+    }
+    // ImageJ Roi.clone() shares properties. Reject managed ROIs and isolate a fresh selection.
+    preparedEllipse = call("cavity.light.IndividualEditor.prepareNewEllipse", "");
+    if (preparedEllipse != "OK") {
+        showMessage("Elipse no registrada", preparedEllipse);
+        return;
+    }
+    run("ROI Manager...");
+    cavityCounter++;
+    id = "CAV_" + IJ.pad(cavityCounter, 6);
+    Roi.setName(id);
+    Roi.setProperty("Type", "cavity");
+    Roi.setProperty("Cavity_id", id);
+    Roi.setProperty("Cavity_serial", d2s(cavityCounter, 0));
+    Roi.setProperty("Measurement_source", "ellipse_manual");
+    Roi.setProperty("Manual_excluded", "0");
+    Roi.setProperty("Cavity_class", activeCavityClass);
+    Roi.setProperty("Cavity_class_label", activeCavityClassLabel);
+    Roi.setProperty("Cavity_confidence", activeCavityConfidence);
+    Roi.setProperty("Duplicate_status", "clear");
+    Roi.setProperty("Duplicate_partners", "");
+    setCommonObjectProperties();
+    roiManager("add");
+    idx = roiManager("count") - 1;
+    syncCavityAtIndex(idx);
+    checkNewCavityForDuplicates(idx);
+    undoKind = "add";
+    undoObjectId = id;
+    undoAvailable = 1;
+    showAllRois();
+    updateSessionMetadataRoi();
+    showStatus("Elipse registrada: " + id + ".");
 }
 
 function lightGroupForCavityClass(c) { c=normalizeCavityClass(c);if(c=="uncertain")return 2;if(c=="possible_artifact")return 3;return 1; }
@@ -10773,49 +10816,69 @@ function lightSaveRevision() { lightSaveRevisionCore(1); }
 
 function lightSaveRevisionCore(verbose) {
     lightHF4Pull();
+    labelsJson="{}";
+    if(verbose){
+        labelsJson=call("cavity.light.RevisionWorkspace.askSave","");
+        if(labelsJson=="CANCEL")return "";
+        if(startsWith(labelsJson,"ERROR|")){showMessage("Revision no preparada",labelsJson);return "";}
+    }
+    lightHF4Pause();commitOk=commitActiveManagedRoi();if(commitOk<0)return "";
     preflightOk=quantitativeRevisionPreflight();if(preflightOk==0)return "";
+    workspaceInit=call("cavity.light.RevisionWorkspace.initialize",lightWorkspaceSettings());
+    if(workspaceInit!="OK"){showMessage("Revision no preparada",workspaceInit);return "";}
     projectLogsDir=lightJoin(lightProjectRoot,"logs");imageLogsDir=lightJoin(lightImageDir,"logs");
     if(!lightMakeDir(projectLogsDir))return "";
     if(!lightMakeDir(imageLogsDir))return "";
-    lightHF4Pause();commitOk=commitActiveManagedRoi();if(commitOk<0)return "";
     currentFingerprint=lightAnalysisInputFingerprint();
     lightHF46AnalysisState="pending";
     if(lightPreparedFingerprint!=""&&currentFingerprint==lightPreparedFingerprint)lightHF46AnalysisState="prepared";
     if(lightHF46AnalysisState=="pending")call("cavity.light.HF46.markPending","");
-    oldRev=lightCurrentRevision;rev="REV_"+lightTimestamp();
-    revDir=lightNormalizeDir(lightJoin(lightJoin(lightImageDir,"roi_sessions"),rev));
-    if(File.exists(revDir)){revisionUuid=lightUuid();revisionSuffix=substring(revisionUuid,0,8);rev=rev+"_"+revisionSuffix;}
-    revDir=lightNormalizeDir(lightJoin(lightJoin(lightImageDir,"roi_sessions"),rev));lightMakeDir(revDir);
-    lightCurrentRevision=rev;
-    lightStampRevisionOnAllObjects(rev);
-    updateSessionMetadataRoi();
-    pointRoiSaveOk=lightPreparePointRoisForRevisionSave();if(pointRoiSaveOk==0){
-        lightCurrentRevision=oldRev;lightStampRevisionOnAllObjects(oldRev);updateSessionMetadataRoi();
-        failedPath=lightJoin(revDir,"REVISION_FAILED.txt");File.saveString("FAILED_POINT_ROI_SERIALIZATION_STATE\n",failedPath);
-        return "";
-    }
+    oldRev=lightCurrentRevision;oldRun=lightCurrentRunId;rev="REV_"+lightTimestamp();
+    revisionsDir=lightNormalizeDir(lightJoin(lightImageDir,"roi_sessions"));
+    if(!lightMakeDir(revisionsDir))return "";
+    finalDir=lightNormalizeDir(lightJoin(revisionsDir,rev));
+    if(File.exists(finalDir)){revisionUuid=lightUuid();rev=rev+"_"+substring(revisionUuid,0,8);finalDir=lightNormalizeDir(lightJoin(revisionsDir,rev));}
+    stageResult=call("cavity.light.RevisionWorkspace.beginRevision",finalDir);
+    if(!startsWith(stageResult,"OK|")){showMessage("Revision no preparada",stageResult);return "";}
+    revDir=lightNormalizeDir(substring(stageResult,3));
+    lightCurrentRevision=rev;lightCurrentRunId="";
+    lightStampRevisionOnAllObjects(rev);updateSessionMetadataRoi();
+    pointRoiSaveOk=lightPreparePointRoisForRevisionSave();
+    if(pointRoiSaveOk==0)return lightWorkspaceAbortSave(revDir,oldRev,oldRun,"No se pudieron preparar las ROIs de puntos.");
     zip=lightJoin(revDir,"cavity_rois.zip");zipResult=call("cavity.light.HF46.saveZip",zip);
-    if(zipResult!="OK"){
-        lightCurrentRevision=oldRev;lightStampRevisionOnAllObjects(oldRev);updateSessionMetadataRoi();
-        failedPath=lightJoin(revDir,"REVISION_FAILED.txt");File.saveString("FAILED\n",failedPath);
-        showMessage("Revision no guardada","El ZIP de ROIs no supero la verificacion.");return "";
-    }
+    if(zipResult!="OK")return lightWorkspaceAbortSave(revDir,oldRev,oldRun,"El ZIP de ROIs no supero la verificacion.");
     sha=IJ.checksum("SHA-256 file",zip);
-    manifest="revision_id\t"+rev+"\nimage_id\t"+lightImageId+"\nproject_id\t"+lightProjectId+"\nproject_uid\t"+lightProjectUid+"\nsource_sha256\t"+lightSourceSha256+"\nroi_zip_sha256\t"+sha+"\nroi_count\t"+roiManager("count")+"\ncreated_ms\t"+d2s(getTime(),0)+"\ntool_version\t"+lightReleaseVersion+"\nvalidation_state\t"+lightValidationState+"\nparent_revision\t"+oldRev+"\nprepared_state_reused\t"+lightLastPreparationReused+"\nprepared_state_duration_ms\t"+d2s(lightLastPreparationDurationMs,0)+"\n";
-    manifest=manifest+"analysis_state\t"+lightHF46AnalysisState+"\n";
-    manifestPath=lightJoin(revDir,"revision_manifest.tsv");if(!lightHF46WriteText(manifestPath,manifest)){lightCurrentRevision=oldRev;lightStampRevisionOnAllObjects(oldRev);updateSessionMetadataRoi();return "";}
-    sessionJson=projectJson();sessionPath=lightJoin(revDir,"session_metadata.json");File.saveString(sessionJson,sessionPath);
-    previewPath=lightJoin(revDir,"roi_overlay_preview.png");previewOk=lightSaveOverlayPreview(previewPath);
-    if(previewOk==0)lightAppendLog("PREVIEW_NOT_CREATED","revision="+rev+"; ROI ZIP guardado correctamente");
-    currentRevisionPath=lightJoin(lightImageDir,lightCurrentRevisionFileName);if(!lightHF46WriteText(currentRevisionPath,rev+"\n")){lightCurrentRevision=oldRev;lightStampRevisionOnAllObjects(oldRev);updateSessionMetadataRoi();return "";}
-    lightWriteImageMetadata();lightUpdateRegistry();lightAppendLog("REVISION_SAVED","revision="+rev+"; parent="+oldRev+"; roi_zip_sha256="+sha+"; prepared_reused="+lightLastPreparationReused+"; prepared_ms="+d2s(lightLastPreparationDurationMs,0));
-    if(verbose)showMessage("Revision guardada",rev+"\nROIs: "+roiManager("count")+"\nSHA-256: "+sha+"\nEstado de calculo: "+lightHF46AnalysisState+"\n\nNo se sobrescribio ninguna revision anterior.");
+    settingsJson=lightWorkspaceSettings();
+    sessionPath=lightJoin(revDir,"session_metadata.json");
+    if(!lightHF46WriteText(sessionPath,settingsJson))return lightWorkspaceAbortSave(revDir,oldRev,oldRun,"No se guardaron los parametros de la sesion.");
+    workspaceRequest="{\"revision_directory\":\""+jsonEscape(revDir)+"\",\"revision_id\":\""+jsonEscape(rev)+"\",\"settings\":"+settingsJson+"}";
+    workspaceRequest=eval("js","(function(){var r=JSON.parse('"+jsEscape(workspaceRequest)+"'),labels=JSON.parse('"+jsEscape(labelsJson)+"');if(labels.name!==undefined){r.name=labels.name;r.comment=labels.comment;}return JSON.stringify(r);})();");
+    workspaceSaved=call("cavity.light.RevisionWorkspace.saveWorkspace",workspaceRequest);
+    if(!startsWith(workspaceSaved,"OK|"))return lightWorkspaceAbortSave(revDir,oldRev,oldRun,workspaceSaved);
+    workspaceSha=substring(workspaceSaved,3);
+    manifest="revision_id\t"+rev+"\nimage_id\t"+lightImageId+"\nproject_id\t"+lightProjectId+"\nproject_uid\t"+lightProjectUid+"\nsource_sha256\t"+lightSourceSha256+"\nroi_zip_sha256\t"+sha+"\nroi_count\t"+roiManager("count")+"\ncreated_ms\t"+d2s(getTime(),0)+"\ntool_version\t"+lightReleaseVersion+"\nvalidation_state\t"+lightValidationState+"\nparent_revision\t"+oldRev+"\nprepared_state_reused\t"+lightLastPreparationReused+"\nprepared_state_duration_ms\t"+d2s(lightLastPreparationDurationMs,0)+"\nanalysis_state\t"+lightHF46AnalysisState+"\nworkspace_sha256\t"+workspaceSha+"\n";
+    manifestPath=lightJoin(revDir,"revision_manifest.tsv");
+    if(!lightHF46WriteText(manifestPath,manifest))return lightWorkspaceAbortSave(revDir,oldRev,oldRun,"No se guardo el manifiesto de revision.");
+    published=call("cavity.light.RevisionWorkspace.publishRevision",revDir+"|"+finalDir);
+    if(published!="OK")return lightWorkspaceAbortSave(revDir,oldRev,oldRun,published);
+    currentRevisionPath=lightJoin(lightImageDir,lightCurrentRevisionFileName);
+    if(!lightHF46WriteText(currentRevisionPath,rev+"\n")){
+        lightCurrentRevision=oldRev;lightCurrentRunId=oldRun;lightStampRevisionOnAllObjects(oldRev);updateSessionMetadataRoi();
+        showMessage("Revision conservada",rev+" se guardo completa, pero no pudo activarse. Puede abrirla desde el historial.");return "";
+    }
+    if(!lightWriteImageMetadata()){
+        lightCurrentRevision=oldRev;lightCurrentRunId=oldRun;lightStampRevisionOnAllObjects(oldRev);updateSessionMetadataRoi();
+        lightHF46WriteText(currentRevisionPath,oldRev+"\n");
+        showMessage("Revision conservada",rev+" se guardo completa, pero no pudo actualizarse el registro de la imagen.");return "";
+    }
+    lightUpdateRegistry();lightAppendLog("REVISION_SAVED","revision="+rev+"; parent="+oldRev+"; roi_zip_sha256="+sha+"; workspace_sha256="+workspaceSha);
+    if(verbose)showMessage("Revision guardada",rev+"\nImagen preparada, vista anotada, ROIs, receta vigente y parametros conservados.\nEstado del calculo: "+lightHF46AnalysisState+".\n\nPuede guardar avances sin exportar resultados.");
     lightRefreshPanel();return rev;
 }
 
 function quantitativeRevisionPreflight() {
     if(!lightHF4RequireReviewed())return 0;
-    imageOk=lightEnsureCurrentImage();if(imageOk==0)return 0;if(lightSourceSha256==""||lengthOf(lightSourceSha256)!=64){showMessage("Sin trazabilidad","Falta un SHA-256 valido de la fuente.");return 0;}path=lightResolveSourcePath();if(path=="")return 0;actual=call("cavity.light.HF46.sourceSha",path);if(actual!=lightSourceSha256){showMessage("Integridad bloqueada","La fuente actual no coincide con el SHA-256 registrado.");return 0;}run("ROI Manager...");if(roiManager("count")==0){showMessage("Sin ROIs","No hay objetos para guardar.");return 0;}return 1;
+    imageOk=lightEnsureCurrentImage();if(imageOk==0)return 0;if(lightSourceSha256==""||lengthOf(lightSourceSha256)!=64){showMessage("Sin trazabilidad","Falta un SHA-256 valido de la fuente.");return 0;}path=lightResolveSourcePath();if(path=="")return 0;actual=call("cavity.light.HF46.sourceSha",path);if(actual!=lightSourceSha256){showMessage("Integridad bloqueada","La fuente actual no coincide con el SHA-256 registrado.");return 0;}run("ROI Manager...");updateSessionMetadataRoi();if(roiManager("count")==0){showMessage("Sin ROIs","No hay objetos para guardar.");return 0;}return 1;
 }
 
 
@@ -10834,26 +10897,41 @@ function lightLoadRevisionById(rev) { return lightLoadRevisionCore(rev,1); }
 function lightLoadRevisionCore(rev,persistOpening) {
     lightHF4Pause();lightHF4Pull();
     revDir=lightNormalizeDir(lightJoin(lightJoin(lightImageDir,"roi_sessions"),rev));zip=lightJoin(revDir,"cavity_rois.zip");
-    if(!File.exists(zip)||!lightVerifyRevisionManifest(revDir,zip)){showMessage("Revision invalida","No se pudo verificar la revision:\n"+revDir);return 0;}
+    if(!File.exists(zip)){showMessage("Revision invalida","No existe el ZIP de la revision:\n"+revDir);return 0;}
+    if(!lightVerifyRevisionManifest(revDir,zip)){showMessage("Revision invalida","No se pudo verificar la revision:\n"+revDir);return 0;}
+    init=call("cavity.light.RevisionWorkspace.initialize",lightWorkspaceSettings());
+    if(init!="OK"){showMessage("Revision no cargada",init);return 0;}
+    restoreRequest="{\"revision_directory\":\""+jsonEscape(revDir)+"\",\"revision_id\":\""+jsonEscape(rev)+"\",\"settings\":"+lightWorkspaceSettings()+"}";
+    workspaceStage=call("cavity.light.RevisionWorkspace.stageRestore",restoreRequest);
+    if(!startsWith(workspaceStage,"OK|")){showMessage("Revision no cargada",workspaceStage);return 0;}
+    workspaceToken=substring(workspaceStage,3);
     args=zip+"|"+lightProjectId+"|"+lightProjectUid+"|"+lightImageId+"|"+lightSourceSha256+"|"+getWidth()+"|"+getHeight();
     staged=call("cavity.light.HF46.stageRevision",args);
-    if(!startsWith(staged,"OK|")){showMessage("Revision no cargada",staged);return 0;}
-    state=lightHF46CaptureState();switchSnapshotStatus=call("cavity.light.HF46.beginSwitch","");
-    if(switchSnapshotStatus!="OK"){showMessage("Revision no cargada",switchSnapshotStatus);return 0;}
+    if(!startsWith(staged,"OK|")){call("cavity.light.RevisionWorkspace.discardRestore",workspaceToken);showMessage("Revision no cargada",staged);return 0;}
+    state=lightHF46CaptureState();
+    workspaceSwitch=call("cavity.light.RevisionWorkspace.beginSwitch","");
+    if(workspaceSwitch!="OK"){call("cavity.light.RevisionWorkspace.discardRestore",workspaceToken);showMessage("Revision no cargada",workspaceSwitch);return 0;}
+    switchSnapshotStatus=call("cavity.light.HF46.beginSwitch","");
+    if(switchSnapshotStatus!="OK"){call("cavity.light.RevisionWorkspace.endSwitch","rollback");call("cavity.light.RevisionWorkspace.discardRestore",workspaceToken);showMessage("Revision no cargada",switchSnapshotStatus);return 0;}
     expectedRoot=lightProjectRoot;expectedFile=lightProjectFile;expectedImageDir=lightImageDir;
     expectedSource=lightSourcePath;expectedStored=lightSourceStoredPath;
     loadedRun=lightCurrentRunId;if(rev!=lightCurrentRevision)loadedRun="";applied=call("cavity.light.HF46.applyRevision","");loaded=0;
     if(applied=="OK"){sessionRoiPath=zip;lightCurrentRevision=rev;loaded=loadSessionFromRois(0);}
-    if(!loaded){call("cavity.light.HF46.endSwitch","rollback");lightHF46RestoreState(state);showMessage("Revision no cargada","Se conserva la sesion anterior.");return 0;}
+    if(loaded){workspaceApplied=call("cavity.light.RevisionWorkspace.applyRestore",workspaceToken);if(workspaceApplied!="OK")loaded=0;}
+    if(!loaded){
+        call("cavity.light.RevisionWorkspace.discardRestore",workspaceToken);call("cavity.light.HF46.endSwitch","rollback");call("cavity.light.RevisionWorkspace.endSwitch","rollback");lightHF46RestoreState(state);
+        showMessage("Revision no cargada","Se conserva la sesion anterior; no se aplico la imagen o sus anotaciones.");return 0;
+    }
     lightProjectRoot=expectedRoot;lightProjectFile=expectedFile;lightImageDir=expectedImageDir;
     lightSourcePath=expectedSource;lightSourceStoredPath=expectedStored;lightCurrentRevision=rev;lightCurrentRunId=loadedRun;
     lightInvalidateAnalysisCache();updateSessionMetadataRoi();
-    if(persistOpening){if(!lightWriteImageMetadata()){call("cavity.light.HF46.endSwitch","rollback");lightHF46RestoreState(state);return 0;}}
-    call("cavity.light.HF46.endSwitch","commit");if(persistOpening){lightUpdateRegistry();lightAppendLog("REVISION_LOADED","revision="+rev);}
+    if(persistOpening){if(!lightWriteImageMetadata()){
+        call("cavity.light.HF46.endSwitch","rollback");call("cavity.light.RevisionWorkspace.endSwitch","rollback");lightHF46RestoreState(state);return 0;
+    }}
+    call("cavity.light.HF46.endSwitch","commit");call("cavity.light.RevisionWorkspace.endSwitch","commit");
+    if(persistOpening){lightUpdateRegistry();lightAppendLog("REVISION_LOADED","revision="+rev);}
     showStatus("Revision cargada: "+rev+"; ROIs: "+roiManager("count"));lightShowPanel();return 1;
 }
-
-
 
 function lightSaveOverlayPreview(path) {
     if(nImages()<=0)return 0;
@@ -11716,7 +11794,7 @@ function lightHF3Source() {
     code=code+"        var ids={},dups=0;text='roi_manager_index,roi_name,cavity_id,occurrences,status\\n';\n";
     code=code+"        for(i=0;i<objs.length;i++)ids['id:'+objs[i].id]=(ids['id:'+objs[i].id]||0)+1;\n";
     code=code+"        for(i=0;i<objs.length;i++){var o=objs[i],occ=ids['id:'+o.id];if(occ>1)dups++;text+=[o.index,csv(o.roi.getName()),csv(o.id),occ,occ>1?'REVIEW_DUPLICATE_ID':'OK'].join(',')+'\\n';}write('roi_identity_review.csv',text);\n";
-    code=code+"        write('analysis_method.json',JSON.stringify({version:'1.1.1-R9-HF3',application_version:'1.2.0-RC1-individual',linear_length_domain:'valid_raster_pixel_cells_v1',linear_length_definition:'centerline clipped to the same raster pixel-cell domain as the area denominator; full trace retained in Traced_length_nm',linear_roi_coordinates:'centerline_endpoints_for_straight_lines; vertices_for_polylines',geometry:'physical_parallel_offsets_miter_joins_tangent_rays',depth_origin_nm:0,depth_definition:'perpendicular_to_segments; miter_offset_at_vertices',band_mode:cfg.bandMode,band_width_nm:bw,bands_in_image:bc,maximum_image_depth_nm:extent,area_method:'raster_pixel_centres; union_masks_minus_union_exclusions; material_side_only',pixel_area_nm2:sx*sy,area_nm2:Number(cache.get('area')),foil_thickness_nm:cfg.thickness,thickness_input_uncertainty_nm:cfg.uncertainty,density3_definition:'N/(A*t), nominal; no stereological correction',uncertainty:'Poisson sqrt(N) standard error; thickness sensitivity separate, confidence level unspecified',size_rule:'valid centroids for count; boundary-intersecting ROIs excluded from size',size_classes_nm:edges,background_contrast:cfg.contrast,duplicate_id_entries:dups},null,2)+'\\n');\n";
+    code=code+"        write('analysis_method.json',JSON.stringify({version:'1.1.1-R9-HF3',application_version:'1.2.0-RC1-individual-US1',linear_length_domain:'valid_raster_pixel_cells_v1',linear_length_definition:'centerline clipped to the same raster pixel-cell domain as the area denominator; full trace retained in Traced_length_nm',linear_roi_coordinates:'centerline_endpoints_for_straight_lines; vertices_for_polylines',geometry:'physical_parallel_offsets_miter_joins_tangent_rays',depth_origin_nm:0,depth_definition:'perpendicular_to_segments; miter_offset_at_vertices',band_mode:cfg.bandMode,band_width_nm:bw,bands_in_image:bc,maximum_image_depth_nm:extent,area_method:'raster_pixel_centres; union_masks_minus_union_exclusions; material_side_only',pixel_area_nm2:sx*sy,area_nm2:Number(cache.get('area')),foil_thickness_nm:cfg.thickness,thickness_input_uncertainty_nm:cfg.uncertainty,density3_definition:'N/(A*t), nominal; no stereological correction',uncertainty:'Poisson sqrt(N) standard error; thickness sensitivity separate, confidence level unspecified',size_rule:'valid centroids for count; boundary-intersecting ROIs excluded from size',size_classes_nm:edges,background_contrast:cfg.contrast,duplicate_id_entries:dups},null,2)+'\\n');\n";
     code=code+"        return 'OK';\n";
     code=code+"    }\n";
     code=code+"    if(action==='visuals'||action==='charts')return ctlHF3Figures(cfg,imp,rois,geom,cache,objs,bands,edges,dir);\n";
@@ -13132,4 +13210,68 @@ function lightHF46ResetImageState() {
     lightImageMode="without_surface";lightUseWholeImage=0;lightIncludeUncertain=0;usePanelsAsMask=0;v4ProjectLoaded=0;
     lastValidAreaNm2=NaN;lastBandAreasNm2=newArray(0);
     cavityCounter=0;grainBoundaryCounter=0;dislocationCounter=0;interfaceCounter=0;loopCounter=0;exclusionCounter=0;maskCounter=0;panelCounter=0;
+}
+
+// US1 preparation and workspace entrypoints.
+macro "Cavity Light: contraste por zona" { lightWorkspacePreparation("brightness_contrast"); }
+macro "Cavity Light: contraste local" { lightWorkspacePreparation("local_contrast"); }
+macro "Cavity Light: correccion de fondo" { lightWorkspacePreparation("background_correction"); }
+macro "Cavity Light: deshacer tratamiento" { lightWorkspacePreparation("undo"); }
+macro "Cavity Light: rehacer tratamiento" { lightWorkspacePreparation("redo"); }
+macro "Cavity Light: restaurar imagen original" { lightWorkspacePreparation("reset"); }
+macro "Cavity Light: ver receta vigente" { lightWorkspacePreparation("recipe"); }
+macro "Cavity Light: conservar cambios externos" { lightWorkspacePreparation("adopt_external"); }
+macro "Cavity Light: recuperar panel [F2]" { lightWorkspaceShowPanel(); }
+macro "Cavity Light: ajustar detector con cavidades" { lightWorkspaceDetectorDefaults(); }
+
+function lightWorkspaceSettings() {
+    saved=projectJson();
+    js="(function(){var v=JSON.parse('"+jsEscape(saved)+"');v.bands.mode='"+jsEscape(lightBandMode)+"';v.settings.size_breaks_nm='"+jsEscape(lightSizeBreaks)+"';v.settings.result_contrast='"+jsEscape(lightResultContrast)+"';v.application_version='"+jsEscape(lightReleaseVersion)+"';v.area.computation_state='"+jsEscape(lightHF46AnalysisState)+"';if(v.area.computation_state!='prepared')v.area.valid_area_nm2=null;return JSON.stringify(v);})();";
+    return ""+eval("js",js);
+}
+
+function lightWorkspaceAbortSave(stageDir,oldRev,oldRun,reason) {
+    aborted=call("cavity.light.RevisionWorkspace.abortRevision",stageDir);
+    lightCurrentRevision=oldRev;lightCurrentRunId=oldRun;lightStampRevisionOnAllObjects(oldRev);updateSessionMetadataRoi();
+    if(aborted!="OK")reason=reason+"\n"+aborted;
+    showMessage("Revision no guardada",reason+"\nLa revision anterior sigue activa.");return "";
+}
+
+function lightWorkspacePreparation(action) {
+    imageOk=lightEnsureCurrentImage();if(imageOk==0)return;
+    lightHF4Pause();commitOk=commitActiveManagedRoi();if(commitOk<0)return;
+    init=call("cavity.light.RevisionWorkspace.initialize",lightWorkspaceSettings());
+    if(init!="OK"){showMessage("Preparacion no disponible",init);return;}
+    if(action=="brightness_contrast"||action=="local_contrast"||action=="background_correction")
+        result=call("cavity.light.RevisionWorkspace.treatment",action);
+    else result=call("cavity.light.RevisionWorkspace.preparationAction",action);
+    if(startsWith(result,"ERROR|"))showMessage("Preparacion de imagen",result);
+    else if(action=="recipe")showText("Receta vigente",lightWorkspaceRecipeText(result));
+    else if(result!="CANCEL")showStatus(result);
+}
+
+function lightWorkspaceRecipeText(saved) {
+    js="(function(){var s=JSON.parse('"+jsEscape(saved)+"'),a=s.operations||[],lines=['Tratamientos vigentes de la copia de trabajo',''];if(s.recipe_complete===false)lines.push('Receta parcial: hay cambios externos descritos, cuyos filtros y parametros no se conocen.','');if(a.length===0)lines.push('Sin tratamientos registrados.');var kinds={brightness_contrast:'Brillo y contraste',local_contrast:'Contraste local',background_correction:'Correccion de fondo',external_pixel_changes:'Cambios hechos con Fiji'};var labels={brightness:'Brillo',contrast:'Contraste (factor)',center:'Centro de intensidades',radius:'Radio (px)',radius_px:'Radio (px)',amount:'Intensidad',max_gain:'Ganancia maxima',noise_floor:'Umbral de ruido',target_stddev:'Variacion objetivo',strength:'Intensidad',mode:'Correccion',reference:'Referencia',epsilon:'Minimo de division',description:'Descripcion'};for(var i=0;i<a.length;i++){var o=a[i],r=o.region,p=o.params||{};lines.push((i+1)+'. '+(kinds[o.kind]||o.kind));lines.push(r&&r.scope!='whole_image'?'Zona: ROI conservada':'Zona: imagen completa');for(var k in p){if(k=='algorithm'||k=='before_pixel_sha256'||k=='after_pixel_sha256')continue;lines.push('  '+(labels[k]||k)+': '+p[k]);}lines.push('');}lines.push('Solo se guardan los pasos vigentes. Las ROIs de tratamiento se conservan separadas de las cavidades.');return lines.join('\\n');})();";
+    return ""+eval("js",js);
+}
+
+function lightWorkspaceShowPanel() {
+    result=call("cavity.light.Workspace.action","show");
+    if(startsWith(result,"MISSING|"))lightShowPanel();
+}
+
+function lightWorkspaceDetectorDefaults() {
+    if(!lightHF4Arm("select"))return;
+    suggestion=call("cavity.light.DetectorAssistant.suggestions","");
+    if(!startsWith(suggestion,"OK|")){showMessage("Detector sin ajustes",suggestion);return;}
+    p=split(suggestion,"|");if(p.length!=6)return;
+    Dialog.create("Ajustar detector con cavidades confirmadas");
+    Dialog.addMessage("Referencia: "+p[1]+" cavidades; diametro mediano "+d2s(parseFloat(p[2]),3)+" nm.\nSon valores iniciales editables, no un modelo entrenado. Cada propuesta sigue requiriendo revision.");
+    Dialog.addNumber("Diametro minimo para estimar (nm):",parseFloat(p[3]),3);
+    Dialog.addNumber("Diametro maximo para estimar (nm):",parseFloat(p[4]),3);
+    Dialog.addNumber("Separacion minima entre puntos (nm):",parseFloat(p[5]),3);
+    Dialog.show();lo=Dialog.getNumber();hi=Dialog.getNumber();gap=Dialog.getNumber();
+    if(!lightHF46Finite(lo)||!lightHF46Finite(hi)||!lightHF46Finite(gap)||lo<=0||hi<=lo||gap<=0){showMessage("Ajustes no validos","Use valores positivos y un maximo mayor que el minimo.");return;}
+    eval("js","Packages.ij.Prefs.set('cavity.tem.light.hf4.minD',"+d2s(lo,12)+");Packages.ij.Prefs.set('cavity.tem.light.hf4.maxD',"+d2s(hi,12)+");Packages.ij.Prefs.set('cavity.tem.light.hf4.separation',"+d2s(gap,12)+");Packages.ij.Prefs.savePreferences();");
+    showStatus("Valores iniciales ajustados. Dibuje una zona nueva y use Detectar puntos / Estimar diametros.");
 }

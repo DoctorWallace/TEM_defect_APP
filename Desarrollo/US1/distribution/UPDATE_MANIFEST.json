@@ -1,0 +1,1273 @@
+{
+  "schema": "CAVITY_USABILITY_UPDATE_V1",
+  "update_id": "1.2-RC1-US1",
+  "files": [
+    {
+      "path": "Aplicacion/individual_editor_source/DetectorAssistant.java",
+      "sha256": "1cbf76e673ae3965926d1a119a828c8330299c636b792773a92e75c451e019b8",
+      "compatible_base_sha256": [
+        null
+      ]
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/DetectorAssistantTest.java",
+      "sha256": "ca91ef71d6c353b1cf7fdb5148f54a53bdba3668db03f4d5970e250be7a6f475",
+      "compatible_base_sha256": [
+        null
+      ]
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/FOCAL_VALIDATION.json",
+      "sha256": "489a44820a58e972dffe801757119f87bfdababa4b062508b54df804284e16c6",
+      "compatible_base_sha256": [
+        "1e297ebad9dfff64d1a2159b5bcc5b751de4c5b3046e22822aa37219083544eb"
+      ]
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/ImagePreparation.java",
+      "sha256": "5ece60100bc8f277ffa535e69d3255736a2987d5f08bd1a76134c2424c49ac88",
+      "compatible_base_sha256": [
+        null
+      ]
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/ImagePreparationTest.java",
+      "sha256": "e82c7aef597c8855d764fc5fac3abe7195bad1a00120901cea6da2d8af006e30",
+      "compatible_base_sha256": [
+        null
+      ]
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/IndividualEditor.java",
+      "sha256": "b55bc95557e56d59bc324317e6613cf627dcf948f29b25531828f3c6df75a4d0",
+      "compatible_base_sha256": [
+        "16f01090bc039721d03431749c8afd4e660ef6891f763197d55c5490571b017f",
+        "0d514bf7c48f6b6dd461cb5b7399c4eb81cf979651e07985b053ca62678de8dc"
+      ]
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/IndividualEditorTest.java",
+      "sha256": "d9eb66a5192ca5394632bd1b5751ffc3d21daa9fb5f2b868b9b30d8d85c53f1f",
+      "compatible_base_sha256": [
+        "f462fdad6801ac42724007fc1a49a2eaa6978e3c96688b487c1df22477c6ab8a",
+        "d9eb66a5192ca5394632bd1b5751ffc3d21daa9fb5f2b868b9b30d8d85c53f1f"
+      ]
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/PROVENANCE.json",
+      "sha256": "b93d8128b6cd2e0d582e31eb8ec633f5a4e5b82704bacc0f48bc746431b2c970",
+      "compatible_base_sha256": [
+        "db3f2e8bda3ee8ce4a99ee9b3281ee757fd160fe98a2d19921adf7f68d81ef55",
+        "b1f9e98493f85bc572ee7cfe62cc7abc9bdeaab6cfd4414f0c926dd475624d98"
+      ]
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/README.md",
+      "sha256": "5c6b5e8828085fc2baa79bd73527604fcdd0b64b761bfe28208be741d6568740",
+      "compatible_base_sha256": [
+        "e1ea36d29452f3e7d550cd86c8a685bfda8d34ac21895bd7208377f187125edd",
+        "09978d123ee90cdc2af88467844369d85b45b08f7cff00cc45b99ddf3f19c3cb"
+      ]
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/RevisionWorkspace.java",
+      "sha256": "bbd4ca2793215143147122802b36f338a4033a7c3a333dd2f8384d37977e4cf3",
+      "compatible_base_sha256": [
+        null
+      ]
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/RevisionWorkspaceTest.java",
+      "sha256": "3b7183e0417df5893668bfd518d06c9039e6ced54f8d4cd338fdecc829354674",
+      "compatible_base_sha256": [
+        null
+      ]
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/Workspace.java",
+      "sha256": "86a539379e74e11963f4cb3fbb53f3efcb1b518bd908140f0dbde72a6f945057",
+      "compatible_base_sha256": [
+        null
+      ]
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/WorkspaceTest.java",
+      "sha256": "48bc76fb13540d904467b0800df6d5e9f38d09e0f6b5ca665437cdddf0fa567a",
+      "compatible_base_sha256": [
+        null
+      ]
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/build.ps1",
+      "sha256": "521b98647da65e3eaa1609aa7039ff4ce78ab74b76de73b2db0bca731ec27573",
+      "compatible_base_sha256": [
+        "a093a1421c43f3512d8ca516ec971ad5f132e0719f59f2d7ae9b7c71b8ccb962"
+      ]
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/upgrade_editor.py",
+      "sha256": "078eabf58532e6da025da47184128ef75ff034ea123a8dc6cc427d2ac1cf10c2",
+      "compatible_base_sha256": [
+        "a0e4656045b73b33f4b77c5f149d14703550520b9141369de87e005421ab259f",
+        "efab24b0111342c6d6ec4d7139ce42214c75983dc9fd292bb35af82afc0e4964"
+      ]
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/usability_upgrade.py",
+      "sha256": "5b28554d470d93c660dde61770767a399d4afb104faf8142047e182fd4b20d01",
+      "compatible_base_sha256": [
+        null
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_library/gui.py",
+      "sha256": "5961c6838b9b714dee7d8de01a9a5d494a04ebb01999e8a15c2daf017f57ed77",
+      "compatible_base_sha256": [
+        "4ea645b7131aeb0b7dc1d23721d86629b446a1bdb9ec0854272bb7e19e4bd1bb"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_library/project_study.py",
+      "sha256": "70b8105834936f8631c8b8a4a1a51efd808915e072c6fe521f2965501982deac",
+      "compatible_base_sha256": [
+        null
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_library/readers.py",
+      "sha256": "69c3681af9ecb507fe79450d135c67891a6b1cff4ae1f263eb14911dbcd1dec9",
+      "compatible_base_sha256": [
+        "45a1676fb93d4f48fd6ba642ce07a13b7332915b1dfa5b8f9b4e9604cb8da8b7"
+      ]
+    },
+    {
+      "path": "Documentacion/LEEME_1_2.html",
+      "sha256": "dd245f14d5c7b6316737c0681923b2ff3189f69007fb377886ca3dc54717f635",
+      "compatible_base_sha256": [
+        "2c0b62ab2704a479293c326eea61055e7968cefde5e38644d004f742a32defec"
+      ]
+    },
+    {
+      "path": "Documentacion/LEEME_1_2.md",
+      "sha256": "68e16bb1c7c16587e49aa62552f98b743f783ac38b607980713bee4a7cb5073b",
+      "compatible_base_sha256": [
+        "2e328848e9e152337c95291e1b68794f7b4d1a15579719b9ea926d67172f6f0d"
+      ]
+    },
+    {
+      "path": "Fiji/macros/toolsets/Cavity_TEM_Light_1_2_RC1.ijm",
+      "sha256": "7b5ecb785635941c2c7f2e031d533c8c1dfc268ba55b1c621f15d5aa6b370a2e",
+      "compatible_base_sha256": [
+        "3f9bf3f88620227218787feba335beb00115f41a286b09c3d81cbba086592e23",
+        "b938d75ca7f7a7c925fe8e3fb401b8affc3d11158faadf53c30467313e894d73"
+      ]
+    },
+    {
+      "path": "Fiji/plugins/cavity-light-individual.jar",
+      "sha256": "f2b2a615b03c9cf21297f6156356d3f10852a4d77f9da328b7ab0d7d5a57f4e3",
+      "compatible_base_sha256": [
+        "3e62a2c3802eb5c6500475efbd9ff0796f90f918020a66c9107f9ee5b04f1cfc",
+        "b6f5341e9c0968021896dfa3fdd8843ee62c70cc86c8223d9fed2868df51c8bb"
+      ]
+    },
+    {
+      "path": "VERSION_1_2.json",
+      "sha256": "86d763587ece9a84b074ccb7173d4561e6657c60d75f4e0b7f1f470820963752",
+      "compatible_base_sha256": [
+        "b8c01745eadac58f111b79262b3b6276ea0a74ee32a0444566fc9f16e06951d4",
+        "851a105500be03fee718f43c5506307824a4c4ccb41bab002f73c8b770cc196f"
+      ]
+    }
+  ],
+  "required_files": [
+    {
+      "path": "ABRIR_EDITOR_INDIVIDUAL.bat",
+      "sha256": "de076339e8a316ff13ab709afb9d5aecb48cfc031ca72b07912e85a03c61e93d",
+      "compatible_base_sha256": [
+        "de076339e8a316ff13ab709afb9d5aecb48cfc031ca72b07912e85a03c61e93d"
+      ]
+    },
+    {
+      "path": "ABRIR_MANUAL.bat",
+      "sha256": "ee97eb05554915da60b83189bb29e646fb6069f6edce59181c4947726b98717a",
+      "compatible_base_sha256": [
+        "ee97eb05554915da60b83189bb29e646fb6069f6edce59181c4947726b98717a"
+      ]
+    },
+    {
+      "path": "Aplicacion/Start_Cavity_Light.ijm",
+      "sha256": "19ba51b1b83810439ec17a72b153623195f2d3e263779420b5da0f09470cd408",
+      "compatible_base_sha256": [
+        "19ba51b1b83810439ec17a72b153623195f2d3e263779420b5da0f09470cd408"
+      ]
+    },
+    {
+      "path": "Aplicacion/Start_Individual_Editor.ijm",
+      "sha256": "28090f77cb60c8101274cfd66a0ccc6701dad12312cd0553eed270b82674352f",
+      "compatible_base_sha256": [
+        "28090f77cb60c8101274cfd66a0ccc6701dad12312cd0553eed270b82674352f"
+      ]
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/.gitignore",
+      "sha256": "3ee657b8ce48c1e9737c418329ea2d0b6fedce694d5ac2135daa95da47eb51aa",
+      "compatible_base_sha256": [
+        "3ee657b8ce48c1e9737c418329ea2d0b6fedce694d5ac2135daa95da47eb51aa"
+      ]
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/make_smoke_toolset.py",
+      "sha256": "af453a215d2c0aacc536a441e120f1ac9086ed1ab159f702e50c7931ef1be6b4",
+      "compatible_base_sha256": [
+        "af453a215d2c0aacc536a441e120f1ac9086ed1ab159f702e50c7931ef1be6b4"
+      ]
+    },
+    {
+      "path": "Aplicacion/individual_editor_source/verify_roi_precision.py",
+      "sha256": "142c447e54d004141465ecc713135b7d512f030aab9b0834c119b7e7feeb05cc",
+      "compatible_base_sha256": [
+        "142c447e54d004141465ecc713135b7d512f030aab9b0834c119b7e7feeb05cc"
+      ]
+    },
+    {
+      "path": "Aplicacion/local_launcher.py",
+      "sha256": "979cb552bc8e754dc0a0be4f4e8606168cb3c83294e4d62a124c68232bbc7316",
+      "compatible_base_sha256": [
+        "979cb552bc8e754dc0a0be4f4e8606168cb3c83294e4d62a124c68232bbc7316"
+      ]
+    },
+    {
+      "path": "Aplicacion/portable_launcher.py",
+      "sha256": "26238bb9e53739af8b06f2011dc1effae754bb055085d8409b518633194885ac",
+      "compatible_base_sha256": [
+        "26238bb9e53739af8b06f2011dc1effae754bb055085d8409b518633194885ac"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/CTL_P1_RUNTIME_MANIFEST.json",
+      "sha256": "3a034efa54ed659f949a9d57de866b8dd4d99a72c888217de283626dc94f5ab7",
+      "compatible_base_sha256": [
+        "3a034efa54ed659f949a9d57de866b8dd4d99a72c888217de283626dc94f5ab7"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_library/__init__.py",
+      "sha256": "3c28b92921c769f172671acbb1ca9924340c31305494d16d9ba268baa462dc21",
+      "compatible_base_sha256": [
+        "3c28b92921c769f172671acbb1ca9924340c31305494d16d9ba268baa462dc21"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_library/__main__.py",
+      "sha256": "13cdff14c9bc3a22b6e75ca0ad942b3f5be057a56d99491317ccab22d301fe2c",
+      "compatible_base_sha256": [
+        "13cdff14c9bc3a22b6e75ca0ad942b3f5be057a56d99491317ccab22d301fe2c"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_library/catalog.py",
+      "sha256": "15a841d3e9121c658b6b7ba566996fdb634ca3be0b7eb2a77d8a1530b209071d",
+      "compatible_base_sha256": [
+        "15a841d3e9121c658b6b7ba566996fdb634ca3be0b7eb2a77d8a1530b209071d"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_library/launch.py",
+      "sha256": "7aa313ea690f0a4f49e857c425373a34a12eb2c122084ff409f403ee5876b75e",
+      "compatible_base_sha256": [
+        "7aa313ea690f0a4f49e857c425373a34a12eb2c122084ff409f403ee5876b75e"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_stats_app/README.md",
+      "sha256": "b991dafba00d37b56c17e6476ee848fc54805f60986e5b14b72f995034d08fd5",
+      "compatible_base_sha256": [
+        "b991dafba00d37b56c17e6476ee848fc54805f60986e5b14b72f995034d08fd5"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_stats_app/__init__.py",
+      "sha256": "e3e211b82cd8f42f8fab567d2c4559fce13aeb81578dcee73d61069e835f0206",
+      "compatible_base_sha256": [
+        "e3e211b82cd8f42f8fab567d2c4559fce13aeb81578dcee73d61069e835f0206"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_stats_app/__main__.py",
+      "sha256": "e923786b5d6bc9219f06c6e008661b7bf8d15d7e0b7de4d4dd2606adaff0d0d0",
+      "compatible_base_sha256": [
+        "e923786b5d6bc9219f06c6e008661b7bf8d15d7e0b7de4d4dd2606adaff0d0d0"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_stats_app/app.py",
+      "sha256": "0e137d000178588aff05c2cbb7fb951e8a18bfd706f7d51f9a58665232db744a",
+      "compatible_base_sha256": [
+        "0e137d000178588aff05c2cbb7fb951e8a18bfd706f7d51f9a58665232db744a"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p1/__init__.py",
+      "sha256": "80e5e1b19584366b91f5003b3c882f0a74f5671e890cee98cf6753618651d0dc",
+      "compatible_base_sha256": [
+        "80e5e1b19584366b91f5003b3c882f0a74f5671e890cee98cf6753618651d0dc"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p1/bridge.py",
+      "sha256": "0c0fcb980ae5c763760e54b7639a348f31b104fd141c03e6deecc4860b0a14fa",
+      "compatible_base_sha256": [
+        "0c0fcb980ae5c763760e54b7639a348f31b104fd141c03e6deecc4860b0a14fa"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p1/canonical_json.py",
+      "sha256": "a2b4474394a62ccd8d59a0d4a075bb0afe1abb15c39c0e0a83e866c6fcc30165",
+      "compatible_base_sha256": [
+        "a2b4474394a62ccd8d59a0d4a075bb0afe1abb15c39c0e0a83e866c6fcc30165"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p1/cli.py",
+      "sha256": "3ec0e4592891cb27347298163bbbb1242e97849625d668fbbf1f9b82ef88f980",
+      "compatible_base_sha256": [
+        "3ec0e4592891cb27347298163bbbb1242e97849625d668fbbf1f9b82ef88f980"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p1/combined.py",
+      "sha256": "c2f7325e612ed7428defe14593c462fff3762fd208c0f5521bdacfcd73c977da",
+      "compatible_base_sha256": [
+        "c2f7325e612ed7428defe14593c462fff3762fd208c0f5521bdacfcd73c977da"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p1/contract.py",
+      "sha256": "63201d3fcb5100cbe5a6de3bfc2a6ff6668065c2bf94653aeb6d749948053791",
+      "compatible_base_sha256": [
+        "63201d3fcb5100cbe5a6de3bfc2a6ff6668065c2bf94653aeb6d749948053791"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p1/critical_io.py",
+      "sha256": "7b1c21606458036389377f8e34edfe47b7e10fbb45bba2744708e611c70b86d7",
+      "compatible_base_sha256": [
+        "7b1c21606458036389377f8e34edfe47b7e10fbb45bba2744708e611c70b86d7"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p1/errors.py",
+      "sha256": "b64463d677c30f8ff51c93046eaf64f7907d549176358d7ef30bcc6d9871b338",
+      "compatible_base_sha256": [
+        "b64463d677c30f8ff51c93046eaf64f7907d549176358d7ef30bcc6d9871b338"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p1/identity.py",
+      "sha256": "d9f2ea0acc00c3aa8f358571ad9f24619f8438598da3a19ef9f16e026241b7a1",
+      "compatible_base_sha256": [
+        "d9f2ea0acc00c3aa8f358571ad9f24619f8438598da3a19ef9f16e026241b7a1"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p1/object_table.py",
+      "sha256": "3ddd8dad92204f5223266b078c9cca2d12193daa9a192c46f9775f3e8805fbba",
+      "compatible_base_sha256": [
+        "3ddd8dad92204f5223266b078c9cca2d12193daa9a192c46f9775f3e8805fbba"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p1/object_table_profile.py",
+      "sha256": "e0e8ce6335ea26fed05e0e90f660846bebaf76985d51cd2bf790f92921e9ea61",
+      "compatible_base_sha256": [
+        "e0e8ce6335ea26fed05e0e90f660846bebaf76985d51cd2bf790f92921e9ea61"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p1/path_safety.py",
+      "sha256": "d8781b1082fde4e2339f89b94583b38c8a658d25206d65676c64d2ffad299708",
+      "compatible_base_sha256": [
+        "d8781b1082fde4e2339f89b94583b38c8a658d25206d65676c64d2ffad299708"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p1/revision.py",
+      "sha256": "0dedf11f62c10efbe809d1c83d4ae62aae0fd3d1a3f9b5f107a020969086d4dd",
+      "compatible_base_sha256": [
+        "0dedf11f62c10efbe809d1c83d4ae62aae0fd3d1a3f9b5f107a020969086d4dd"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p1/run_consumer.py",
+      "sha256": "41c38b197b4474875950155342624db8cbe3a70f5c740dfb489827abfd517d5c",
+      "compatible_base_sha256": [
+        "41c38b197b4474875950155342624db8cbe3a70f5c740dfb489827abfd517d5c"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p1/run_context.py",
+      "sha256": "d147e81eeb2eb8c6b02e7d75ddeb68180ca1c5ffae5a6a99832e8979741cef03",
+      "compatible_base_sha256": [
+        "d147e81eeb2eb8c6b02e7d75ddeb68180ca1c5ffae5a6a99832e8979741cef03"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p1/run_disposition.py",
+      "sha256": "13dfc8d6cbb09ee56ff6853dcb74be1801bb301a028ea65f37ba901d23c4035b",
+      "compatible_base_sha256": [
+        "13dfc8d6cbb09ee56ff6853dcb74be1801bb301a028ea65f37ba901d23c4035b"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p1/run_transaction.py",
+      "sha256": "a638b8d42ef4e0003d98a9ced3f831523d1994f6ab6e4a69e75a4a531b710cf0",
+      "compatible_base_sha256": [
+        "a638b8d42ef4e0003d98a9ced3f831523d1994f6ab6e4a69e75a4a531b710cf0"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p1/science.py",
+      "sha256": "edc7304fe6ccd943be179bbb38fc4eb4e13cfb5b7e57a2f4eb48c54f2cb29996",
+      "compatible_base_sha256": [
+        "edc7304fe6ccd943be179bbb38fc4eb4e13cfb5b7e57a2f4eb48c54f2cb29996"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p2/__init__.py",
+      "sha256": "706f6891084befed8858e0f68b44ca77c109872b19bc6c443697d357a835e16e",
+      "compatible_base_sha256": [
+        "706f6891084befed8858e0f68b44ca77c109872b19bc6c443697d357a835e16e"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p2/migration.py",
+      "sha256": "f02a864aff2241997725e717bf8d1ba0d317f536a3990fc6b561497937f9b94e",
+      "compatible_base_sha256": [
+        "f02a864aff2241997725e717bf8d1ba0d317f536a3990fc6b561497937f9b94e"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p2/session_archive.py",
+      "sha256": "d8aef0255cd29a243060af045114b62d5f96eae9ba4e1b484e628bfd1525ca19",
+      "compatible_base_sha256": [
+        "d8aef0255cd29a243060af045114b62d5f96eae9ba4e1b484e628bfd1525ca19"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p2/session_core.py",
+      "sha256": "f1b4cd8cc1920913c1ef4882d1f8196e290d3580c6ecf0e18cd630b8959cc5a0",
+      "compatible_base_sha256": [
+        "f1b4cd8cc1920913c1ef4882d1f8196e290d3580c6ecf0e18cd630b8959cc5a0"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p2/vertical_manager.py",
+      "sha256": "517e94136663f73dd61e429fc9d383fb354eaede8f5da3f50a764e414a0ccb7f",
+      "compatible_base_sha256": [
+        "517e94136663f73dd61e429fc9d383fb354eaede8f5da3f50a764e414a0ccb7f"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p3/__init__.py",
+      "sha256": "c526089bad00cb5310b6eff70ca57042521d04e73a328252136cc221ef320038",
+      "compatible_base_sha256": [
+        "c526089bad00cb5310b6eff70ca57042521d04e73a328252136cc221ef320038"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p3/manager.py",
+      "sha256": "0c2b2a3bcc4a201de90a6218d655c4ceb75227d1c9f1c3b951aed4da43747b76",
+      "compatible_base_sha256": [
+        "0c2b2a3bcc4a201de90a6218d655c4ceb75227d1c9f1c3b951aed4da43747b76"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p3/mask_visibility.py",
+      "sha256": "ed215d1caf0f4e58fc5b245fe901ba02a8c4107ac147bbb5e5facc2db35c5667",
+      "compatible_base_sha256": [
+        "ed215d1caf0f4e58fc5b245fe901ba02a8c4107ac147bbb5e5facc2db35c5667"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p3/onboarding.py",
+      "sha256": "022de53e3802c4ffd3d4188f40996cd4aca312b2d0e8ec3311e30793b36f3ed7",
+      "compatible_base_sha256": [
+        "022de53e3802c4ffd3d4188f40996cd4aca312b2d0e8ec3311e30793b36f3ed7"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p3/run_disposition.py",
+      "sha256": "6b2749cae1ed71ae23eeaab3d408386ac2e1d8c70a2db58b19ab9601e474bd82",
+      "compatible_base_sha256": [
+        "6b2749cae1ed71ae23eeaab3d408386ac2e1d8c70a2db58b19ab9601e474bd82"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p3/run_recovery.py",
+      "sha256": "ae65cada26c9f3ae92bf7c7f0f7e75902f8f856eceb304d8782e6ea1fe4e171a",
+      "compatible_base_sha256": [
+        "ae65cada26c9f3ae92bf7c7f0f7e75902f8f856eceb304d8782e6ea1fe4e171a"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p3/run_science.py",
+      "sha256": "06425d801336e974d1e70f0c2b17f585b5fa0a965de00f096c61ee75ea360056",
+      "compatible_base_sha256": [
+        "06425d801336e974d1e70f0c2b17f585b5fa0a965de00f096c61ee75ea360056"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/cavity_tem_light_p3/spatial_scale.py",
+      "sha256": "01d3108e59b024919eb3f3f89a1cf7aff8345967a2f90ad5c17cad27403f33ce",
+      "compatible_base_sha256": [
+        "01d3108e59b024919eb3f3f89a1cf7aff8345967a2f90ad5c17cad27403f33ce"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/ctl_p1_bridge.py",
+      "sha256": "c5f83838986f3670a6bc7860c08cdd93b4c9cf50c03dce5ef98445dba3f82843",
+      "compatible_base_sha256": [
+        "c5f83838986f3670a6bc7860c08cdd93b4c9cf50c03dce5ef98445dba3f82843"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/data/CTL_CAVITY_OBJECTS_TSV_PROFILE_V1.json",
+      "sha256": "ce90a7bee957b185f1178232cab99c622c134c574c1e6942cb126174c255657f",
+      "compatible_base_sha256": [
+        "ce90a7bee957b185f1178232cab99c622c134c574c1e6942cb126174c255657f"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/data/cavity_objects_header.tsv",
+      "sha256": "0d78507e225361fe29035cb5131edb88fe6905d843ac680bf817d11dbe1745a5",
+      "compatible_base_sha256": [
+        "0d78507e225361fe29035cb5131edb88fe6905d843ac680bf817d11dbe1745a5"
+      ]
+    },
+    {
+      "path": "Aplicacion/python_companion/data/schema_v2_field_dictionary.csv",
+      "sha256": "e4d9f44a31544583d0fad154199f02b8b4642e4e09dd50e79699a8923116af03",
+      "compatible_base_sha256": [
+        "e4d9f44a31544583d0fad154199f02b8b4642e4e09dd50e79699a8923116af03"
+      ]
+    },
+    {
+      "path": "Aplicacion/verify_local.py",
+      "sha256": "8477b168e6b68c772fb105288768c924938cd0e991215d3ff924c23888ba4434",
+      "compatible_base_sha256": [
+        "8477b168e6b68c772fb105288768c924938cd0e991215d3ff924c23888ba4434"
+      ]
+    },
+    {
+      "path": "COMPROBAR_APLICACION.bat",
+      "sha256": "d0f3a4864a80733cecec35885b3033499f18505b7a968e61d0aded22edfb49d2",
+      "compatible_base_sha256": [
+        "d0f3a4864a80733cecec35885b3033499f18505b7a968e61d0aded22edfb49d2"
+      ]
+    },
+    {
+      "path": "Fiji/jars/gson-2.14.0.jar",
+      "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f",
+      "compatible_base_sha256": [
+        "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+      ]
+    },
+    {
+      "path": "Fiji/jars/ij-1.54p.jar",
+      "sha256": "2e1a09961dfb41cee66ddc821b2577a41a072566ce45a49bae69267099741e20",
+      "compatible_base_sha256": [
+        "2e1a09961dfb41cee66ddc821b2577a41a072566ce45a49bae69267099741e20"
+      ]
+    },
+    {
+      "path": "Fiji/plugins/cavity-light-hf4.jar",
+      "sha256": "c920e0f33eef5f4aa879c2ee9123438437e9358f6a332582826385b1e30f1e59",
+      "compatible_base_sha256": [
+        "c920e0f33eef5f4aa879c2ee9123438437e9358f6a332582826385b1e30f1e59"
+      ]
+    },
+    {
+      "path": "INICIAR_CAVITY_LIGHT_1_2.bat",
+      "sha256": "d729eac3e64ee3dd47bebefea076f17915f3f8cf7721a1488669ffee9bfdb2dc",
+      "compatible_base_sha256": [
+        "d729eac3e64ee3dd47bebefea076f17915f3f8cf7721a1488669ffee9bfdb2dc"
+      ]
+    }
+  ],
+  "compatible_bases": [
+    {
+      "base_id": "1.2-RC1",
+      "files": [
+        {
+          "path": "ABRIR_EDITOR_INDIVIDUAL.bat",
+          "sha256": "de076339e8a316ff13ab709afb9d5aecb48cfc031ca72b07912e85a03c61e93d"
+        },
+        {
+          "path": "ABRIR_MANUAL.bat",
+          "sha256": "ee97eb05554915da60b83189bb29e646fb6069f6edce59181c4947726b98717a"
+        },
+        {
+          "path": "Aplicacion/Start_Cavity_Light.ijm",
+          "sha256": "19ba51b1b83810439ec17a72b153623195f2d3e263779420b5da0f09470cd408"
+        },
+        {
+          "path": "Aplicacion/Start_Individual_Editor.ijm",
+          "sha256": "28090f77cb60c8101274cfd66a0ccc6701dad12312cd0553eed270b82674352f"
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/.gitignore",
+          "sha256": "3ee657b8ce48c1e9737c418329ea2d0b6fedce694d5ac2135daa95da47eb51aa"
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/DetectorAssistant.java",
+          "sha256": null
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/DetectorAssistantTest.java",
+          "sha256": null
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/FOCAL_VALIDATION.json",
+          "sha256": "1e297ebad9dfff64d1a2159b5bcc5b751de4c5b3046e22822aa37219083544eb"
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/ImagePreparation.java",
+          "sha256": null
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/ImagePreparationTest.java",
+          "sha256": null
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/IndividualEditor.java",
+          "sha256": "16f01090bc039721d03431749c8afd4e660ef6891f763197d55c5490571b017f"
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/IndividualEditorTest.java",
+          "sha256": "f462fdad6801ac42724007fc1a49a2eaa6978e3c96688b487c1df22477c6ab8a"
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/PROVENANCE.json",
+          "sha256": "db3f2e8bda3ee8ce4a99ee9b3281ee757fd160fe98a2d19921adf7f68d81ef55"
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/README.md",
+          "sha256": "e1ea36d29452f3e7d550cd86c8a685bfda8d34ac21895bd7208377f187125edd"
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/RevisionWorkspace.java",
+          "sha256": null
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/RevisionWorkspaceTest.java",
+          "sha256": null
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/Workspace.java",
+          "sha256": null
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/WorkspaceTest.java",
+          "sha256": null
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/build.ps1",
+          "sha256": "a093a1421c43f3512d8ca516ec971ad5f132e0719f59f2d7ae9b7c71b8ccb962"
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/make_smoke_toolset.py",
+          "sha256": "af453a215d2c0aacc536a441e120f1ac9086ed1ab159f702e50c7931ef1be6b4"
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/upgrade_editor.py",
+          "sha256": "a0e4656045b73b33f4b77c5f149d14703550520b9141369de87e005421ab259f"
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/usability_upgrade.py",
+          "sha256": null
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/verify_roi_precision.py",
+          "sha256": "142c447e54d004141465ecc713135b7d512f030aab9b0834c119b7e7feeb05cc"
+        },
+        {
+          "path": "Aplicacion/local_launcher.py",
+          "sha256": "979cb552bc8e754dc0a0be4f4e8606168cb3c83294e4d62a124c68232bbc7316"
+        },
+        {
+          "path": "Aplicacion/portable_launcher.py",
+          "sha256": "26238bb9e53739af8b06f2011dc1effae754bb055085d8409b518633194885ac"
+        },
+        {
+          "path": "Aplicacion/python_companion/CTL_P1_RUNTIME_MANIFEST.json",
+          "sha256": "3a034efa54ed659f949a9d57de866b8dd4d99a72c888217de283626dc94f5ab7"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_library/__init__.py",
+          "sha256": "3c28b92921c769f172671acbb1ca9924340c31305494d16d9ba268baa462dc21"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_library/__main__.py",
+          "sha256": "13cdff14c9bc3a22b6e75ca0ad942b3f5be057a56d99491317ccab22d301fe2c"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_library/catalog.py",
+          "sha256": "15a841d3e9121c658b6b7ba566996fdb634ca3be0b7eb2a77d8a1530b209071d"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_library/gui.py",
+          "sha256": "4ea645b7131aeb0b7dc1d23721d86629b446a1bdb9ec0854272bb7e19e4bd1bb"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_library/launch.py",
+          "sha256": "7aa313ea690f0a4f49e857c425373a34a12eb2c122084ff409f403ee5876b75e"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_library/project_study.py",
+          "sha256": null
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_library/readers.py",
+          "sha256": "45a1676fb93d4f48fd6ba642ce07a13b7332915b1dfa5b8f9b4e9604cb8da8b7"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_stats_app/README.md",
+          "sha256": "b991dafba00d37b56c17e6476ee848fc54805f60986e5b14b72f995034d08fd5"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_stats_app/__init__.py",
+          "sha256": "e3e211b82cd8f42f8fab567d2c4559fce13aeb81578dcee73d61069e835f0206"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_stats_app/__main__.py",
+          "sha256": "e923786b5d6bc9219f06c6e008661b7bf8d15d7e0b7de4d4dd2606adaff0d0d0"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_stats_app/app.py",
+          "sha256": "0e137d000178588aff05c2cbb7fb951e8a18bfd706f7d51f9a58665232db744a"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/__init__.py",
+          "sha256": "80e5e1b19584366b91f5003b3c882f0a74f5671e890cee98cf6753618651d0dc"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/bridge.py",
+          "sha256": "0c0fcb980ae5c763760e54b7639a348f31b104fd141c03e6deecc4860b0a14fa"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/canonical_json.py",
+          "sha256": "a2b4474394a62ccd8d59a0d4a075bb0afe1abb15c39c0e0a83e866c6fcc30165"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/cli.py",
+          "sha256": "3ec0e4592891cb27347298163bbbb1242e97849625d668fbbf1f9b82ef88f980"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/combined.py",
+          "sha256": "c2f7325e612ed7428defe14593c462fff3762fd208c0f5521bdacfcd73c977da"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/contract.py",
+          "sha256": "63201d3fcb5100cbe5a6de3bfc2a6ff6668065c2bf94653aeb6d749948053791"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/critical_io.py",
+          "sha256": "7b1c21606458036389377f8e34edfe47b7e10fbb45bba2744708e611c70b86d7"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/errors.py",
+          "sha256": "b64463d677c30f8ff51c93046eaf64f7907d549176358d7ef30bcc6d9871b338"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/identity.py",
+          "sha256": "d9f2ea0acc00c3aa8f358571ad9f24619f8438598da3a19ef9f16e026241b7a1"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/object_table.py",
+          "sha256": "3ddd8dad92204f5223266b078c9cca2d12193daa9a192c46f9775f3e8805fbba"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/object_table_profile.py",
+          "sha256": "e0e8ce6335ea26fed05e0e90f660846bebaf76985d51cd2bf790f92921e9ea61"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/path_safety.py",
+          "sha256": "d8781b1082fde4e2339f89b94583b38c8a658d25206d65676c64d2ffad299708"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/revision.py",
+          "sha256": "0dedf11f62c10efbe809d1c83d4ae62aae0fd3d1a3f9b5f107a020969086d4dd"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/run_consumer.py",
+          "sha256": "41c38b197b4474875950155342624db8cbe3a70f5c740dfb489827abfd517d5c"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/run_context.py",
+          "sha256": "d147e81eeb2eb8c6b02e7d75ddeb68180ca1c5ffae5a6a99832e8979741cef03"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/run_disposition.py",
+          "sha256": "13dfc8d6cbb09ee56ff6853dcb74be1801bb301a028ea65f37ba901d23c4035b"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/run_transaction.py",
+          "sha256": "a638b8d42ef4e0003d98a9ced3f831523d1994f6ab6e4a69e75a4a531b710cf0"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/science.py",
+          "sha256": "edc7304fe6ccd943be179bbb38fc4eb4e13cfb5b7e57a2f4eb48c54f2cb29996"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p2/__init__.py",
+          "sha256": "706f6891084befed8858e0f68b44ca77c109872b19bc6c443697d357a835e16e"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p2/migration.py",
+          "sha256": "f02a864aff2241997725e717bf8d1ba0d317f536a3990fc6b561497937f9b94e"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p2/session_archive.py",
+          "sha256": "d8aef0255cd29a243060af045114b62d5f96eae9ba4e1b484e628bfd1525ca19"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p2/session_core.py",
+          "sha256": "f1b4cd8cc1920913c1ef4882d1f8196e290d3580c6ecf0e18cd630b8959cc5a0"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p2/vertical_manager.py",
+          "sha256": "517e94136663f73dd61e429fc9d383fb354eaede8f5da3f50a764e414a0ccb7f"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p3/__init__.py",
+          "sha256": "c526089bad00cb5310b6eff70ca57042521d04e73a328252136cc221ef320038"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p3/manager.py",
+          "sha256": "0c2b2a3bcc4a201de90a6218d655c4ceb75227d1c9f1c3b951aed4da43747b76"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p3/mask_visibility.py",
+          "sha256": "ed215d1caf0f4e58fc5b245fe901ba02a8c4107ac147bbb5e5facc2db35c5667"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p3/onboarding.py",
+          "sha256": "022de53e3802c4ffd3d4188f40996cd4aca312b2d0e8ec3311e30793b36f3ed7"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p3/run_disposition.py",
+          "sha256": "6b2749cae1ed71ae23eeaab3d408386ac2e1d8c70a2db58b19ab9601e474bd82"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p3/run_recovery.py",
+          "sha256": "ae65cada26c9f3ae92bf7c7f0f7e75902f8f856eceb304d8782e6ea1fe4e171a"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p3/run_science.py",
+          "sha256": "06425d801336e974d1e70f0c2b17f585b5fa0a965de00f096c61ee75ea360056"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p3/spatial_scale.py",
+          "sha256": "01d3108e59b024919eb3f3f89a1cf7aff8345967a2f90ad5c17cad27403f33ce"
+        },
+        {
+          "path": "Aplicacion/python_companion/ctl_p1_bridge.py",
+          "sha256": "c5f83838986f3670a6bc7860c08cdd93b4c9cf50c03dce5ef98445dba3f82843"
+        },
+        {
+          "path": "Aplicacion/python_companion/data/CTL_CAVITY_OBJECTS_TSV_PROFILE_V1.json",
+          "sha256": "ce90a7bee957b185f1178232cab99c622c134c574c1e6942cb126174c255657f"
+        },
+        {
+          "path": "Aplicacion/python_companion/data/cavity_objects_header.tsv",
+          "sha256": "0d78507e225361fe29035cb5131edb88fe6905d843ac680bf817d11dbe1745a5"
+        },
+        {
+          "path": "Aplicacion/python_companion/data/schema_v2_field_dictionary.csv",
+          "sha256": "e4d9f44a31544583d0fad154199f02b8b4642e4e09dd50e79699a8923116af03"
+        },
+        {
+          "path": "Aplicacion/verify_local.py",
+          "sha256": "8477b168e6b68c772fb105288768c924938cd0e991215d3ff924c23888ba4434"
+        },
+        {
+          "path": "COMPROBAR_APLICACION.bat",
+          "sha256": "d0f3a4864a80733cecec35885b3033499f18505b7a968e61d0aded22edfb49d2"
+        },
+        {
+          "path": "Documentacion/LEEME_1_2.html",
+          "sha256": "2c0b62ab2704a479293c326eea61055e7968cefde5e38644d004f742a32defec"
+        },
+        {
+          "path": "Documentacion/LEEME_1_2.md",
+          "sha256": "2e328848e9e152337c95291e1b68794f7b4d1a15579719b9ea926d67172f6f0d"
+        },
+        {
+          "path": "Fiji/jars/gson-2.14.0.jar",
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "path": "Fiji/jars/ij-1.54p.jar",
+          "sha256": "2e1a09961dfb41cee66ddc821b2577a41a072566ce45a49bae69267099741e20"
+        },
+        {
+          "path": "Fiji/macros/toolsets/Cavity_TEM_Light_1_2_RC1.ijm",
+          "sha256": "3f9bf3f88620227218787feba335beb00115f41a286b09c3d81cbba086592e23"
+        },
+        {
+          "path": "Fiji/plugins/cavity-light-hf4.jar",
+          "sha256": "c920e0f33eef5f4aa879c2ee9123438437e9358f6a332582826385b1e30f1e59"
+        },
+        {
+          "path": "Fiji/plugins/cavity-light-individual.jar",
+          "sha256": "3e62a2c3802eb5c6500475efbd9ff0796f90f918020a66c9107f9ee5b04f1cfc"
+        },
+        {
+          "path": "INICIAR_CAVITY_LIGHT_1_2.bat",
+          "sha256": "d729eac3e64ee3dd47bebefea076f17915f3f8cf7721a1488669ffee9bfdb2dc"
+        },
+        {
+          "path": "VERSION_1_2.json",
+          "sha256": "b8c01745eadac58f111b79262b3b6276ea0a74ee32a0444566fc9f16e06951d4"
+        }
+      ]
+    },
+    {
+      "base_id": "1.2-RC1-ID1",
+      "files": [
+        {
+          "path": "ABRIR_EDITOR_INDIVIDUAL.bat",
+          "sha256": "de076339e8a316ff13ab709afb9d5aecb48cfc031ca72b07912e85a03c61e93d"
+        },
+        {
+          "path": "ABRIR_MANUAL.bat",
+          "sha256": "ee97eb05554915da60b83189bb29e646fb6069f6edce59181c4947726b98717a"
+        },
+        {
+          "path": "Aplicacion/Start_Cavity_Light.ijm",
+          "sha256": "19ba51b1b83810439ec17a72b153623195f2d3e263779420b5da0f09470cd408"
+        },
+        {
+          "path": "Aplicacion/Start_Individual_Editor.ijm",
+          "sha256": "28090f77cb60c8101274cfd66a0ccc6701dad12312cd0553eed270b82674352f"
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/.gitignore",
+          "sha256": "3ee657b8ce48c1e9737c418329ea2d0b6fedce694d5ac2135daa95da47eb51aa"
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/DetectorAssistant.java",
+          "sha256": null
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/DetectorAssistantTest.java",
+          "sha256": null
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/FOCAL_VALIDATION.json",
+          "sha256": "1e297ebad9dfff64d1a2159b5bcc5b751de4c5b3046e22822aa37219083544eb"
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/ImagePreparation.java",
+          "sha256": null
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/ImagePreparationTest.java",
+          "sha256": null
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/IndividualEditor.java",
+          "sha256": "0d514bf7c48f6b6dd461cb5b7399c4eb81cf979651e07985b053ca62678de8dc"
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/IndividualEditorTest.java",
+          "sha256": "d9eb66a5192ca5394632bd1b5751ffc3d21daa9fb5f2b868b9b30d8d85c53f1f"
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/PROVENANCE.json",
+          "sha256": "b1f9e98493f85bc572ee7cfe62cc7abc9bdeaab6cfd4414f0c926dd475624d98"
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/README.md",
+          "sha256": "09978d123ee90cdc2af88467844369d85b45b08f7cff00cc45b99ddf3f19c3cb"
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/RevisionWorkspace.java",
+          "sha256": null
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/RevisionWorkspaceTest.java",
+          "sha256": null
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/Workspace.java",
+          "sha256": null
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/WorkspaceTest.java",
+          "sha256": null
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/build.ps1",
+          "sha256": "a093a1421c43f3512d8ca516ec971ad5f132e0719f59f2d7ae9b7c71b8ccb962"
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/make_smoke_toolset.py",
+          "sha256": "af453a215d2c0aacc536a441e120f1ac9086ed1ab159f702e50c7931ef1be6b4"
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/upgrade_editor.py",
+          "sha256": "efab24b0111342c6d6ec4d7139ce42214c75983dc9fd292bb35af82afc0e4964"
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/usability_upgrade.py",
+          "sha256": null
+        },
+        {
+          "path": "Aplicacion/individual_editor_source/verify_roi_precision.py",
+          "sha256": "142c447e54d004141465ecc713135b7d512f030aab9b0834c119b7e7feeb05cc"
+        },
+        {
+          "path": "Aplicacion/local_launcher.py",
+          "sha256": "979cb552bc8e754dc0a0be4f4e8606168cb3c83294e4d62a124c68232bbc7316"
+        },
+        {
+          "path": "Aplicacion/portable_launcher.py",
+          "sha256": "26238bb9e53739af8b06f2011dc1effae754bb055085d8409b518633194885ac"
+        },
+        {
+          "path": "Aplicacion/python_companion/CTL_P1_RUNTIME_MANIFEST.json",
+          "sha256": "3a034efa54ed659f949a9d57de866b8dd4d99a72c888217de283626dc94f5ab7"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_library/__init__.py",
+          "sha256": "3c28b92921c769f172671acbb1ca9924340c31305494d16d9ba268baa462dc21"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_library/__main__.py",
+          "sha256": "13cdff14c9bc3a22b6e75ca0ad942b3f5be057a56d99491317ccab22d301fe2c"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_library/catalog.py",
+          "sha256": "15a841d3e9121c658b6b7ba566996fdb634ca3be0b7eb2a77d8a1530b209071d"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_library/gui.py",
+          "sha256": "4ea645b7131aeb0b7dc1d23721d86629b446a1bdb9ec0854272bb7e19e4bd1bb"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_library/launch.py",
+          "sha256": "7aa313ea690f0a4f49e857c425373a34a12eb2c122084ff409f403ee5876b75e"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_library/project_study.py",
+          "sha256": null
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_library/readers.py",
+          "sha256": "45a1676fb93d4f48fd6ba642ce07a13b7332915b1dfa5b8f9b4e9604cb8da8b7"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_stats_app/README.md",
+          "sha256": "b991dafba00d37b56c17e6476ee848fc54805f60986e5b14b72f995034d08fd5"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_stats_app/__init__.py",
+          "sha256": "e3e211b82cd8f42f8fab567d2c4559fce13aeb81578dcee73d61069e835f0206"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_stats_app/__main__.py",
+          "sha256": "e923786b5d6bc9219f06c6e008661b7bf8d15d7e0b7de4d4dd2606adaff0d0d0"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_stats_app/app.py",
+          "sha256": "0e137d000178588aff05c2cbb7fb951e8a18bfd706f7d51f9a58665232db744a"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/__init__.py",
+          "sha256": "80e5e1b19584366b91f5003b3c882f0a74f5671e890cee98cf6753618651d0dc"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/bridge.py",
+          "sha256": "0c0fcb980ae5c763760e54b7639a348f31b104fd141c03e6deecc4860b0a14fa"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/canonical_json.py",
+          "sha256": "a2b4474394a62ccd8d59a0d4a075bb0afe1abb15c39c0e0a83e866c6fcc30165"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/cli.py",
+          "sha256": "3ec0e4592891cb27347298163bbbb1242e97849625d668fbbf1f9b82ef88f980"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/combined.py",
+          "sha256": "c2f7325e612ed7428defe14593c462fff3762fd208c0f5521bdacfcd73c977da"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/contract.py",
+          "sha256": "63201d3fcb5100cbe5a6de3bfc2a6ff6668065c2bf94653aeb6d749948053791"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/critical_io.py",
+          "sha256": "7b1c21606458036389377f8e34edfe47b7e10fbb45bba2744708e611c70b86d7"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/errors.py",
+          "sha256": "b64463d677c30f8ff51c93046eaf64f7907d549176358d7ef30bcc6d9871b338"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/identity.py",
+          "sha256": "d9f2ea0acc00c3aa8f358571ad9f24619f8438598da3a19ef9f16e026241b7a1"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/object_table.py",
+          "sha256": "3ddd8dad92204f5223266b078c9cca2d12193daa9a192c46f9775f3e8805fbba"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/object_table_profile.py",
+          "sha256": "e0e8ce6335ea26fed05e0e90f660846bebaf76985d51cd2bf790f92921e9ea61"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/path_safety.py",
+          "sha256": "d8781b1082fde4e2339f89b94583b38c8a658d25206d65676c64d2ffad299708"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/revision.py",
+          "sha256": "0dedf11f62c10efbe809d1c83d4ae62aae0fd3d1a3f9b5f107a020969086d4dd"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/run_consumer.py",
+          "sha256": "41c38b197b4474875950155342624db8cbe3a70f5c740dfb489827abfd517d5c"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/run_context.py",
+          "sha256": "d147e81eeb2eb8c6b02e7d75ddeb68180ca1c5ffae5a6a99832e8979741cef03"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/run_disposition.py",
+          "sha256": "13dfc8d6cbb09ee56ff6853dcb74be1801bb301a028ea65f37ba901d23c4035b"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/run_transaction.py",
+          "sha256": "a638b8d42ef4e0003d98a9ced3f831523d1994f6ab6e4a69e75a4a531b710cf0"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p1/science.py",
+          "sha256": "edc7304fe6ccd943be179bbb38fc4eb4e13cfb5b7e57a2f4eb48c54f2cb29996"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p2/__init__.py",
+          "sha256": "706f6891084befed8858e0f68b44ca77c109872b19bc6c443697d357a835e16e"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p2/migration.py",
+          "sha256": "f02a864aff2241997725e717bf8d1ba0d317f536a3990fc6b561497937f9b94e"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p2/session_archive.py",
+          "sha256": "d8aef0255cd29a243060af045114b62d5f96eae9ba4e1b484e628bfd1525ca19"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p2/session_core.py",
+          "sha256": "f1b4cd8cc1920913c1ef4882d1f8196e290d3580c6ecf0e18cd630b8959cc5a0"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p2/vertical_manager.py",
+          "sha256": "517e94136663f73dd61e429fc9d383fb354eaede8f5da3f50a764e414a0ccb7f"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p3/__init__.py",
+          "sha256": "c526089bad00cb5310b6eff70ca57042521d04e73a328252136cc221ef320038"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p3/manager.py",
+          "sha256": "0c2b2a3bcc4a201de90a6218d655c4ceb75227d1c9f1c3b951aed4da43747b76"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p3/mask_visibility.py",
+          "sha256": "ed215d1caf0f4e58fc5b245fe901ba02a8c4107ac147bbb5e5facc2db35c5667"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p3/onboarding.py",
+          "sha256": "022de53e3802c4ffd3d4188f40996cd4aca312b2d0e8ec3311e30793b36f3ed7"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p3/run_disposition.py",
+          "sha256": "6b2749cae1ed71ae23eeaab3d408386ac2e1d8c70a2db58b19ab9601e474bd82"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p3/run_recovery.py",
+          "sha256": "ae65cada26c9f3ae92bf7c7f0f7e75902f8f856eceb304d8782e6ea1fe4e171a"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p3/run_science.py",
+          "sha256": "06425d801336e974d1e70f0c2b17f585b5fa0a965de00f096c61ee75ea360056"
+        },
+        {
+          "path": "Aplicacion/python_companion/cavity_tem_light_p3/spatial_scale.py",
+          "sha256": "01d3108e59b024919eb3f3f89a1cf7aff8345967a2f90ad5c17cad27403f33ce"
+        },
+        {
+          "path": "Aplicacion/python_companion/ctl_p1_bridge.py",
+          "sha256": "c5f83838986f3670a6bc7860c08cdd93b4c9cf50c03dce5ef98445dba3f82843"
+        },
+        {
+          "path": "Aplicacion/python_companion/data/CTL_CAVITY_OBJECTS_TSV_PROFILE_V1.json",
+          "sha256": "ce90a7bee957b185f1178232cab99c622c134c574c1e6942cb126174c255657f"
+        },
+        {
+          "path": "Aplicacion/python_companion/data/cavity_objects_header.tsv",
+          "sha256": "0d78507e225361fe29035cb5131edb88fe6905d843ac680bf817d11dbe1745a5"
+        },
+        {
+          "path": "Aplicacion/python_companion/data/schema_v2_field_dictionary.csv",
+          "sha256": "e4d9f44a31544583d0fad154199f02b8b4642e4e09dd50e79699a8923116af03"
+        },
+        {
+          "path": "Aplicacion/verify_local.py",
+          "sha256": "8477b168e6b68c772fb105288768c924938cd0e991215d3ff924c23888ba4434"
+        },
+        {
+          "path": "COMPROBAR_APLICACION.bat",
+          "sha256": "d0f3a4864a80733cecec35885b3033499f18505b7a968e61d0aded22edfb49d2"
+        },
+        {
+          "path": "Documentacion/LEEME_1_2.html",
+          "sha256": "2c0b62ab2704a479293c326eea61055e7968cefde5e38644d004f742a32defec"
+        },
+        {
+          "path": "Documentacion/LEEME_1_2.md",
+          "sha256": "2e328848e9e152337c95291e1b68794f7b4d1a15579719b9ea926d67172f6f0d"
+        },
+        {
+          "path": "Fiji/jars/gson-2.14.0.jar",
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "path": "Fiji/jars/ij-1.54p.jar",
+          "sha256": "2e1a09961dfb41cee66ddc821b2577a41a072566ce45a49bae69267099741e20"
+        },
+        {
+          "path": "Fiji/macros/toolsets/Cavity_TEM_Light_1_2_RC1.ijm",
+          "sha256": "b938d75ca7f7a7c925fe8e3fb401b8affc3d11158faadf53c30467313e894d73"
+        },
+        {
+          "path": "Fiji/plugins/cavity-light-hf4.jar",
+          "sha256": "c920e0f33eef5f4aa879c2ee9123438437e9358f6a332582826385b1e30f1e59"
+        },
+        {
+          "path": "Fiji/plugins/cavity-light-individual.jar",
+          "sha256": "b6f5341e9c0968021896dfa3fdd8843ee62c70cc86c8223d9fed2868df51c8bb"
+        },
+        {
+          "path": "INICIAR_CAVITY_LIGHT_1_2.bat",
+          "sha256": "d729eac3e64ee3dd47bebefea076f17915f3f8cf7721a1488669ffee9bfdb2dc"
+        },
+        {
+          "path": "VERSION_1_2.json",
+          "sha256": "851a105500be03fee718f43c5506307824a4c4ccb41bab002f73c8b770cc196f"
+        }
+      ]
+    }
+  ]
+}

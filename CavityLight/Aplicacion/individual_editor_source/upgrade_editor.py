@@ -1,5 +1,6 @@
 """Reapply the focused, reviewable RC1 changes to the preserved R9 source."""
 from pathlib import Path
+from usability_upgrade import apply_usability_upgrade
 
 
 def replace_function(text, name, replacement):
@@ -7,6 +8,63 @@ def replace_function(text, name, replacement):
     # Functions in this toolset start in column zero; a body may contain embedded JS.
     end = text.find("\nfunction ", start + 1)
     return text[:start] + replacement.rstrip() + "\n\n" + text[end + 1:]
+
+
+def apply_identity_fix(text):
+    """ID1: prepare an independent, unmanaged Oval before any new ID writes."""
+    text = text.replace('individual_derived-from-R9-HF4.6',
+                        'individual-ID1_derived-from-R9-HF4.6')
+    text = text.replace('"1.2.0-RC1-individual"', '"1.2.0-RC1-individual-ID1"')
+    text = text.replace("application_version:'1.2.0-RC1-individual'",
+                        "application_version:'1.2.0-RC1-individual-ID1'")
+    text = text.replace("'Registrar elipse','Cavity Light: registrar elipse seleccionada'",
+                        "'Registrar nueva elipse','Cavity Light: registrar elipse seleccionada'")
+    text = replace_function(text, 'lightAddEllipseCavityFromSelection', '''function lightAddEllipseCavityFromSelection() {
+    lightHF4Pull();
+    if (!v4PrepareImageForMeasurement(1)) return;
+    st = selectionType;
+    if (st != 1) {
+        showMessage("Seleccion no compatible", "Dibuja primero una seleccion oval/eliptica con la herramienta Oval.");
+        return;
+    }
+    // ImageJ Roi.clone() shares properties. Reject managed ROIs and isolate a fresh selection.
+    preparedEllipse = call("cavity.light.IndividualEditor.prepareNewEllipse", "");
+    if (preparedEllipse != "OK") {
+        showMessage("Elipse no registrada", preparedEllipse);
+        return;
+    }
+    run("ROI Manager...");
+    cavityCounter++;
+    id = "CAV_" + IJ.pad(cavityCounter, 6);
+    Roi.setName(id);
+    Roi.setProperty("Type", "cavity");
+    Roi.setProperty("Cavity_id", id);
+    Roi.setProperty("Cavity_serial", d2s(cavityCounter, 0));
+    Roi.setProperty("Measurement_source", "ellipse_manual");
+    Roi.setProperty("Manual_excluded", "0");
+    Roi.setProperty("Cavity_class", activeCavityClass);
+    Roi.setProperty("Cavity_class_label", activeCavityClassLabel);
+    Roi.setProperty("Cavity_confidence", activeCavityConfidence);
+    Roi.setProperty("Duplicate_status", "clear");
+    Roi.setProperty("Duplicate_partners", "");
+    setCommonObjectProperties();
+    roiManager("add");
+    idx = roiManager("count") - 1;
+    syncCavityAtIndex(idx);
+    checkNewCavityForDuplicates(idx);
+    undoKind = "add";
+    undoObjectId = id;
+    undoAvailable = 1;
+    showAllRois();
+    updateSessionMetadataRoi();
+    showStatus("Elipse registrada: " + id + ".");
+}''')
+    help_line = '    msg = msg + "13. Valide y despues pulse Calcular y exportar resultados.\\n\\n";'
+    added_help = '    msg = msg + "Registrar nueva elipse requiere dibujar una seleccion Oval nueva. Para modificar una cavidad existente use Seleccionar/mover/ajustar o Editar numericamente.\\n\\n";'
+    if added_help not in text:
+        assert help_line in text
+        text = text.replace(help_line, help_line + '\n' + added_help)
+    return text
 
 
 def upgrade(text):
@@ -225,7 +283,7 @@ function lightOpenLibraryRequest(path) {
     end = text.index('\nfunction ', start + 1)
     segment = text[start:end].replace('    projectConfigured=0;', '    setMetadataImageProperties();\n    projectConfigured=0;')
     text = text[:start] + segment + text[end:]
-    return text
+    return apply_usability_upgrade(apply_identity_fix(text))
 
 
 if __name__ == '__main__':

@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Properties;
 import java.util.Set;
 import java.util.UUID;
@@ -20,7 +21,7 @@ import java.util.concurrent.Callable;
 
 /** Small compatibility extension to the unchanged R9 HF4.6 runtime. */
 public final class IndividualEditor {
-    public static final String VERSION = "1.2.0-RC1-individual";
+    public static final String VERSION = "1.2.0-RC1-individual-US1";
     private static PendingEdit pending;
     private IndividualEditor() {}
     public static String version() { return VERSION; }
@@ -30,6 +31,51 @@ public final class IndividualEditor {
         return "OK";
     }
     private static String fail(Exception e) { return "ERROR|" + String.valueOf(e.getMessage()).replace('\n', ' '); }
+
+    /** A fresh Oval owns its property map; ImageJ 1.54p Roi.clone() shares that map. */
+    public static OvalRoi freshIndependentOval(Roi base) throws Exception {
+        if (!(base instanceof OvalRoi))
+            throw new IllegalArgumentException("Dibuje primero una seleccion Oval nueva, sin rotacion.");
+        Rectangle2D.Double b = base.getFloatBounds();
+        for (double n : new double[] {b.x, b.y, b.width, b.height})
+            if (!Double.isFinite(n)) throw new IllegalArgumentException("La geometria de la elipse debe ser finita.");
+        if (!(b.width > 0 && b.height > 0))
+            throw new IllegalArgumentException("Los ejes de la elipse deben ser positivos.");
+        OvalRoi result = new OvalRoi(b.x, b.y, b.width, b.height);
+        result.copyAttributes(base);
+        if (base.hasHyperStackPosition()) result.setPosition(base.getCPosition(), base.getZPosition(), base.getTPosition());
+        else result.setPosition(base.getPosition());
+        Properties properties = new Properties();
+        String text = base.getProperties();
+        if (text != null) properties.load(new StringReader(text));
+        for (String key : properties.stringPropertyNames()) result.setProperty(key, properties.getProperty(key));
+        return result;
+    }
+
+    /** Never turn a selected managed object into a second object with a new identity. */
+    static OvalRoi newEllipseFromSelection(Roi base) throws Exception {
+        if (base == null) throw new IllegalArgumentException("Dibuje primero una seleccion Oval nueva.");
+        String type = base.getProperty("Type"), objectType = base.getProperty("Object_type");
+        String name = base.getName();
+        if (type != null || objectType != null ||
+            base.getProperty("Cavity_id") != null || base.getProperty("Cavity_serial") != null ||
+            (name != null && name.trim().toUpperCase(Locale.ROOT).startsWith("CAV")))
+            throw new IllegalArgumentException("La seleccion ya pertenece a un objeto gestionado. Use Seleccionar/mover/ajustar para editarlo; dibuje una Oval nueva para registrar otra cavidad.");
+        return freshIndependentOval(base);
+    }
+
+    /** Called before the macro increments its counter or writes any new cavity identity. */
+    public static String prepareNewEllipse(String unused) {
+        return HF4.ui(new Callable<String>() { public String call() {
+            try {
+                ImagePlus imp = WindowManager.getCurrentImage();
+                if (imp == null) throw new IllegalArgumentException("No hay imagen activa.");
+                OvalRoi fresh = newEllipseFromSelection(imp.getRoi());
+                imp.setRoi(fresh);
+                return "OK";
+            } catch (Exception e) { return fail(e); }
+        }});
+    }
 
     /** Scale both original axes equally: preserve physical aspect ratio at any X/Y calibration. */
     public static OvalRoi resizedOval(Roi base, double cx, double cy, double diameter, double sx, double sy) throws Exception {

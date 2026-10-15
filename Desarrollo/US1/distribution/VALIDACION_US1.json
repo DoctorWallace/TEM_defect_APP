@@ -1,0 +1,70 @@
+{
+  "version": "1.2.0-RC1-individual-US1",
+  "status": "PASS_TECHNICAL_CHECKS",
+  "java_checks": {
+    "identity_and_editor": 28,
+    "window_workspace": 368,
+    "image_preparation": 88,
+    "revision_persistence": 50,
+    "detector_defaults": 13
+  },
+  "python_tests": {
+    "library": 33,
+    "project_study": 22,
+    "updater": 37
+  },
+  "imagej_interpreter_checks": 133,
+  "scientific_functions_unchanged": 6,
+  "verified_application_components": 82,
+  "installer_fixture_checks": {
+    "status": "PASS",
+    "manifest_sha256": "ff8499247b6a97437d751fb72366de42835040478ebea574ee3eec1c28d7ee89",
+    "changed_files": 24,
+    "required_files": 59,
+    "tests": [
+      {
+        "base_id": "1.2-RC1",
+        "status": "PASS",
+        "fixture": "/workspace/TEM_defect_APP/work/usability_update/integration CavityLight 1.2-RC1 con espacios",
+        "baseline_files_checked": 83,
+        "updated_files": 24,
+        "verify_local": {
+          "status": "PASS",
+          "checked_application_files": 82,
+          "errors": [],
+          "scope": "Application files, not scientific projects or the complete Fiji runtime"
+        },
+        "apply_idempotent": true,
+        "restore_exact": true,
+        "restore_idempotent": true,
+        "scientific_and_preference_sentinels_unchanged": true,
+        "backup_application_only": true,
+        "backup": "/workspace/TEM_defect_APP/work/usability_update/integration CavityLight 1.2-RC1 con espacios/Copias_configuracion/usability_20261011T184719Z_1d579ae7"
+      },
+      {
+        "base_id": "1.2-RC1-ID1",
+        "status": "PASS",
+        "fixture": "/workspace/TEM_defect_APP/work/usability_update/integration CavityLight 1.2-RC1-ID1 con espacios",
+        "baseline_files_checked": 83,
+        "updated_files": 23,
+        "verify_local": {
+          "status": "PASS",
+          "checked_application_files": 82,
+          "errors": [],
+          "scope": "Application files, not scientific projects or the complete Fiji runtime"
+        },
+        "apply_idempotent": true,
+        "restore_exact": true,
+        "restore_idempotent": true,
+        "scientific_and_preference_sentinels_unchanged": true,
+        "backup_application_only": true,
+        "backup": "/workspace/TEM_defect_APP/work/usability_update/integration CavityLight 1.2-RC1-ID1 con espacios/Copias_configuracion/usability_20261011T184719Z_098e3384"
+      }
+    ],
+    "scope": "Isolated Linux fixtures; Windows launcher not executed"
+  },
+  "source_projects_modified": false,
+  "windows_visual_validation": "NOT_RUN",
+  "real_dm3_dm4_full_roundtrip": "NOT_RUN",
+  "scientific_validation": "NOT_CLAIMED"
+}
