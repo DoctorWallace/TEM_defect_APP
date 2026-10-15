@@ -17,6 +17,7 @@ import os
 from pathlib import Path
 import re
 import stat
+import struct
 
 
 class ScanCancelled(Exception):
@@ -90,8 +91,8 @@ def read_table(path):
     return list(csv.DictReader(io.StringIO(text), delimiter="\t"))
 
 
-def read_pairs(path):
-    rows = list(csv.reader(io.StringIO(read_bytes(path).decode("utf-8-sig")), delimiter="\t"))
+def read_pairs(path, limit=32 * 1024 * 1024):
+    rows = list(csv.reader(io.StringIO(read_bytes(path, limit=limit).decode("utf-8-sig")), delimiter="\t"))
     result = {}
     for row in rows:
         if not row:
@@ -174,7 +175,17 @@ def _r9_project(root, cancel):
                 check_cancel(cancel)
                 if not (revision / "revision_manifest.tsv").is_file():
                     continue
-                rev = {"revision_id": revision.name, "path": str(revision)}
+                rev = {"revision_id": revision.name, "path": str(revision), "kind": "R9"}
+                try:
+                    metadata = read_pairs(revision / "revision_manifest.tsv", limit=128 * 1024)
+                    rev.update(created_ms=metadata.get("created_ms", ""), analysis_state=metadata.get("analysis_state", ""))
+                    workspace = _read_workspace(revision, project, image, metadata)
+                    if workspace is not None:
+                        rev.update(name=workspace.get("name", ""), comment=workspace.get("comment", ""), workspace_status="verified")
+                    else:
+                        rev["workspace_status"] = "legacy"
+                except (OSError, ValueError, TypeError) as exc:
+                    rev.update(workspace_status="invalid", workspace_error=str(exc))
                 image["revisions"].append(rev)
                 for run in directories(revision / "measurement_runs"):
                     check_cancel(cancel)
@@ -423,9 +434,345 @@ def _r9_run(path, manifest, cancel):
             "path": str(path), "run_path": str(path), "project_path": project_path,
             "project_id": project_id, "project_uid": project_uid, "image_id": image_id,
             "revision_id": revision_id, "run_id": path.name, "fingerprint": fingerprint,
-            "manifest": manifest, "files": files,
+            "manifest": manifest, "files": files, "revision_manifest": rev, "revision_roi_sha256": roi_hash,
             "verification": {"ok": not errors, "errors": errors, "checked_files": len(digests),
                              "checked_at": utc_now(), "source_pixels_checked": False, "scientific_validation": False}}
+
+
+WORKSPACE_LIMIT = 1024 * 1024
+THUMBNAIL_LIMIT = 8 * 1024 * 1024
+NO_VALUE = "No registrado"
+CONFIGURATION_FIELDS = (
+    ("sample_name", "Muestra", ("scientific_context", "sample")),
+    ("experimental_condition", "Condición", ("scientific_context", "condition")),
+    ("image_mode", "Modo de análisis", ("analysis_mode",)),
+    ("scale_x_nm_px", "Escala X (nm/píxel)", ("scale", "active_nm_per_px_x")),
+    ("scale_y_nm_px", "Escala Y (nm/píxel)", ("scale", "active_nm_per_px_y")),
+    ("scale_confirmed", "Calibración confirmada", ("scale", "confirmed")),
+    ("scale_origin", "Origen de calibración", ("scale", "origin")),
+    ("band_width_nm", "Ancho de banda (nm)", ("bands", "width_nm")),
+    ("band_count", "Número de bandas", ("bands", "count")),
+    ("histogram_bin_nm", "Intervalo de histograma (nm)", ("settings", "histogram_bin_nm")),
+    ("feature_distance_bin_nm", "Intervalo de distancia (nm)", ("settings", "feature_distance_bin_nm")),
+    ("include_uncertain", "Inclusión de dudosas", ("settings", "include_uncertain")),
+    ("use_whole_image", "Área de imagen completa", ("area", "whole_image_confirmed")),
+    ("valid_area_nm2", "Área guardada (nm²)", ("area", "valid_area_nm2")),
+    ("foil_thickness_nm", "Espesor (nm)", ("thickness", "nm")),
+    ("thickness_uncertainty_nm", "Incertidumbre del espesor (nm)", ("thickness", "uncertainty_nm")),
+    ("thickness_method", "Método de espesor", ("thickness", "method")),
+)
+
+
+def _nested(data, keys):
+    for key in keys:
+        if not isinstance(data, dict) or key not in data:
+            return None
+        data = data[key]
+    return data
+
+
+def _display_saved(value):
+    if value is None or value == "":
+        return NO_VALUE
+    if isinstance(value, (dict, list)):
+        return json.dumps(value, ensure_ascii=False, sort_keys=True)
+    return str(value)
+
+
+def _valid_digest(value):
+    return isinstance(value, str) and re.fullmatch(r"[0-9a-f]{64}", value) is not None
+
+
+def _read_workspace(revision, project, image, metadata):
+    """Read only bounded metadata. Artifact bytes are loaded explicitly later."""
+    sidecar = contained(revision, "revision_workspace.json")
+    expected = metadata.get("workspace_sha256")
+    if not sidecar.is_file() and not expected:
+        return None
+    if not _valid_digest(expected):
+        raise ValueError("Los metadatos de trabajo no tienen una huella registrada en la revisión.")
+    raw = read_bytes(sidecar, limit=WORKSPACE_LIMIT)
+    if hashlib.sha256(raw).hexdigest() != expected:
+        raise ValueError("Los metadatos de trabajo cambiaron: revision_workspace.json.")
+    workspace = json.loads(raw.decode("utf-8-sig"))
+    if not isinstance(workspace, dict) or workspace.get("type") != "cavity_revision_workspace" or workspace.get("schema_version") != 1:
+        raise ValueError("Formato de metadatos de trabajo no reconocido.")
+    if workspace.get("revision_id") != revision.name:
+        raise ValueError("La identidad de los metadatos de trabajo no coincide con la revisión.")
+    binding = workspace.get("binding")
+    if not isinstance(binding, dict):
+        raise ValueError("Falta la vinculación de los metadatos de trabajo.")
+    identities = {"project_id": project.get("project_id"), "project_uid": project.get("project_uid"),
+                  "image_id": image.get("image_id"), "source_sha256": metadata.get("source_sha256"),
+                  "roi_zip_sha256": metadata.get("roi_zip_sha256")}
+    for field, value in identities.items():
+        if not value or binding.get(field) != value or metadata.get(field, value) != value:
+            raise ValueError(f"Identidad de los metadatos de trabajo inconsistente: {field}")
+    for field, maximum in (("name", 120), ("comment", 4000)):
+        if not isinstance(workspace.get(field, ""), str) or len(workspace.get(field, "")) > maximum:
+            raise ValueError(f"Texto de revisión no válido: {field}")
+    if not isinstance(workspace.get("settings"), dict) or workspace.get("settings_provenance") != "saved_session_project_json":
+        raise ValueError("No se reconoce la procedencia de los parámetros guardados.")
+    settings = workspace["settings"]
+    settings_identities = (("project_id", ("project", "id")), ("project_uid", ("project", "uid")),
+                           ("image_id", ("image", "id")), ("source_sha256", ("image", "sha256")))
+    for field, location in settings_identities:
+        if _nested(settings, location) != identities[field]:
+            raise ValueError(f"Los parámetros guardados corresponden a otra identidad: {field}")
+    if settings.get("revision_id") != revision.name:
+        raise ValueError("Los parámetros guardados corresponden a otra revisión.")
+    operations = workspace.get("operations")
+    if not isinstance(operations, list) or len(operations) > 1000:
+        raise ValueError("Registro de tratamientos no válido o demasiado grande.")
+    for operation in operations:
+        if not isinstance(operation, dict) or not isinstance(operation.get("kind"), str) or not isinstance(operation.get("params"), dict):
+            raise ValueError("Entrada de tratamiento no válida.")
+        region = operation.get("region")
+        if region is not None:
+            if not isinstance(region, dict) or not _valid_digest(region.get("sha256")):
+                raise ValueError("Región de tratamiento no válida.")
+            region_path = contained(revision, region.get("roi_relative_path", ""))
+            if not region_path.relative_to(revision).as_posix().startswith("workspace/regions/"):
+                raise ValueError("Región de tratamiento fuera de la carpeta de trabajo guardada.")
+    artifacts = workspace.get("artifacts")
+    if not isinstance(artifacts, dict):
+        raise ValueError("No se registraron archivos de la imagen de trabajo.")
+    for kind in ("working_image", "annotated_view", "thumbnail", "treatment_regions"):
+        artifact = artifacts.get(kind)
+        if not isinstance(artifact, dict) or not _valid_digest(artifact.get("sha256")):
+            raise ValueError(f"Archivo de trabajo no válido: {kind}")
+        path = contained(revision, artifact.get("relative_path", ""))
+        if not path.relative_to(revision).as_posix().startswith("workspace/"):
+            raise ValueError(f"Archivo fuera de la carpeta de trabajo guardada: {kind}")
+    return workspace
+
+
+def read_revision_details(project, image, revision, cancel=None, verified_run=None):
+    """Inspect one saved R9 revision without decoding its TEM or TIFF images."""
+    revision_id = str(revision.get("revision_id", ""))
+    result = {"revision_id": revision_id, "name": "", "title": revision_id, "comment": "", "preview": None,
+              "configuration": [], "workspace": {"status": "legacy"}, "verification": {"ok": False, "errors": []}}
+    if project.get("kind") != "R9":
+        result["text"] = "Esta ficha admite revisiones R9. El proyecto P3 conserva su editor y lector propios."
+        return result
+    try:
+        check_cancel(cancel)
+        root = plain_path(project["path"])
+        image_root = contained(root, "images/" + image["image_id"])
+        path = contained(image_root, "roi_sessions/" + revision_id)
+        if revision.get("path") and path_key(path) != path_key(revision["path"]):
+            raise ValueError("La revisión seleccionada no pertenece a esta imagen.")
+        metadata = read_pairs(path / "revision_manifest.tsv", limit=128 * 1024)
+        for key, expected in (("revision_id", revision_id), ("project_id", project.get("project_id")),
+                              ("project_uid", project.get("project_uid")), ("image_id", image["image_id"])):
+            if not expected or metadata.get(key) != expected:
+                raise ValueError(f"Identidad de revisión inconsistente: {key}")
+        source_hash = image.get("metadata", {}).get("source_sha256")
+        if source_hash and source_hash != metadata.get("source_sha256"):
+            raise ValueError("La revisión corresponde a otra fuente.")
+        expected_zip = metadata.get("roi_zip_sha256")
+        if not _valid_digest(expected_zip):
+            raise ValueError("Falta la huella del ZIP de ROI de la revisión.")
+        # Check the selected ZIP again: a cached RUN report must never confer
+        # integrity on revision bytes that changed after the RUN was read.
+        zip_hash = _hash_file(path / "cavity_rois.zip", cancel)
+        if zip_hash != expected_zip:
+            raise ValueError("El ZIP de ROI no coincide con la revisión guardada.")
+        result.update(path=str(path), metadata=metadata, created_ms=metadata.get("created_ms"),
+                      analysis_state=metadata.get("analysis_state", ""), parent_revision=metadata.get("parent_revision", ""))
+        result["verification"]["ok"] = True
+        workspace = _read_workspace(path, project, image, metadata)
+        settings, source = {}, "No registrado"
+        if workspace is not None:
+            settings, source = workspace["settings"], "revision_workspace.json · huella comprobada"
+            result.update(name=workspace.get("name", ""), title=workspace.get("name") or revision_id,
+                          comment=workspace.get("comment", ""))
+            result["workspace"] = dict(workspace, status="verified")
+            result["preview"] = read_workspace_thumbnail(path, workspace["artifacts"]["thumbnail"], cancel)
+        else:
+            legacy_path = path / "session_metadata.json"
+            if legacy_path.is_file():
+                try:
+                    legacy = json.loads(read_bytes(legacy_path, limit=WORKSPACE_LIMIT).decode("utf-8-sig"))
+                    if (isinstance(legacy, dict) and legacy.get("revision_id") == revision_id
+                            and _nested(legacy, ("project", "id")) == project.get("project_id")
+                            and _nested(legacy, ("project", "uid")) == project.get("project_uid")
+                            and _nested(legacy, ("image", "id")) == image["image_id"]
+                            and _nested(legacy, ("image", "sha256")) == metadata.get("source_sha256")):
+                        settings, source = legacy, "session_metadata.json · histórico sin sello"
+                except (OSError, ValueError, TypeError):
+                    pass
+        result["configuration"] = [
+            {"field": field, "label": label, "value": _display_saved(_nested(settings, location)), "source": source,
+             "state": "unknown" if _nested(settings, location) in (None, "") else "recorded"}
+            for field, label, location in CONFIGURATION_FIELDS]
+        check_cancel(cancel)
+        if read_pairs(path / "revision_manifest.tsv", limit=128 * 1024) != metadata:
+            raise ValueError("La revisión cambió durante la lectura de sus parámetros.")
+    except ScanCancelled:
+        raise
+    except (OSError, ValueError, TypeError, KeyError) as exc:
+        result["verification"] = {"ok": False, "errors": [str(exc)]}
+        result["workspace"] = {"status": "invalid"}
+        result["preview"] = None
+    result["text"] = revision_details_text(result)
+    return result
+
+
+def read_workspace_thumbnail(revision_path, artifact, cancel=None):
+    """Verify bounded PNG bytes before passing them to Tk; never open the TIFF."""
+    path = contained(revision_path, artifact["relative_path"])
+    if path.suffix.lower() != ".png":
+        raise ValueError("La miniatura guardada no es un PNG.")
+    raw = read_bytes(path, limit=THUMBNAIL_LIMIT)
+    check_cancel(cancel)
+    if hashlib.sha256(raw).hexdigest() != artifact["sha256"]:
+        raise ValueError("La miniatura cambió respecto de la revisión guardada.")
+    if len(raw) < 24 or raw[:8] != b"\x89PNG\r\n\x1a\n" or raw[12:16] != b"IHDR":
+        raise ValueError("La miniatura no contiene una cabecera PNG válida.")
+    width, height = struct.unpack(">II", raw[16:24])
+    if not width or not height or max(width, height) > 1200 or width * height > 1_440_000:
+        raise ValueError("La miniatura excede el tamaño admitido por la biblioteca.")
+    for key, value in (("width_px", width), ("height_px", height), ("size_bytes", len(raw))):
+        if artifact.get(key) != value:
+            raise ValueError(f"La miniatura no coincide con los metadatos guardados: {key}")
+    return {"path": str(path), "sha256": artifact["sha256"], "width": width, "height": height, "data": raw}
+
+
+def revision_details_text(result):
+    metadata = result.get("metadata", {})
+    state = {"pending": "Pendiente de recalcular", "prepared": "Preparada para calcular"}.get(result.get("analysis_state"), NO_VALUE)
+    lines = [result.get("title") or result.get("revision_id", ""), f"Revisión: {result.get('revision_id')}",
+             "Comentario: " + (result.get("comment") or NO_VALUE), "Estado al guardar: " + state,
+             "Revisión anterior: " + (result.get("parent_revision") or NO_VALUE),
+             "Fuente SHA-256: " + (metadata.get("source_sha256") or NO_VALUE),
+             "ROI SHA-256: " + (metadata.get("roi_zip_sha256") or NO_VALUE)]
+    status = result.get("workspace", {}).get("status")
+    if status == "verified":
+        lines += ["", "Parámetros y miniatura de la revisión: integridad comprobada.",
+                  "La imagen TIFF completa permanece guardada; esta ficha no la decodifica."]
+    elif status == "legacy":
+        lines += ["", "Revisión histórica: imagen de trabajo y tratamiento sellados: No registrado.",
+                  "Los parámetros históricos sin sello se indican con su archivo de procedencia."]
+    else:
+        lines += ["", "No se pudo verificar la revisión:"] + result.get("verification", {}).get("errors", [])
+    if result.get("analysis_state") == "pending":
+        lines.append("El área y otras medidas guardadas pueden estar pendientes de actualizar. Consulte un RUN íntegro para sus resultados calculados.")
+    lines += ["", "Configuración guardada"]
+    for row in result.get("configuration", []):
+        lines.append(f"{row['label']}: {row['value']} ({row['source']})")
+    operations = result.get("workspace", {}).get("operations")
+    lines += ["", "Tratamientos de la copia de trabajo"]
+    recipe_complete = _nested(result.get("workspace"), ("preparation", "recipe_complete"))
+    if recipe_complete is False or any(op.get("kind") == "external_pixel_changes" for op in (operations or [])):
+        lines.append("Receta parcial: contiene cambios cuyos pasos no quedaron registrados. Se conserva la imagen de trabajo; la receta no permite reproducir todos esos cambios.")
+    elif recipe_complete is True:
+        lines.append("Receta registrada como completa al guardar.")
+    if operations is None:
+        lines.append(NO_VALUE)
+    elif not operations:
+        lines.append("Sin tratamientos registrados")
+    else:
+        for index, operation in enumerate(operations, 1):
+            region = " · región guardada" if operation.get("region") else " · imagen completa"
+            kind, parameters = treatment_text(operation)
+            lines.append(f"{index}. {kind}{region}: {parameters}")
+    return "\n".join(lines)
+
+
+def treatment_text(operation):
+    """Render saved parameters without exposing pixel bookkeeping in the flow."""
+    kinds = {"brightness_contrast": "Brillo y contraste", "local_contrast": "Contraste local",
+             "background_correction": "Corrección de fondo", "external_pixel_changes": "Cambios externos en Fiji"}
+    labels = {"brightness": "Brillo", "contrast": "Contraste", "center": "Centro de intensidad",
+              "radius": "Radio (píxeles)", "radius_px": "Radio (píxeles)", "amount": "Intensidad",
+              "max_gain": "Ganancia máxima", "noise_floor": "Umbral de ruido", "target_stddev": "Desviación objetivo",
+              "strength": "Intensidad", "mode": "Modo", "reference": "Referencia", "epsilon": "Tolerancia",
+              "description": "Descripción", "algorithm": "Algoritmo"}
+    parameters = []
+    for key, value in operation.get("params", {}).items():
+        if key in ("before_pixel_sha256", "after_pixel_sha256"):
+            continue
+        if key == "mode" and isinstance(value, str):
+            value = {"subtract": "Restar fondo", "divide": "Dividir por fondo"}.get(value, value)
+        parameters.append(labels.get(key, key) + "=" + _display_saved(value))
+    return kinds.get(operation.get("kind"), operation.get("kind", NO_VALUE)), "; ".join(parameters) or NO_VALUE
+
+
+def _comparison_values(report):
+    summary, manifest = report["summary"], report["manifest"]
+    values = {field: summary.get(field) for field, _label, _location in CONFIGURATION_FIELDS}
+    for field, _label, location in CONFIGURATION_FIELDS:
+        if values[field] in (None, ""):
+            values[field] = _nested(manifest, location)
+    for field in ("N_count_valid", "N_size_valid", "mean_diameter_nm", "median_diameter_nm", "density_N_per_um2"):
+        values[field] = summary.get(field)
+    methods = next((item for item in report["files"] if item.get("name") == "analysis_method.json"), None)
+    if methods is None:
+        raise ValueError("No se encuentra el método guardado del RUN.")
+    method_bytes = read_bytes(methods["path"], limit=WORKSPACE_LIMIT)
+    if hashlib.sha256(method_bytes).hexdigest() != methods.get("sha256"):
+        raise ValueError("El método cambió después de comprobar el RUN.")
+    method = json.loads(method_bytes.decode("utf-8-sig"))
+    if not isinstance(method, dict):
+        raise ValueError("El método guardado del RUN no tiene un formato válido.")
+    values["method_parameters"] = {key: value for key, value in method.items() if key != "application_version"}
+    workspace = _read_workspace(Path(report["path"]).parent.parent,
+                                {"project_id": report["project_id"], "project_uid": report["project_uid"]},
+                                {"image_id": report["image_id"]}, report["revision_manifest"])
+    values["revision_name"] = workspace.get("name") if workspace else None
+    values["revision_comment"] = workspace.get("comment") if workspace else None
+    values["treatment_operations"] = workspace.get("operations") if workspace else None
+    values["working_image_sha256"] = _nested(workspace, ("artifacts", "working_image", "sha256"))
+    return values
+
+
+def compare_runs(left_path, right_path, cancel=None):
+    """Reverify and compare two saved R9 revisions of one physical image."""
+    if path_key(left_path) == path_key(right_path):
+        raise ValueError("Seleccione dos revisiones distintas para compararlas.")
+    left = read_run(left_path, cancel)
+    right = read_run(right_path, cancel)
+    for report in (left, right):
+        if not report.get("verification", {}).get("ok"):
+            raise ValueError("No se puede comparar un RUN con integridad no confirmada: "
+                             + "; ".join(report.get("verification", {}).get("errors", [])))
+        if report.get("kind") != "R9":
+            raise ValueError("Esta comparación usa resultados R9 guardados; los proyectos P3 conservan su lector propio.")
+    for field in ("project_uid", "image_id"):
+        if not left.get(field) or left[field] != right.get(field):
+            raise ValueError("Seleccione revisiones de la misma imagen y proyecto.")
+    if path_key(left.get("project_path", "")) != path_key(right.get("project_path", "")):
+        raise ValueError("La comparación debe utilizar el mismo proyecto, en su misma ubicación.")
+    source = left["summary"].get("source_sha256")
+    if not source or source != right["summary"].get("source_sha256"):
+        raise ValueError("Los resultados corresponden a fuentes de imagen diferentes.")
+    if left["revision_id"] == right["revision_id"]:
+        raise ValueError("Seleccione un RUN de otra revisión de esta imagen.")
+    left_values, right_values = _comparison_values(left), _comparison_values(right)
+    fields = [(field, label) for field, label, _location in CONFIGURATION_FIELDS] + [
+        ("revision_name", "Nombre de la revisión"), ("revision_comment", "Comentario guardado"),
+        ("treatment_operations", "Tratamientos guardados"), ("working_image_sha256", "Huella registrada de imagen de trabajo"),
+        ("method_parameters", "Método y parámetros"), ("N_count_valid", "Cavidades para recuento"),
+        ("N_size_valid", "Cavidades para tamaño"), ("mean_diameter_nm", "Diámetro medio (nm)"),
+        ("median_diameter_nm", "Mediana (nm)"), ("density_N_per_um2", "Densidad superficial (µm⁻²)")]
+    rows = []
+    for field, label in fields:
+        a, b = left_values.get(field), right_values.get(field)
+        if a in (None, "") or b in (None, ""):
+            state = "unknown"
+        else:
+            try:
+                state = "equal" if Decimal(str(a)) == Decimal(str(b)) else "different"
+            except (InvalidOperation, ValueError):
+                state = "equal" if a == b else "different"
+        rows.append({"field": field, "label": label, "left": _display_saved(a), "right": _display_saved(b), "state": state})
+    text = [f"A: {left['revision_id']} · {left['run_id']}", f"B: {right['revision_id']} · {right['run_id']}",
+            "Ambos RUN tienen integridad comprobada. Se muestran sus valores guardados, sin recalcular.",
+            "Las diferencias de parámetros se muestran junto a los resultados. No registrado significa que la comparación de ese campo es desconocida.", ""]
+    text += [f"{row['label']}: A={row['left']} · B={row['right']}" for row in rows if row["state"] != "equal"]
+    check_cancel(cancel)
+    return {"left": left, "right": right, "rows": rows, "text": "\n".join(text), "scientific_validation": False}
 
 
 def read_run(path, cancel=None):

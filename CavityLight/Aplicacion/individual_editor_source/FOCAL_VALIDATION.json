@@ -36,5 +36,27 @@
     ]
   },
   "scientific_validation": "NOT_CLAIMED",
-  "integrated_fiji": "RECORDED_SEPARATELY"
+  "integrated_fiji": "RECORDED_SEPARATELY",
+  "us1": {
+    "status": "PASS_TECHNICAL_CHECKS",
+    "java_checks": {
+      "IndividualEditor": 28,
+      "Workspace": 368,
+      "ImagePreparation": 88,
+      "RevisionWorkspace": 50,
+      "DetectorAssistant": 13
+    },
+    "python_checks": {
+      "library_usability": 33,
+      "project_study": 22,
+      "transactional_updater": 37
+    },
+    "real_imagej_interpreter_checks": 133,
+    "java_python_revision_interoperability": "PASS_REAL_WRITER_FIXTURE",
+    "preserved_scientific_functions": 6,
+    "synthetic_tests_write_only_scratch": true,
+    "visual_windows_fiji_tk": "NOT_RUN",
+    "real_dm3_dm4_full_roundtrip": "NOT_RUN",
+    "scientific_validation": "NOT_CLAIMED"
+  }
 }

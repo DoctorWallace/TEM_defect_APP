@@ -1,0 +1,88 @@
+CAVITY LIGHT 1.2 RC1 — MEJORAS US1
+
+Esta actualización se aplica a la carpeta de la aplicación CavityLight 1.2 RC1,
+o a esa misma versión con la corrección ID1. No modifica los proyectos, las
+imágenes originales ni resultados históricos. Conserva una copia de los archivos
+de aplicación que reemplaza y permite restaurarlos.
+
+INSTALAR EN WINDOWS
+
+1. Cierra Fiji y la biblioteca de Cavity Light.
+2. Extrae todo este ZIP en una carpeta; no ejecutes los archivos dentro del ZIP.
+3. Haz doble clic en ACTUALIZAR_CAVITY_LIGHT.bat.
+4. Selecciona la carpeta CavityLight que contiene INICIAR_CAVITY_LIGHT_1_2.bat,
+   Aplicacion, Fiji y Python. No selecciones la carpeta de un proyecto.
+5. El actualizador comprueba la versión antes de reemplazar archivos. Si indica
+   que la base no es compatible, conserva la instalación y explica qué archivo
+   no coincide. No debes borrar proyectos para resolverlo.
+6. Después, ejecuta COMPROBAR_APLICACION.bat en tu carpeta CavityLight y abre
+   INICIAR_CAVITY_LIGHT_1_2.bat como siempre. Fiji sigue ejecutándose en tu PC.
+
+PARA RESTAURAR
+
+Cierra la aplicación y ejecuta RESTAURAR_VERSION_ANTERIOR.bat de esta carpeta.
+Selecciona CavityLight y la copia creada en Copias_configuracion/usability_...
+La restauración solo devuelve los archivos de aplicación a su versión previa.
+Las revisiones nuevas de tus proyectos permanecen conservadas.
+
+VENTANAS
+
+El panel dispone de controles para mostrar/ocultar ROI Manager y la barra Fiji,
+mantener el panel encima y organizar las ventanas en uno o dos monitores.
+Puedes guardar y recuperar su disposición. F2 recupera el panel oculto.
+Es una mejora de las ventanas de Fiji; todavía no es una interfaz única acoplada.
+
+TRATAR LA IMAGEN Y GUARDAR UN AVANCE
+
+Abre una imagen registrada. En Preparar encontrarás brillo/contraste por zonas,
+contraste local y corrección de fondo. Para una zona, dibuja primero una selección
+cerrada y elige Selección actual en el diálogo. Comprueba la previsualización y
+aplica o cancela. Las ROIs de tratamiento se guardan separadas de las cavidades.
+Deshacer/Rehacer tratamiento actúa sobre estos filtros, de forma independiente
+de las anotaciones. Restaurar imagen original recupera la copia de partida.
+
+Guardar avance con nombre conserva nombre/comentario, imagen TIFF preparada,
+vista PNG anotada, miniatura, ROIs, configuración y receta vigente. Puedes hacerlo
+antes de cuantificar e incluso antes de marcar cavidades. Solo se guardan los pasos
+que sigan aplicados: un tratamiento deshecho queda fuera de la receta.
+Al reabrir la revisión se recupera la imagen exacta guardada; no se recupera el
+historial de deshacer anterior a la reapertura. No hay autoguardado en esta entrega.
+Cada revisión manual incluye una imagen completa y ocupa espacio en disco.
+
+Si usas otro comando de Fiji que cambie los píxeles, Conservar cambios hechos con
+Fiji permite describirlos. Se guardarán como una etapa de receta parcial; no se
+inventan filtros o parámetros que la aplicación no haya registrado.
+
+CONSULTAR Y COMPARAR
+
+La biblioteca muestra las revisiones intermedias aunque no tengan RUN. Al elegir
+una revisión verás su miniatura, tratamiento y configuración guardados. Puedes
+comparar resultados de dos revisiones diferentes de una misma imagen.
+Las revisiones antiguas no adquieren una receta que nunca se conservó; los datos
+que faltan se muestran como No registrado. No se reparan automáticamente ROIs con
+identidades ya dañadas ni se recalculan o reescriben resultados históricos.
+
+ESTUDIO DEL PROYECTO
+
+Selecciona RUN de zonas distintas de una misma muestra/condición con el botón
+Estudio del proyecto. Para combinar, elige un único RUN por imagen y confirma
+que los campos no se solapan. Se comprueban integridad, escala y protocolo.
+La densidad combinada usa suma de cavidades / suma de áreas; las estadísticas de
+tamaño agrupan las cavidades individuales. Diferencias de protocolo o datos
+insuficientes impiden sumar resultados. CSV, JSON y HTML se guardan en una carpeta
+nueva elegida fuera del proyecto, conservando las referencias a cada RUN.
+
+DETECTOR
+
+Ajustar detector con cavidades confirmadas propone tamaños y separación usando
+las cavidades revisadas. Los valores son editables. Después usa las herramientas
+Detectar puntos / Estimar diámetros y revisa las propuestas. Esta ayuda no entrena
+un modelo ni acepta cavidades por sí sola.
+
+COMPROBACIONES Y LÍMITES
+
+Se han probado técnicamente preparación, recetas, ROIs, guardado, restauración,
+biblioteca, agregación e instalación/restauración en copias sintéticas. Las seis
+funciones científicas verificadas mantienen sus hashes anteriores. La prueba
+visual de Fiji/Tk y el recorrido completo con DM3/DM4 reales en Windows quedan
+pendientes. No se declara validación científica con esta actualización.

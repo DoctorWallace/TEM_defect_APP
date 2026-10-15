@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import argparse
 import copy
+from datetime import datetime
 import hashlib
 import math
 import os
@@ -18,9 +19,9 @@ import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 
 from .catalog import Catalog
-from .readers import plain_path, read_run
+from .readers import compare_runs, plain_path, read_revision_details, read_run
 
-TITLE = "Cavity TEM Light 1.2 RC1 · revisión 21/09"
+TITLE = "Cavity TEM Light · Biblioteca y revisiones"
 OPEN_EXTENSIONS = frozenset({".png", ".csv", ".tsv", ".html", ".htm"})
 
 
@@ -43,6 +44,51 @@ def image_selection_key(image):
     if image.get("path"):
         return ("path", os.path.normcase(os.path.abspath(str(image["path"]))))
     return ("id", str(image.get("image_id", "")))
+
+
+def history_selection_key(entry):
+    if not entry:
+        return None
+    return (str(entry.get("revision_id", "")), str(entry.get("session_uid", "")), str(entry.get("run_id", "")))
+
+
+def revision_history(project, image):
+    """One chronological list of saved results and revisions without results."""
+    revisions = {(str(revision.get("revision_id")), str(revision.get("session_uid", ""))): revision
+                 for revision in image.get("revisions", [])}
+    entries, represented = [], set()
+    for run in image.get("runs", []):
+        identity = (str(run.get("revision_id")), str(run.get("session_uid", "")))
+        revision = revisions.get(identity, {})
+        represented.add(identity)
+        entry = dict(run, entry_kind="run", name=revision.get("name", ""), comment=revision.get("comment", ""),
+                     created_ms=revision.get("created_ms", ""))
+        entry["label"] = ((entry["name"] + " · ") if entry["name"] else "") + f"{entry.get('run_id')} / {entry.get('revision_id')}"
+        entries.append(entry)
+    for identity, revision in revisions.items():
+        if identity not in represented:
+            entry = dict(revision, entry_kind="revision")
+            entry["label"] = entry.get("name") or entry.get("revision_id")
+            entries.append(entry)
+    for entry in entries:
+        labels = ["Sin resultado"] if entry["entry_kind"] == "revision" else []
+        if (entry.get("revision_id") == image.get("revision_id")
+                and (not image.get("session_uid") or entry.get("session_uid") == image.get("session_uid"))
+                and (entry["entry_kind"] == "revision" or entry.get("run_id") == image.get("run_id"))):
+            labels.insert(0, "Actual")
+        entry["state"] = " · ".join(labels)
+    def order(entry):
+        try:
+            stamp = int(entry.get("created_ms") or 0)
+        except (TypeError, ValueError):
+            stamp = 0
+        if not stamp:
+            try:
+                stamp = int(datetime.strptime(str(entry.get("revision_id"))[4:19], "%Y%m%d_%H%M%S").timestamp() * 1000)
+            except (ValueError, OverflowError):
+                pass
+        return stamp, str(entry.get("revision_id", "")), str(entry.get("run_id", ""))
+    return sorted(entries, key=order, reverse=True)
 
 
 def reference_matches(reference, project, image, run=None):
@@ -120,6 +166,11 @@ class LibraryWindow:
         self._closed = False
         self._poll_id = self._search_id = None
         self._photo = None
+        self._revision_photo = None
+        self.revision_details = None
+        self._comparison_run = None
+        self._comparison_rows = {}
+        self._restore_history = None
         self.search = tk.StringVar(root)
         self.status = tk.StringVar(root, value="Añada una carpeta de proyecto o una carpeta que contenga varios proyectos.")
         self.project_title = tk.StringVar(root, value="Su biblioteca de proyectos")
@@ -127,6 +178,8 @@ class LibraryWindow:
         self.image_detail = tk.StringVar(root, value="Seleccione una imagen para consultar sus resultados.")
         self.reference_text = tk.StringVar(root, value="Referencia aceptada: ninguna seleccionada")
         self.run_status = tk.StringVar(root, value="Seleccione un resultado del historial.")
+        self.revision_heading = tk.StringVar(root, value="Seleccione una revisión del historial.")
+        self.comparison_heading = tk.StringVar(root, value="Elija un RUN íntegro como A y otro de una revisión distinta como B.")
         self.root.title(TITLE)
         self.root.geometry("1280x840")
         self.root.minsize(1020, 720)
@@ -159,9 +212,11 @@ class LibraryWindow:
         header = ttk.Frame(outer)
         header.pack(fill="x")
         ttk.Label(header, text="Cavity TEM Light", style="Title.TLabel").pack(side="left")
-        ttk.Label(header, text="1.2 RC1  ·  Biblioteca local", style="Muted.TLabel").pack(side="left", padx=16, pady=(9, 0))
+        ttk.Label(header, text="1.2 RC1 US1  ·  Biblioteca local", style="Muted.TLabel").pack(side="left", padx=16, pady=(9, 0))
         self.editor_new = ttk.Button(header, text="Nuevo proyecto / Abrir editor", command=self._new_editor)
         self.editor_new.pack(side="right")
+        self.study_button = ttk.Button(header, text="Estudio del proyecto", command=self._project_study, state="disabled")
+        self.study_button.pack(side="right", padx=7)
         toolbar = ttk.Frame(outer, padding=(0, 15, 0, 12))
         toolbar.pack(fill="x")
         self.add_button = ttk.Button(toolbar, text="+ Añadir carpeta", style="Accent.TButton", command=self._add)
@@ -219,6 +274,10 @@ class LibraryWindow:
                   style="Muted.TLabel", justify="left").pack(fill="x", pady=9)
         self.accept_button = ttk.Button(history, text="Aceptar como referencia", state="disabled", command=self._accept)
         self.accept_button.pack(fill="x")
+        self.compare_pin_button = ttk.Button(history, text="Tomar resultado como A", state="disabled", command=self._pin_comparison)
+        self.compare_pin_button.pack(fill="x", pady=(9, 4))
+        self.compare_button = ttk.Button(history, text="Comparar A con selección", state="disabled", command=self._compare)
+        self.compare_button.pack(fill="x")
 
         results = ttk.Frame(lower, padding=(14, 0, 0, 0), width=470)
         lower.add(results, weight=4)
@@ -234,6 +293,19 @@ class LibraryWindow:
         scroll = ttk.Scrollbar(summary, command=self.summary.yview)
         scroll.pack(side="right", fill="y")
         self.summary.configure(yscrollcommand=scroll.set)
+        self.workspace_tab = ttk.Frame(self.tabs, padding=10)
+        self.tabs.add(self.workspace_tab, text="Revisión e imagen")
+        ttk.Label(self.workspace_tab, textvariable=self.revision_heading, style="Heading.TLabel", wraplength=650).pack(fill="x", pady=(0, 6))
+        self.revision_preview = ttk.Label(self.workspace_tab, text="Imagen de trabajo guardada: no registrada", anchor="center")
+        self.revision_preview.pack(fill="x", pady=6)
+        revision_text_frame = ttk.Frame(self.workspace_tab)
+        revision_text_frame.pack(fill="both", expand=True)
+        self.revision_text = tk.Text(revision_text_frame, wrap="word", state="disabled", relief="flat", background="white",
+                                     foreground="#243c51", font=("Segoe UI", 10), padx=10, pady=8, height=9)
+        self.revision_text.pack(side="left", fill="both", expand=True)
+        revision_scroll = ttk.Scrollbar(revision_text_frame, command=self.revision_text.yview)
+        revision_scroll.pack(side="right", fill="y")
+        self.revision_text.configure(yscrollcommand=revision_scroll.set)
         files = ttk.Frame(self.tabs, padding=8)
         self.tabs.add(files, text="Tablas y gráficos")
         self.file_tree = self._tree(files, ("name",), {"name": ("Archivo", 350)}, height=6)
@@ -244,6 +316,15 @@ class LibraryWindow:
         self.tabs.add(self.preview_tab, text="Vista del gráfico")
         self.preview_label = ttk.Label(self.preview_tab, text="Seleccione un PNG en Tablas y gráficos y ábralo.", anchor="center")
         self.preview_label.pack(fill="both", expand=True)
+        self.comparison_tab = ttk.Frame(self.tabs, padding=10)
+        self.tabs.add(self.comparison_tab, text="Comparar revisiones")
+        ttk.Label(self.comparison_tab, textvariable=self.comparison_heading, style="Muted.TLabel", wraplength=650,
+                  justify="left").pack(fill="x", pady=(0, 8))
+        self.comparison_tree = self._tree(self.comparison_tab, ("field", "left", "right", "state"), {
+            "field": ("Parámetro / resultado", 190), "left": ("A · guardado", 150), "right": ("B · guardado", 150),
+            "state": ("Comparación", 105)}, height=9)
+        self.comparison_tree.bind("<Double-1>", self._comparison_detail)
+        ttk.Label(self.comparison_tab, text="Doble clic en una fila para leer sus valores completos.", style="Muted.TLabel").pack(anchor="w", pady=(7, 0))
         self._text("Seleccione un proyecto y una imagen. Los valores se leen de cada resultado guardado, con su escala y criterios originales.")
 
         footer = ttk.Frame(outer, padding=(0, 12, 0, 0))
@@ -260,13 +341,19 @@ class LibraryWindow:
         for key, (title, width) in headings.items():
             view.heading(key, text=title)
             view.column(key, width=width, minwidth=40, stretch=True)
-        view.pack(side="left", fill="both", expand=True)
+        wrapper.rowconfigure(0, weight=1)
+        wrapper.columnconfigure(0, weight=1)
+        view.grid(row=0, column=0, sticky="nsew")
         scroll = ttk.Scrollbar(wrapper, orient="vertical", command=view.yview)
-        scroll.pack(side="right", fill="y")
-        view.configure(yscrollcommand=scroll.set)
+        scroll.grid(row=0, column=1, sticky="ns")
+        horizontal = ttk.Scrollbar(wrapper, orient="horizontal", command=view.xview)
+        horizontal.grid(row=1, column=0, sticky="ew")
+        view.configure(yscrollcommand=scroll.set, xscrollcommand=horizontal.set)
         return view
 
     def _snapshot(self):
+        if self.project and self.image and self.run:
+            self._restore_history = (self.project.get("path"), image_selection_key(self.image), history_selection_key(self.run))
         self.projects = copy.deepcopy(self.catalog.list_projects())
         references = self.catalog.data.get("references", {})
         self.references = copy.deepcopy(list(references.values()) if isinstance(references, dict) else references)
@@ -305,6 +392,7 @@ class LibraryWindow:
 
     def _clear_project(self):
         self.project = None
+        self.study_button.configure(state="disabled")
         self.project_title.set("Su biblioteca de proyectos")
         self.project_detail.set("No hay coincidencias." if self.search.get() else "Añada una carpeta para comenzar.")
         self.image_tree.delete(*self.image_tree.get_children())
@@ -317,6 +405,7 @@ class LibraryWindow:
         old_image = image_selection_key(self.image)
         previous = self.project.get("path") if self.project else None
         self.project = self._project_items[selected[0]]
+        self.study_button.configure(state="normal" if self.project.get("available", True) and not self._busy else "disabled")
         self.project_title.set(str(self.project.get("name") or self.project.get("project_id")))
         images = self.project.get("images", [])
         counts = f"{len(images)} imágenes  ·  {sum(bool(i.get('revision_id') or i.get('revisions')) for i in images)} con revisión  ·  {sum(bool(i.get('runs')) for i in images)} con resultados"
@@ -348,13 +437,17 @@ class LibraryWindow:
             self.image_tree.selection_set(next(iter(self._image_items)))
 
     def _clear_image(self):
-        if self._busy == "read":
+        if self._busy in ("read", "compare"):
             self.cancel()
         self.image = self.run = self.report = None
         self.run_tree.delete(*self.run_tree.get_children())
         self._run_items = {}
         self.image_detail.set("Seleccione una imagen para consultar sus resultados.")
         self.reference_text.set("Referencia aceptada: ninguna seleccionada")
+        self._comparison_run = None
+        self._comparison_rows = {}
+        self.comparison_heading.set("Elija un RUN íntegro como A y otro de una revisión distinta como B.")
+        self.comparison_tree.delete(*self.comparison_tree.get_children())
         self.edit_button.configure(state="disabled")
         self._clear_result()
 
@@ -370,30 +463,19 @@ class LibraryWindow:
         if reference:
             session = f"{reference['session_id']} · " if reference.get("session_id") else ""
             self.reference_text.set(f"Última referencia aceptada:\n{session}{reference.get('revision_id')}\n{reference.get('run_id')}")
-        for index, run in enumerate(self.image.get("runs", [])):
-            ident = f"run{index}"
-            self._run_items[ident] = run
-            labels = []
-            if run.get("run_id") == self.image.get("run_id") and (not self.image.get("revision_id") or run.get("revision_id") == self.image.get("revision_id")) and (not self.image.get("session_uid") or self.image.get("session_uid") == run.get("session_uid")):
-                labels.append("Actual")
-            if any(reference_matches(r, self.project, self.image, run) for r in self.references):
+        for index, entry in enumerate(revision_history(self.project, self.image)):
+            ident = f"history{index}"
+            self._run_items[ident] = entry
+            labels = [entry["state"]] if entry["state"] else []
+            if entry["entry_kind"] == "run" and any(reference_matches(r, self.project, self.image, entry) for r in self.references):
                 labels.append("Aceptado")
-            prefix = f"{run['session_id']} · " if run.get("session_id") else ""
-            self.run_tree.insert("", "end", iid=ident, values=(f"{prefix}{run.get('run_id')} / {run.get('revision_id')}", " · ".join(labels)))
-        represented = {(run.get("revision_id"), run.get("session_uid", ""))
-                       for run in self.image.get("runs", [])}
-        for index, revision in enumerate(self.image.get("revisions", [])):
-            identity = (revision.get("revision_id"), revision.get("session_uid", ""))
-            if identity in represented:
-                continue
-            represented.add(identity)
-            ident = f"revision{index}"
-            self._run_items[ident] = dict(revision, entry_kind="revision")
-            labels = ["Sin resultado"]
-            if revision.get("revision_id") == self.image.get("revision_id") and (not self.image.get("session_uid") or self.image.get("session_uid") == revision.get("session_uid")):
-                labels.insert(0, "Actual")
-            prefix = f"{revision['session_id']} · " if revision.get("session_id") else ""
-            self.run_tree.insert("", "end", iid=ident, values=(f"{prefix}{revision.get('revision_id')}", " · ".join(labels)))
+            prefix = f"{entry['session_id']} · " if entry.get("session_id") else ""
+            self.run_tree.insert("", "end", iid=ident, values=(prefix + str(entry["label"]), " · ".join(labels)))
+            if (self._restore_history and self._restore_history[:2] == (self.project.get("path"), image_selection_key(self.image))
+                    and self._restore_history[2] == history_selection_key(entry)):
+                self.run_tree.selection_set(ident)
+        if self._restore_history and self._restore_history[:2] == (self.project.get("path"), image_selection_key(self.image)):
+            self._restore_history = None
         if not self._run_items:
             message = "Esta imagen todavía no tiene resultados guardados. Puede abrirla en Fiji y continuar su análisis individual."
             if self.image.get("errors"):
@@ -407,10 +489,17 @@ class LibraryWindow:
     def _clear_result(self):
         self.report = None
         self.accept_button.configure(state="disabled")
+        self.compare_pin_button.configure(state="disabled")
+        self.compare_button.configure(state="disabled")
         self.open_file_button.configure(state="disabled")
         self.file_tree.delete(*self.file_tree.get_children())
         self._file_items = {}
         self._photo = None
+        self._revision_photo = None
+        self.revision_details = None
+        self.revision_heading.set("Seleccione una revisión del historial.")
+        self.revision_preview.configure(image="", text="Imagen de trabajo guardada: no registrada")
+        self._set_text(self.revision_text, "El nombre, comentario, imagen y parámetros se registran al guardar una revisión en el editor.")
         self.preview_label.configure(image="", text="Seleccione un PNG en Tablas y gráficos y ábralo.")
         self.run_status.set("Seleccione un resultado del historial.")
         self._text("Los valores se mostrarán tras comprobar el resultado seleccionado.")
@@ -419,10 +508,10 @@ class LibraryWindow:
         selected = self.run_tree.selection()
         if not selected:
             return
-        if self._busy and self._busy != "read":
+        if self._busy and self._busy not in ("read", "compare"):
             self.status.set("Espere a que finalice la actualización o cancélela antes de abrir un resultado.")
             return
-        if self._busy == "read":
+        if self._busy in ("read", "compare"):
             self.cancel()
         self.run = self._run_items[selected[0]]
         self._clear_result()
@@ -431,10 +520,42 @@ class LibraryWindow:
             self.run_status.set("Revisión guardada sin resultado")
             self._text(f"Revisión: {self.run.get('revision_id')}\n\nEsta revisión no tiene un RUN guardado.\n\nPulse Abrir imagen en Fiji para recuperar esta revisión y continuar su análisis.")
             self.status.set(f"Revisión seleccionada: {self.run.get('revision_id')}")
+            project, image, revision = copy.deepcopy(self.project), copy.deepcopy(self.image), copy.deepcopy(self.run)
+            self._start_job("read", lambda cancel, _progress: {"details": read_revision_details(project, image, revision, cancel)}, self._show_selection)
             return
         path = self.run["path"]
+        project, image, revision = copy.deepcopy(self.project), copy.deepcopy(self.image), copy.deepcopy(self.run)
         self.run_status.set(f"Comprobando {self.run.get('run_id')}…")
-        self._start_job("read", lambda cancel, _progress: read_run(path, cancel=cancel), self._show_result)
+        def selected(cancel, _progress):
+            report = read_run(path, cancel=cancel)
+            revision_row = dict(revision)
+            if project.get("kind") == "R9":
+                revision_row["path"] = str(Path(path).parent.parent)
+            return {"report": report, "details": read_revision_details(project, image, revision_row, cancel, verified_run=report)}
+        self._start_job("read", selected, self._show_selection)
+
+    def _show_selection(self, selected):
+        self._show_revision_details(selected["details"])
+        if selected.get("report"):
+            self._show_result(selected["report"])
+        else:
+            self.tabs.select(self.workspace_tab)
+
+    def _show_revision_details(self, details):
+        self.revision_details = details
+        self.revision_heading.set(details.get("title") or details.get("revision_id") or "Revisión")
+        self._set_text(self.revision_text, details.get("text", "No registrado"))
+        preview = details.get("preview")
+        if preview:
+            try:
+                photo = tk.PhotoImage(master=self.root, data=preview["data"], format="png")
+                scale = max(1, math.ceil(preview["width"] / 560), math.ceil(preview["height"] / 220))
+                self._revision_photo = photo.subsample(scale, scale) if scale > 1 else photo
+                self.revision_preview.configure(image=self._revision_photo, text="")
+            except tk.TclError:
+                self.revision_preview.configure(image="", text="La miniatura guardada no puede mostrarse.")
+        else:
+            self.revision_preview.configure(image="", text="Imagen de trabajo guardada: no registrada o no verificable")
 
     def _show_result(self, report):
         self.report = report
@@ -478,21 +599,86 @@ class LibraryWindow:
         self.open_file_button.configure(state="normal" if ok else "disabled")
         self.tabs.select(0)
         self.status.set(f"Resultado leído: {report.get('run_id')} · La referencia aceptada se elige de forma explícita.")
+        self._comparison_buttons()
 
     def _text(self, value):
-        self.summary.configure(state="normal")
-        self.summary.delete("1.0", "end")
-        self.summary.insert("1.0", value)
-        self.summary.configure(state="disabled")
+        self._set_text(self.summary, value)
+
+    @staticmethod
+    def _set_text(widget, value):
+        widget.configure(state="normal")
+        widget.delete("1.0", "end")
+        widget.insert("1.0", value)
+        widget.configure(state="disabled")
+
+    def _comparison_buttons(self):
+        ok = bool(not self._busy and self.report and self.report.get("kind") == "R9"
+                  and self.report.get("verification", {}).get("ok"))
+        self.compare_pin_button.configure(state="normal" if ok else "disabled")
+        different = bool(ok and self._comparison_run and self.run and self._comparison_run.get("revision_id") != self.run.get("revision_id"))
+        self.compare_button.configure(state="normal" if different else "disabled")
+
+    def _pin_comparison(self):
+        if self.run and self.report and self.report.get("verification", {}).get("ok") and self.report.get("kind") == "R9":
+            self._comparison_run = copy.deepcopy(self.run)
+            self.comparison_heading.set(f"A: {self.run.get('revision_id')} · {self.run.get('run_id')}\nSeleccione un RUN de otra revisión de esta imagen y pulse Comparar A con selección.")
+            self._comparison_buttons()
+            self.tabs.select(self.comparison_tab)
+
+    def _compare(self):
+        if not self._comparison_run or not self.run or self._busy:
+            return
+        left_path, right_path = self._comparison_run["path"], self.run["path"]
+        self.status.set("Comprobando ambos resultados guardados antes de compararlos…")
+        self._start_job("compare", lambda cancel, _progress: compare_runs(left_path, right_path, cancel), self._show_comparison)
+
+    def _show_comparison(self, comparison):
+        self.comparison_heading.set("\n".join(comparison["text"].splitlines()[:4]))
+        self.comparison_tree.delete(*self.comparison_tree.get_children())
+        self._comparison_rows = {}
+        labels = {"equal": "Igual", "different": "Diferente", "unknown": "No registrado"}
+        for index, row in enumerate(comparison["rows"]):
+            ident = f"comparison{index}"
+            self._comparison_rows[ident] = row
+            self.comparison_tree.insert("", "end", iid=ident, values=(row["label"], row["left"], row["right"], labels[row["state"]]))
+        self.tabs.select(self.comparison_tab)
+        self.status.set("Comparación de dos revisiones de la misma imagen · Valores guardados, sin recalcular.")
+
+    def _comparison_detail(self, _event=None):
+        selection = self.comparison_tree.selection()
+        if not selection:
+            return
+        row = self._comparison_rows.get(selection[0])
+        if not row:
+            return
+        dialog = tk.Toplevel(self.root)
+        dialog.title(row["label"])
+        dialog.geometry("760x470")
+        dialog.transient(self.root)
+        frame = ttk.Frame(dialog, padding=14)
+        frame.pack(fill="both", expand=True)
+        text = tk.Text(frame, wrap="word", relief="flat", background="white", font=("Segoe UI", 10), padx=10, pady=10)
+        text.pack(side="left", fill="both", expand=True)
+        scroll = ttk.Scrollbar(frame, command=text.yview)
+        scroll.pack(side="right", fill="y")
+        text.configure(yscrollcommand=scroll.set)
+        self._set_text(text, f"{row['label']}\n\nA · valor guardado\n{row['left']}\n\nB · valor guardado\n{row['right']}")
+
+    def _project_study(self):
+        if self.project and self.project.get("available", True) and not self._busy:
+            from .project_study import show_project_study
+            show_project_study(self.root, copy.deepcopy(self.project))
 
     def _set_busy(self, kind):
         self._busy = kind
         disabled = "disabled" if kind else "normal"
         for button in (self.add_button, self.refresh_button, self.locations_button, self.editor_new):
             button.configure(state=disabled)
-        self.cancel_button.configure(state="normal" if kind in ("catalog", "read") else "disabled")
+        self.cancel_button.configure(state="normal" if kind in ("catalog", "read", "compare") else "disabled")
+        self.study_button.configure(state="normal" if not kind and self.project and self.project.get("available", True) else "disabled")
         self.edit_button.configure(state="normal" if not kind and self.image and self.project.get("available", True) else "disabled")
         self.accept_button.configure(state="normal" if not kind and self.report and self.report.get("verification", {}).get("ok") else "disabled")
+        self._comparison_buttons()
         if kind:
             self.progress.start(14)
         else:
@@ -545,7 +731,7 @@ class LibraryWindow:
     def cancel(self):
         if self._cancel:
             self._cancel.set()
-        if self._busy == "read":
+        if self._busy in ("read", "compare"):
             # Reading cannot mutate the catalogue. A new selection may start at once.
             self._generation += 1
             self._set_busy(None)

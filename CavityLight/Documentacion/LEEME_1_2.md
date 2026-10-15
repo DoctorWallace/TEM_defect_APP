@@ -1,6 +1,18 @@
 # Cavity TEM Light 1.2 RC1 · imágenes individuales
 
-Esta candidata reúne una biblioteca local y el editor individual basado en R9 consolidada. Está preparada para Windows con Fiji, Java y Python incluidos. El objetivo es trabajar imagen a imagen y depurar los siguientes detalles durante el uso. Los resultados combinados quedan aplazados.
+Esta candidata reúne una biblioteca local y el editor individual basado en R9 consolidada. Está preparada para Windows con Fiji, Java y Python incluidos. El objetivo es trabajar imagen a imagen y depurar los siguientes detalles durante el uso. El estudio conjunto de RUN verificados se realiza desde la biblioteca, manteniendo el análisis individual en Fiji.
+
+## Mejoras US1 (11 de octubre)
+
+- Los controles inferiores del panel coordinan las ventanas de Fiji, permiten ocultarlas o mantener el panel encima y guardar su disposición. F2 recupera el panel. Todavía son ventanas coordinadas, sin un contenedor único.
+- Preparar incorpora brillo/contraste por zonas, contraste local y corrección de fondo, con previsualización y Deshacer/Rehacer tratamiento. Trabajan sobre copias y conservan las zonas como ROIs separadas.
+- «Guardar avance con nombre» conserva nombre/comentario, imagen TIFF preparada, PNG anotado, miniatura, receta vigente y parámetros aunque no haya RUN ni cavidades. Las etapas deshechas quedan fuera. Al reabrir se recuperan los píxeles guardados, sin el historial anterior de deshacer.
+- «Conservar cambios hechos con Fiji» incorpora cambios externos descritos como una receta parcial. No se inventan filtros desconocidos. Esta entrega usa guardados manuales, sin autoguardado.
+- La biblioteca presenta miniaturas y configuración de revisiones intermedias y comparación A/B de revisiones diferentes de una imagen. En revisiones antiguas, lo que no se registró sigue indicado como «No registrado».
+- «Estudio del proyecto» combina un RUN verificado por imagen, con muestra/condición y protocolo compatibles. Confirma que los campos no se solapan. La densidad usa suma de cavidades/suma de áreas y el tamaño utiliza las cavidades individuales. Exporta CSV, JSON y HTML fuera del proyecto.
+- «Ajustar detector con cavidades confirmadas» propone valores iniciales editables; las propuestas siguen requiriendo revisión. No es un modelo entrenado.
+
+US1 supera comprobaciones técnicas con imágenes sintéticas. La prueba visual Fiji/Tk y el recorrido completo con DM3/DM4 reales en Windows quedan pendientes; no constituye validación científica ni reparación automática de identidades históricas.
 
 ## Arranque
 
@@ -8,7 +20,7 @@ Abre `INICIAR_CAVITY_LIGHT_1_2.bat` en la carpeta entregada. No requiere activar
 
 La instalación previa y sus accesos siguen siendo independientes. Esta distribución tiene sus propias preferencias y registros. No mezcles ediciones simultáneas del mismo proyecto desde varias instancias de Fiji.
 
-Actualización del 21 de septiembre: la ventana de biblioteca indica «revisión 21/09». Corrige un bloqueo de resultados cuyo manifiesto y tabla guardan distinta precisión decimal. La biblioteca reconoce el redondeo usado por el exportador ImageJ y sigue comprobando huellas e identidades. No exige recalcular los RUN existentes. Después de actualizar, cierra y vuelve a abrir solo la biblioteca para cargar esta corrección; Fiji puede seguir abierto.
+La corrección del 21 de septiembre, también incluida en US1, corrige un bloqueo de resultados cuyo manifiesto y tabla guardan distinta precisión decimal. La biblioteca reconoce el redondeo usado por el exportador ImageJ y sigue comprobando huellas e identidades. No exige recalcular los RUN existentes. Para instalar US1, cierra Fiji y la biblioteca; después abre la aplicación de nuevo.
 
 ## Biblioteca
 
@@ -42,7 +54,7 @@ Al reabrir una revisión se conservan su indicador de calibración y el paso de 
 
 Guardar una revisión mantiene la geometría y puede marcar las medidas derivadas como pendientes de recalcular, siguiendo el funcionamiento de R9. «Calcular y exportar resultados» comprueba y prepara esas medidas y crea un RUN nuevo. Los resultados históricos y su revisión permanecen separados.
 
-Las cancelaciones y errores de importación conservan la sesión anterior y cierran únicamente las ventanas creadas por la operación fallida. Los accesos a combinados están retirados de esta candidata.
+Las cancelaciones y errores de importación conservan la sesión anterior y cierran únicamente las ventanas creadas por la operación fallida. La macro de combinado histórica sigue retirada; el estudio conjunto utiliza RUN verificados desde la biblioteca.
 
 ## Trazabilidad y recuperación
 
@@ -57,6 +69,6 @@ Las cancelaciones y errores de importación conservan la sesión anterior y cier
 
 El informe de entrega enumera las pruebas efectivamente ejecutadas. Las pruebas de software, la integridad de la referencia y un recorrido técnico sobre copias no equivalen a validación científica general. No se ha ampliado la matriz de plataformas ni se prometen todas las funciones de los prompts históricos. La siguiente depuración se centra en incidencias concretas del trabajo por imagen.
 
-La comprobación integrada de esta entrega abrió la imagen de referencia, guardó una revisión nueva, la reabrió y exportó un RUN en una copia controlada. Se conservaron los 661 objetos, las 664 ROI, la escala X/Y de 1 nm/píxel, el indicador de calibración, la inclusión de dudosas y el paso de ajuste de 2 nm. La geometría decodificada del ZIP guardado coincide exactamente con la del ZIP aceptado.
+La comprobación integrada de la candidata previa a US1 abrió la imagen de referencia, guardó una revisión nueva, la reabrió y exportó un RUN en una copia controlada. Se conservaron los 661 objetos, las 664 ROI, la escala X/Y de 1 nm/píxel, el indicador de calibración, la inclusión de dudosas y el paso de ajuste de 2 nm. La geometría decodificada del ZIP guardado coincide exactamente con la del ZIP aceptado.
 
 Leer el RUN histórico en la biblioteca conserva sus valores escritos. Reabrir las ROI y recalcular puede producir pequeños cambios numéricos por la precisión de 32 bits del formato ROI de ImageJ, que ya afecta al ZIP histórico: en esta imagen, el diámetro medio pasa de 14.603630862 a 14.603630908 nm. En siete objetos situados en límites enteros, el redondeo también cambia su intervalo en el histograma de 1 nm, sin cambiar el recuento total. Por ello, no se promete que un gráfico recalculado sea idéntico al histórico. La entrega conserva el informe de comparación literal, que detecta esas diferencias, y una comprobación causal separada. No se sustituye ni se corrige el resultado aceptado para hacerlo coincidir.

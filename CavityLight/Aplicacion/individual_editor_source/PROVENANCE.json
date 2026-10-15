@@ -1,6 +1,6 @@
 {
   "format": "cavity-individual-editor-provenance-v1",
-  "application_version": "1.2.0-RC1-individual",
+  "application_version": "1.2.0-RC1-individual-US1",
   "source_release": "1.1.1-R9-CONSOLIDADA-RC1-INSTFIX1",
   "source_directory": "C:\\Cavity light\\ANALISIS_PAQUETES_20260920\\R9\\Cavity_TEM_Light_R9_CONSOLIDADA_RC1_INSTFIX1",
   "original_macro": {
@@ -52,7 +52,16 @@
     "Create log directories at explicit save preflight and log append, before revision publication",
     "Preserve metadata-defined physical scale without a calibration line",
     "Restore session resize step ahead of global preference; snapshot restore republishes session step",
-    "One explicit startup entrypoint; no automatically scheduled AutoRun"
+    "One explicit startup entrypoint; no automatically scheduled AutoRun",
+    "ID1: reject re-registration of managed ellipses and isolate properties of a new Oval before assigning identity",
+    "US1: coordinated Fiji windows, saved layout and F2 panel recovery; no docked single-window shell",
+    "US1: copied-pixel regional contrast, local contrast and background correction, independent undo/redo and effective recipe",
+    "US1: named manual intermediate revisions, frozen parameters, working TIFF, annotated PNG, bounded thumbnail and treatment-region ROIs",
+    "US1: staged/verified atomic revision publication and transactional pixel/session restoration, including nested switches",
+    "US1: explicit labelled adoption of external Fiji pixel changes with partial recipe provenance",
+    "US1: verified revision library previews and A/B comparison without recomputing historical results",
+    "US1: project study from compatible verified frozen RUNs, pooled cavity sizes and count/area density",
+    "US1: editable heuristic detector defaults from confirmed, unique and correctly bound cavities; no trained model"
   ],
-  "validation_scope": "Headless geometry and package/flow checks; real Fiji integration recorded separately by delivery."
+  "validation_scope": "Technical headless Java/Python regression and real ImageJ interpreter checks with synthetic images; scientific functions byte-preserved. No visual Fiji/Tk or complete DM3/DM4 Windows workflow validated."
 }
